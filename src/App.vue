@@ -109,13 +109,17 @@ export default {
   src: url('../src/assets/fonts/kurdis-font-family/KurdisVariableFamilyTest-WideExtraBold-BF64bf41e172be8.otf');
 }
 
+html,
 body {
-  @apply overflow-x-hidden bg-black text-white;
+  @apply bg-black text-white;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
+  max-width: 100vw;
+  overscroll-behavior: none;
 }
-html {
-  @apply overflow-x-hidden;
+body {
+  overscroll-behavior-y: none;
 }
 .headingFont {
   font-family: Kurdis-wide-extrabold;
@@ -148,7 +152,7 @@ header {
   z-index: 110000;
 }
 section {
-  @apply w-[100vw] h-[100vh] overflow-hidden !important;
+  @apply relative w-[100vw] h-[100vh] overflow-hidden !important;
 }
 #main {
   @apply relative;
