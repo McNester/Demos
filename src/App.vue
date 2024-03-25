@@ -33,6 +33,22 @@
         </a>
       </div>
     </section>
+
+    <section id="about">
+      <img id="aboutBackPhone" src="../src/assets/icons/aboutBackPhone.svg" />
+      <div id="textOverlap">
+        <h2 class="headingFont" id="aboutTitle">Who we are?</h2>
+      </div>
+      <h3 id="aboutDesc" class="inter">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac sodales est. Class aptent
+        taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In hac
+        habitasse platea dictumst. Maecenas semper tempor nulla, id cursus sem mattis et.
+        Suspendisse ut purus sit amet arcu ultricies scelerisque id in ipsum. Integer interdum ex
+        nec ligula fermentum, ac aliquam justo finibus. Morbi a turpis varius, aliquam felis sed,
+        dignissim orci. Nam augue orci, pulvinar vehicula nisi eget, venenatis volutpat ex. Aliquam
+        erat volutpat. Sed ultrices erat in purus molestie vulputate.
+      </h3>
+    </section>
   </main>
 </template>
 <script setup>
@@ -71,17 +87,6 @@ export default {
   mounted() {
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
-
-    /*
-
-    const partialCases = document.querySelectorAll('.caseAnim')
-    gridItems.forEach((item, index) => {
-      setTimeout(() => {
-        item.classList.add('caseAnim' + index)
-      }, 100 * index) // Adjust the time delay as needed
-    })
-
-    */
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.handleResize)
@@ -134,16 +139,21 @@ html {
   font-style: normal;
 }
 header {
-  @apply flex flex-col h-fit w-[100vw] fixed items-end;
+  @apply flex flex-col h-fit w-[100vw] h-[10vh] fixed items-end bg-black bg-opacity-[0.75];
   z-index: 10000;
 }
 #menuBtn {
   @apply scale-[200%] p-8;
   @apply sm:hidden;
+  z-index: 110000;
+}
+section {
+  @apply w-[100vw] h-[100vh] overflow-hidden !important;
 }
 #main {
-  @apply relative w-[100vw] h-[100vh];
+  @apply relative;
 }
+
 #mainBack {
   @apply absolute bottom-0 scale-[200%] -ml-[50vw] mb-[19%];
   z-index: 10;
@@ -209,6 +219,29 @@ header {
 #case5 {
   top: 70vh;
   right: 9.5vw;
+}
+
+#aboutBackPhone {
+  @apply absolute scale-[200%]  -ml-[50vw] mt-[2vh];
+}
+#textOverlap {
+  @apply absolute right-0 h-[20vh] w-[67vw] mix-blend-difference;
+}
+#aboutTitle {
+  @apply text-[2.6rem] mt-[5vh] -ml-[31vw];
+}
+@media (max-width: 320px) {
+  #aboutTitle {
+    @apply text-[2.2rem] !important;
+  }
+}
+@media (min-width: 400px) {
+  #aboutTitle {
+    @apply text-5xl;
+  }
+}
+#aboutDesc {
+  @apply text-lg w-[90vw] font-semibold mt-[20vh] ml-[6vw];
 }
 
 @keyframes case1 {

@@ -44,7 +44,7 @@ export default {
 
 <style scoped>
 nav {
-  @apply text-xl bg-black bg-opacity-[0.75] w-[100vw] h-[100vh] fixed mt-14;
+  @apply text-xl bg-black bg-opacity-[0.75] w-[100vw] h-[100vh] fixed mt-[10vh];
   z-index: 1000;
 }
 #links {
