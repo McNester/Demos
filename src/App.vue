@@ -190,88 +190,89 @@ header {
 #case1 {
   @apply relative;
   right: 0.5vw;
-  top: 12vh;
+  top: 70vh;
 }
 #case2 {
-  top: 7vh;
+  top: -66vh;
   right: 3vw;
 }
 #case3 {
-  bottom: 7.5vh;
+  bottom: -50.5vh;
   right: 3vw;
   grid-column: 2;
   grid-row: 2;
 }
 #case4 {
   right: 5.9vw;
-  top: 12vh;
+  top: 70vh;
 }
 #case5 {
+  top: 70vh;
   right: 9.5vw;
 }
 
 @keyframes case1 {
   from {
-    transform: translateY(60vh);
+    transform: translateY(0);
   }
   to {
-    transform: translateY(0);
+    transform: translateY(-58vh);
   }
 }
 
 @keyframes case2 {
   from {
-    transform: translateY(-60vh);
+    transform: translateY(0);
   }
   to {
-    transform: translateY(0);
+    transform: translateY(70vh);
   }
 }
 
 @keyframes case3 {
   from {
-    transform: translateY(60vh);
+    transform: translateY(0);
   }
   to {
-    transform: translateY(0);
+    transform: translateY(-60vh);
   }
 }
 
 @keyframes case4 {
   from {
-    transform: translateY(60vh); /* Start from below the view */
+    transform: translateY(0); /* Start from below the view */
   }
   to {
-    transform: translateY(0);
+    transform: translateY(-58vh);
   }
 }
 
 @keyframes case5 {
   from {
-    transform: translateY(60vh); /* Start from below the view */
+    transform: translateY(0); /* Start from below the view */
   }
   to {
-    transform: translateY(0);
+    transform: translateY(-70vh);
   }
 }
 
 .caseAnim1 {
-  animation: case1 0.5s ease forwards;
+  animation: case1 0.5s 0.5s ease forwards;
 }
 
 .caseAnim2 {
-  animation: case2 0.6s ease forwards;
+  animation: case2 0.6s 0.5s ease forwards;
 }
 
 .caseAnim3 {
-  animation: case3 0.7s ease forwards;
+  animation: case3 0.7s 0.5s ease forwards;
 }
 
 .caseAnim4 {
-  animation: case4 0.8s ease forwards;
+  animation: case4 0.8s 0.5s ease forwards;
 }
 
 .caseAnim5 {
-  animation: case5 0.9s ease forwards;
+  animation: case5 0.9s 0.5s ease forwards;
 }
 </style>
