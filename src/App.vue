@@ -155,7 +155,7 @@ section {
 }
 
 #mainBack {
-  @apply absolute bottom-0 scale-[200%] -ml-[50vw] mb-[19%];
+  @apply absolute bottom-0 scale-[200%] -ml-[49vw] mb-[19%];
   z-index: 10;
 }
 #logoWrapper {
