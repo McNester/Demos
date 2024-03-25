@@ -16,19 +16,19 @@
       </div>
 
       <div id="partialCasesWrapper">
-        <a target="_blank" href="https://www.youtube.com/" id="case1">
+        <a target="_blank" href="https://www.youtube.com/" id="case1" class="caseAnim1">
           <img src="../src/assets/icons/case1.svg" />
         </a>
-        <a target="_blank" href="https://www.youtube.com/" id="case2">
+        <a target="_blank" href="https://www.youtube.com/" id="case2" class="caseAnim2">
           <img src="../src/assets/icons/case2.svg" />
         </a>
-        <a target="_blank" href="https://www.youtube.com/" id="case3">
+        <a target="_blank" href="https://www.youtube.com/" id="case3" class="caseAnim3">
           <img src="../src/assets/icons/case3.svg" />
         </a>
-        <a target="_blank" href="https://www.youtube.com/" id="case4">
+        <a target="_blank" href="https://www.youtube.com/" id="case4" class="caseAnim4">
           <img src="../src/assets/icons/case4.svg" />
         </a>
-        <a target="_blank" href="https://www.youtube.com/" id="case5">
+        <a target="_blank" href="https://www.youtube.com/" id="case5" class="caseAnim5">
           <img src="../src/assets/icons/case5.svg" />
         </a>
       </div>
@@ -201,5 +201,70 @@ header {
 }
 #case5 {
   right: 7.3vw;
+}
+
+@keyframes case1 {
+  from {
+    transform: translateY(60vh);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes case2 {
+  from {
+    transform: translateY(-60vh);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes case3 {
+  from {
+    transform: translateY(60vh);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes case4 {
+  from {
+    transform: translateY(60vh); /* Start from below the view */
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes case5 {
+  from {
+    transform: translateY(60vh); /* Start from below the view */
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.caseAnim1 {
+  animation: case1 0.5s ease forwards;
+}
+
+.caseAnim2 {
+  animation: case2 0.6s ease forwards;
+}
+
+.caseAnim3 {
+  animation: case3 0.7s ease forwards;
+}
+
+.caseAnim4 {
+  animation: case4 0.8s ease forwards;
+}
+
+.caseAnim5 {
+  animation: case5 0.9s ease forwards;
 }
 </style>
