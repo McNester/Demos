@@ -16,19 +16,19 @@
       </div>
 
       <div id="partialCasesWrapper">
-        <a target="_blank" href="https://www.youtube.com/" id="case1" class="caseAnim1">
+        <a target="_blank" href="https://www.youtube.com/" id="case1" class="caseAnim1 caseAnim">
           <img src="../src/assets/icons/case1.svg" />
         </a>
-        <a target="_blank" href="https://www.youtube.com/" id="case2" class="caseAnim2">
+        <a target="_blank" href="https://www.youtube.com/" id="case2" class="caseAnim2 caseAnim">
           <img src="../src/assets/icons/case2.svg" />
         </a>
-        <a target="_blank" href="https://www.youtube.com/" id="case3" class="caseAnim3">
+        <a target="_blank" href="https://www.youtube.com/" id="case3" class="caseAnim3 caseAnim">
           <img src="../src/assets/icons/case3.svg" />
         </a>
-        <a target="_blank" href="https://www.youtube.com/" id="case4" class="caseAnim4">
+        <a target="_blank" href="https://www.youtube.com/" id="case4" class="caseAnim4 caseAnim">
           <img src="../src/assets/icons/case4.svg" />
         </a>
-        <a target="_blank" href="https://www.youtube.com/" id="case5" class="caseAnim5">
+        <a target="_blank" href="https://www.youtube.com/" id="case5" class="caseAnim5 caseAnim">
           <img src="../src/assets/icons/case5.svg" />
         </a>
       </div>
@@ -71,6 +71,17 @@ export default {
   mounted() {
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
+
+    /*
+
+    const partialCases = document.querySelectorAll('.caseAnim')
+    gridItems.forEach((item, index) => {
+      setTimeout(() => {
+        item.classList.add('caseAnim' + index)
+      }, 100 * index) // Adjust the time delay as needed
+    })
+
+    */
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.handleResize)
@@ -154,53 +165,49 @@ header {
   z-index: 11;
 }
 #partialCasesWrapper > a {
-  @apply relative;
+  @apply relative w-[18vw];
 }
 #partialCasesWrapper > a > img {
-  @apply w-[6rem];
+  width: inherit;
 }
 @media (min-width: 390px) {
-  #partialCasesWrapper > a > img {
-    @apply w-[7rem] !important;
+  #partialCasesWrapper > a {
+    @apply w-[18vw] !important;
   }
   #case2 {
-    right: 1.6vw !important;
+    right: 3vw !important;
   }
   #case3 {
-    right: 1.6vw !important;
+    right: 3vw !important;
   }
   #case4 {
-    right: 3.5vw !important;
+    right: 5.5vw !important;
   }
   #case5 {
-    right: 6vw !important;
-  }
-}
-@media (min-width: 430px) {
-  #partialCasesWrapper > a > img {
-    @apply w-[10rem];
+    right: 8.5vw !important;
   }
 }
 #case1 {
   @apply relative;
+  right: 0.5vw;
   top: 12vh;
 }
 #case2 {
   top: 7vh;
-  right: 2.4vw;
+  right: 3vw;
 }
 #case3 {
-  bottom: 5.5vh;
-  right: 2.4vw;
+  bottom: 7.5vh;
+  right: 3vw;
   grid-column: 2;
   grid-row: 2;
 }
 #case4 {
-  right: 4.3vw;
+  right: 5.9vw;
   top: 12vh;
 }
 #case5 {
-  right: 6.7vw;
+  right: 9.5vw;
 }
 
 @keyframes case1 {
