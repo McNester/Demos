@@ -156,12 +156,12 @@ header {
 #partialCasesWrapper > a {
   @apply relative;
 }
+#partialCasesWrapper > a > img {
+  @apply w-[6rem];
+}
 @media (min-width: 390px) {
-  #partialCasesWrapper {
-    @apply scale-[110%];
-  }
-  #partialCasesWrapper > a {
-    @apply scale-[119%] !important;
+  #partialCasesWrapper > a > img {
+    @apply w-[7rem] !important;
   }
   #case2 {
     right: 1.6vw !important;
@@ -173,12 +173,12 @@ header {
     right: 3.5vw !important;
   }
   #case5 {
-    right: 5vw !important;
+    right: 6vw !important;
   }
 }
 @media (min-width: 430px) {
-  #partialCasesWrapper > a {
-    @apply scale-[122%] !important;
+  #partialCasesWrapper > a > img {
+    @apply w-[10rem];
   }
 }
 #case1 {
@@ -196,11 +196,11 @@ header {
   grid-row: 2;
 }
 #case4 {
-  right: 4.9vw;
+  right: 4.3vw;
   top: 12vh;
 }
 #case5 {
-  right: 7.3vw;
+  right: 6.7vw;
 }
 
 @keyframes case1 {
