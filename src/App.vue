@@ -222,7 +222,7 @@ section {
 }
 
 #aboutBackPhone {
-  @apply absolute scale-[200%]  -ml-[50vw] mt-[2vh];
+  @apply absolute scale-[200%]  -ml-[49vw] mt-[2vh];
 }
 #textOverlap {
   @apply absolute right-0 h-[20vh] w-[67vw] mix-blend-difference;
