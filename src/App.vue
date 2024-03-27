@@ -12,7 +12,7 @@
 
       <div id="logoWrapper">
         <h1 id="logo" class="logoFont">Demos</h1>
-        <h2 id="slogan" class="fira">Making dreams together.|</h2>
+        <h2 id="slogan" class="fira">{{ slogan + '|' }}</h2>
       </div>
 
       <div id="partialCasesWrapper">
@@ -72,7 +72,23 @@ import closeBtn from '../src/assets/icons/closeBtn.svg'
 export default {
   data() {
     return {
-      isMenu: true
+      isMenu: true,
+      dreams: '',
+      phrases: [
+        'Making dreams togehter.',
+        'Helping all the way.',
+        'Innovate, Create, Elevate.',
+        'Making the Web Work for You.',
+        'Building Your Digital Future.',
+        'Where Ideas Meet Impact.',
+        'Beyond the Code.',
+        'Innovation at Every Click.'
+      ],
+      slogan: '',
+      currentPhraseIndex: 0,
+      typingSpeed: 70,
+      deletingSpeed: 80,
+      isDeleting: false
     }
   },
   methods: {
@@ -94,11 +110,44 @@ export default {
         this.isMenu = true
       }
       this.toggleMenuIcon()
+    },
+    typingSlogan() {
+      const current = this.currentPhraseIndex % this.phrases.length
+      const fullPhrase = this.phrases[current]
+
+      if (this.isDeleting) {
+        // Remove a character
+        this.slogan = fullPhrase.substring(0, this.slogan.length - 1)
+      } else {
+        // Add a character
+        this.slogan = fullPhrase.substring(0, this.slogan.length + 1)
+      }
+
+      // Determine the typing speed
+      let typeSpeed = this.typingSpeed
+      if (this.isDeleting) {
+        typeSpeed = this.deletingSpeed
+      }
+
+      // If phrase is complete, pause before starting to delete
+      if (!this.isDeleting && this.slogan === fullPhrase) {
+        // Pause at end
+        typeSpeed = 2000
+        this.isDeleting = true
+      } else if (this.isDeleting && this.slogan === '') {
+        this.isDeleting = false
+        this.currentPhraseIndex++
+        // Pause before start typing next phrase
+        typeSpeed = 500
+      }
+
+      setTimeout(() => this.typingSlogan(), typeSpeed)
     }
   },
   mounted() {
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
+    this.typingSlogan()
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.handleResize)
@@ -142,7 +191,6 @@ body {
 .serviceHeadingFont {
   font-family: Kurdis-extrawide-bold;
 }
-
 .fira {
   font-family: 'Fira Code', monospace;
   font-optical-sizing: auto;
@@ -183,6 +231,7 @@ section {
 #slogan {
   @apply text-lg w-[70%] pl-1;
 }
+
 #partialCasesWrapper {
   display: grid;
   grid-template-columns: auto auto auto auto;
