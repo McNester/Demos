@@ -60,6 +60,6 @@ a {
   @apply font-black;
 }
 .line {
-  @apply absolute w-[100vw] h-[0.01rem] bg-white right-0 mt-1;
+  @apply absolute w-[100vw] h-[0.1rem] bg-white right-0 mt-1 bg-opacity-20;
 }
 </style>

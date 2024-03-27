@@ -3,7 +3,9 @@
     <button id="menuBtn" aria-label="Menu button" @click="toggleMenu">
       <img id="menuImg" :src="menuBtn" alt="Menu button" />
     </button>
-    <my-nav :isMenu="isMenu"></my-nav>
+    <transition name="fade">
+      <my-nav :isMenu="isMenu"></my-nav>
+    </transition>
   </header>
 
   <main>
@@ -385,6 +387,22 @@ section {
   }
 }
 
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
 .caseAnim1 {
   animation: case1 0.5s 0.5s ease forwards;
 }
@@ -403,5 +421,11 @@ section {
 
 .caseAnim5 {
   animation: case5 0.9s 0.5s ease forwards;
+}
+.fade-enter-active {
+  animation: fadeIn 0.7s ease;
+}
+.fade-leave-active {
+  animation: fadeOut 0.5s ease forwards;
 }
 </style>
