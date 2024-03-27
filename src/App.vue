@@ -16,8 +16,22 @@
       </div>
 
       <div id="partialCasesWrapper">
+        <a
+          target="_blank"
+          href="https://www.youtube.com"
+          :id="'case' + i"
+          class="caseAnim"
+          :class="'caseAnim' + i"
+          :key="i"
+          v-for="i in [1, 2, 3, 4, 5]"
+        >
+          <partial-case :imageNumber="i"></partial-case>
+        </a>
+        <!--
+
+
         <a target="_blank" href="https://www.youtube.com/" id="case1" class="caseAnim1 caseAnim">
-          <img src="../src/assets/icons/case1.svg" />
+          <partial-case></partial-case>
         </a>
         <a target="_blank" href="https://www.youtube.com/" id="case2" class="caseAnim2 caseAnim">
           <img src="../src/assets/icons/case2.svg" />
@@ -31,6 +45,8 @@
         <a target="_blank" href="https://www.youtube.com/" id="case5" class="caseAnim5 caseAnim">
           <img src="../src/assets/icons/case5.svg" />
         </a>
+
+        -->
       </div>
     </section>
 
@@ -49,6 +65,22 @@
         erat volutpat. Sed ultrices erat in purus molestie vulputate.
       </h3>
     </section>
+
+    <section id="portfolio">
+      <h2 class="headingFont" id="portfolioTitle">Bringing your ideas into the world</h2>
+
+      <div id="portfolioWrapper">
+        <div id="leftPortfolio" class="portfolioColumn">
+          <portfolio-card :imageNumber="i" :key="i" v-for="i in [1, 3, 4]"></portfolio-card>
+        </div>
+
+        <div id="rightPortfolio" class="portfolioColumn">
+          <portfolio-card :imageNumber="i" :key="i" v-for="i in [2, 5]"></portfolio-card>
+        </div>
+      </div>
+    </section>
+
+    <section id="services"></section>
   </main>
 </template>
 <script setup>
@@ -178,6 +210,16 @@ section {
   @apply absolute bottom-0 right-0 w-[68.5vw] scale-[111%] -mr-[4.2vw];
   z-index: 11;
 }
+@media (min-width: 335px) {
+  #partialCasesWrapper {
+    @apply scale-[115%] -mr-[1.4rem] mb-14;
+  }
+}
+@media (min-width: 382px) {
+  #partialCasesWrapper {
+    @apply -mr-7;
+  }
+}
 #partialCasesWrapper > a {
   @apply relative w-[18vw];
 }
@@ -198,31 +240,31 @@ section {
     right: 5.5vw !important;
   }
   #case5 {
-    right: 8.5vw !important;
+    right: 9.5vw !important;
   }
 }
 #case1 {
   @apply relative;
-  right: 0.5vw;
+  left: 0.2vw;
   top: 70vh;
 }
 #case2 {
   top: -66vh;
-  right: 3vw;
+  left: -2.8vw;
 }
 #case3 {
   bottom: -50.5vh;
-  right: 3vw;
+  left: -2.8vw;
   grid-column: 2;
   grid-row: 2;
 }
 #case4 {
-  right: 5.9vw;
   top: 70vh;
+  left: -6vw;
 }
 #case5 {
   top: 70vh;
-  right: 9.5vw;
+  right: 9vw;
 }
 
 #aboutBackPhone {
@@ -246,6 +288,48 @@ section {
 }
 #aboutDesc {
   @apply text-lg w-[90vw] font-semibold mt-[20vh] ml-[6vw];
+}
+@media (max-width: 375px) {
+  #portfolio {
+    @apply mt-[20vh];
+  }
+}
+#portfolioTitle {
+  @apply text-4xl text-center;
+  word-wrap: break-word;
+  line-height: 1.5;
+}
+#portfolio {
+  @apply h-fit pb-[20rem] !important;
+}
+#portfolioWrapper {
+  @apply flex flex-row justify-around items-center h-fit mt-[5rem];
+}
+.portfolioColumn {
+  @apply h-fit w-[80%] flex flex-col justify-center items-center gap-10;
+}
+#rightPortfolio {
+  @apply mt-[-10rem];
+}
+
+@media (min-width: 348px) {
+  #leftPortfolio {
+    @apply scale-[110%];
+  }
+  #rightPortfolio {
+    @apply scale-[110%];
+  }
+}
+@media (min-width: 376px) {
+  #portfolioWrapper {
+    @apply pt-[7vh];
+  }
+  #leftPortfolio {
+    @apply scale-[120%];
+  }
+  #rightPortfolio {
+    @apply scale-[120%];
+  }
 }
 
 @keyframes case1 {
@@ -271,7 +355,7 @@ section {
     transform: translateY(0);
   }
   to {
-    transform: translateY(-60vh);
+    transform: translateY(-53vh);
   }
 }
 
