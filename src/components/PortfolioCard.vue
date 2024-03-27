@@ -1,7 +1,7 @@
 <template>
-  <div id="maskBorder">
+  <a target="_blank" href="https://www.youtube.com" id="maskBorder">
     <img :src="getImage()" class="mask" />
-  </div>
+  </a>
 </template>
 
 <script>

@@ -1,26 +1,28 @@
 <template>
-  <nav v-if="isMenu">
-    <ul id="links" class="inter">
-      <div @click="toggleChoice(0)" class="linkWrapper">
-        <li :class="{ chosen: chosenId == 0 }"><a>Home</a></li>
-        <div class="line"></div>
-      </div>
-      <div @click="toggleChoice(1)" class="linkWrapper">
-        <li :class="{ chosen: chosenId == 1 }"><a>About</a></li>
-        <div class="line"></div>
-      </div>
-      <div @click="toggleChoice(2)" class="linkWrapper">
-        <li :class="{ chosen: chosenId == 2 }">
-          <a>Services</a>
-        </li>
-        <div class="line"></div>
-      </div>
-      <div @click="toggleChoice(3)" class="linkWrapper">
-        <li :class="{ chosen: chosenId == 3 }"><a>Contact</a></li>
-        <div class="line"></div>
-      </div>
-    </ul>
-  </nav>
+  <transition name="fade">
+    <nav v-show="isMenu">
+      <ul id="links" class="inter">
+        <div @click="toggleChoice(0)" class="linkWrapper">
+          <li :class="{ chosen: chosenId == 0 }"><a>Home</a></li>
+          <div class="line"></div>
+        </div>
+        <div @click="toggleChoice(1)" class="linkWrapper">
+          <li :class="{ chosen: chosenId == 1 }"><a>About</a></li>
+          <div class="line"></div>
+        </div>
+        <div @click="toggleChoice(2)" class="linkWrapper">
+          <li :class="{ chosen: chosenId == 2 }">
+            <a>Services</a>
+          </li>
+          <div class="line"></div>
+        </div>
+        <div @click="toggleChoice(3)" class="linkWrapper">
+          <li :class="{ chosen: chosenId == 3 }"><a>Contact</a></li>
+          <div class="line"></div>
+        </div>
+      </ul>
+    </nav>
+  </transition>
 </template>
 
 <script>
@@ -61,5 +63,29 @@ a {
 }
 .line {
   @apply absolute w-[100vw] h-[0.1rem] bg-white right-0 mt-1 bg-opacity-20;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.fade-enter-active {
+  animation: fadeIn 0.7s ease;
+}
+.fade-leave-active {
+  animation: fadeOut 0s ease forwards;
 }
 </style>

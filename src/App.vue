@@ -3,9 +3,7 @@
     <button id="menuBtn" aria-label="Menu button" @click="toggleMenu">
       <img id="menuImg" :src="menuBtn" alt="Menu button" />
     </button>
-    <transition name="fade">
-      <my-nav :isMenu="isMenu"></my-nav>
-    </transition>
+    <my-nav :isMenu="isMenu"></my-nav>
   </header>
 
   <main>
@@ -29,26 +27,6 @@
         >
           <partial-case :imageNumber="i"></partial-case>
         </a>
-        <!--
-
-
-        <a target="_blank" href="https://www.youtube.com/" id="case1" class="caseAnim1 caseAnim">
-          <partial-case></partial-case>
-        </a>
-        <a target="_blank" href="https://www.youtube.com/" id="case2" class="caseAnim2 caseAnim">
-          <img src="../src/assets/icons/case2.svg" />
-        </a>
-        <a target="_blank" href="https://www.youtube.com/" id="case3" class="caseAnim3 caseAnim">
-          <img src="../src/assets/icons/case3.svg" />
-        </a>
-        <a target="_blank" href="https://www.youtube.com/" id="case4" class="caseAnim4 caseAnim">
-          <img src="../src/assets/icons/case4.svg" />
-        </a>
-        <a target="_blank" href="https://www.youtube.com/" id="case5" class="caseAnim5 caseAnim">
-          <img src="../src/assets/icons/case5.svg" />
-        </a>
-
-        -->
       </div>
     </section>
 
@@ -183,7 +161,7 @@ header {
 #menuBtn {
   @apply scale-[200%] p-8;
   @apply sm:hidden;
-  z-index: 110000;
+  z-index: 999;
 }
 section {
   @apply relative w-[100vw] h-[100vh] overflow-hidden !important;
@@ -387,22 +365,6 @@ section {
   }
 }
 
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
 .caseAnim1 {
   animation: case1 0.5s 0.5s ease forwards;
 }
@@ -421,11 +383,5 @@ section {
 
 .caseAnim5 {
   animation: case5 0.9s 0.5s ease forwards;
-}
-.fade-enter-active {
-  animation: fadeIn 0.7s ease;
-}
-.fade-leave-active {
-  animation: fadeOut 0.5s ease forwards;
 }
 </style>
