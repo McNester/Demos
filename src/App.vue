@@ -308,10 +308,18 @@ section {
 .portfolioColumn {
   @apply h-fit w-[80%] flex flex-col justify-center items-center gap-10;
 }
+
 #rightPortfolio {
   @apply mt-[-10rem];
 }
-
+@media (min-width: 391px) {
+  #rightPortfolio {
+    @apply -ml-2;
+  }
+  #leftPortfolio {
+    @apply -mr-2;
+  }
+}
 @media (min-width: 348px) {
   #leftPortfolio {
     @apply scale-[110%];
