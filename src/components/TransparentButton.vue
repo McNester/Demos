@@ -1,0 +1,45 @@
+<template>
+  <button
+    @touchstart="toggleActive"
+    @touchend="toggleActive"
+    :class="{ active: isActive }"
+    class="inter"
+  >
+    <slot></slot>
+  </button>
+</template>
+<script>
+export default {
+  name: 'transparent-button',
+  data() {
+    return {
+      isActive: false
+    }
+  },
+  methods: {
+    toggleActive() {
+      this.isActive = !this.isActive
+    }
+  }
+}
+</script>
+<style scoped>
+button {
+  @apply font-normal text-center rounded-3xl border border-violet-800 w-[70%] h-fit py-[1vh];
+  transition: all 0.2s ease;
+}
+
+@media (hover: hover) {
+  button:hover {
+    @apply scale-105 bg-violet-800;
+  }
+  button:active {
+    @apply scale-100;
+  }
+}
+@media (hover: none) {
+  .active {
+    @apply scale-95 bg-violet-800;
+  }
+}
+</style>

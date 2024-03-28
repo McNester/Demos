@@ -2,22 +2,22 @@
   <transition name="fade">
     <nav v-show="isMenu">
       <ul id="links" class="inter">
-        <div @click="toggleChoice(0)" class="linkWrapper">
+        <div @click="toggleChoice(0), scrollTo(options[0].name)" class="linkWrapper">
           <li :class="{ chosen: chosenId == 0 }"><a>Home</a></li>
           <div class="line"></div>
         </div>
-        <div @click="toggleChoice(1)" class="linkWrapper">
+        <div @click="toggleChoice(1), scrollTo(options[1].name)" class="linkWrapper">
           <li :class="{ chosen: chosenId == 1 }"><a>About</a></li>
           <div class="line"></div>
         </div>
-        <div @click="toggleChoice(2)" class="linkWrapper">
+        <div @click="toggleChoice(2), scrollTo(options[2].name)" class="linkWrapper">
           <li :class="{ chosen: chosenId == 2 }">
-            <a>Services</a>
+            <a>Portfolio</a>
           </li>
           <div class="line"></div>
         </div>
-        <div @click="toggleChoice(3)" class="linkWrapper">
-          <li :class="{ chosen: chosenId == 3 }"><a>Contact</a></li>
+        <div @click="toggleChoice(3), scrollTo(options[3].name)" class="linkWrapper">
+          <li :class="{ chosen: chosenId == 3 }"><a>Services</a></li>
           <div class="line"></div>
         </div>
       </ul>
@@ -33,12 +33,25 @@ export default {
   },
   data() {
     return {
-      chosenId: 0
+      chosenId: -1,
+      options: [
+        { id: 1, name: 'main' },
+        { id: 2, name: 'about' },
+        { id: 3, name: 'portfolio' },
+        { id: 4, name: 'services' }
+      ]
     }
   },
   methods: {
     toggleChoice(id) {
       this.chosenId = id
+    },
+    scrollTo(sectionId) {
+      this.$emit('closeSideBar')
+      const element = document.getElementById(sectionId)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' })
+      }
     }
   }
 }

@@ -3,7 +3,7 @@
     <button id="menuBtn" aria-label="Menu button" @click="toggleMenu">
       <img id="menuImg" :src="menuBtn" alt="Menu button" />
     </button>
-    <my-nav :isMenu="isMenu"></my-nav>
+    <my-nav :isMenu="isMenu" @closeSideBar="toggleMenu"></my-nav>
   </header>
 
   <main>
@@ -60,7 +60,19 @@
       </div>
     </section>
 
-    <section id="services"></section>
+    <section id="services">
+      <h2 class="headingFont" id="servicesTitle">What we offer?</h2>
+
+      <div id="servicesWrapper">
+        <service-card
+          v-for="service in services"
+          :key="service.id"
+          :title="service.title"
+          :description="service.desc"
+          :price="service.price"
+        ></service-card>
+      </div>
+    </section>
   </main>
 </template>
 <script setup>
@@ -73,7 +85,6 @@ export default {
   data() {
     return {
       isMenu: true,
-      dreams: '',
       phrases: [
         'Making dreams togehter.',
         'Helping all the way.',
@@ -88,13 +99,41 @@ export default {
       currentPhraseIndex: 0,
       typingSpeed: 70,
       deletingSpeed: 80,
-      isDeleting: false
+      isDeleting: false,
+      services: [
+        {
+          id: 1,
+          title: 'Website',
+          desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac sodales est. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In hac habitasse platea dictumst. Maecenas semper tempor nulla, id cursus sem mattis et. Suspendisse ut purus sit amet arcu ultricies.',
+          price: 499
+        },
+        {
+          id: 2,
+          title: 'App',
+          desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac sodales est. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In hac habitasse platea dictumst. Maecenas semper tempor nulla, id cursus sem mattis et. Suspendisse ut purus sit amet arcu ultricies.',
+          price: 759
+        },
+        {
+          id: 3,
+          title: 'Internal service',
+          desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac sodales est. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In hac habitasse platea dictumst. Maecenas semper tempor nulla, id cursus sem mattis et. Suspendisse ut purus sit amet arcu ultricies.',
+          price: 830
+        },
+        {
+          id: 4,
+          title: 'ERP',
+          desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac sodales est. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In hac habitasse platea dictumst. Maecenas semper tempor nulla, id cursus sem mattis et. Suspendisse ut purus sit amet arcu ultricies.',
+          price: 421
+        }
+      ]
     }
   },
   methods: {
     toggleMenu() {
-      this.isMenu = !this.isMenu
-      this.toggleMenuIcon()
+      if (window.innerWidth < 450) {
+        this.isMenu = !this.isMenu
+        this.toggleMenuIcon()
+      }
     },
     toggleMenuIcon() {
       if (this.isMenu) {
@@ -156,7 +195,7 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@700&family=Inter:wght@100..900&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@700&family=Inter:wght@100..900&display=swap');
 @font-face {
   font-family: Kurdis-extrawide-bold;
   src: url('../src/assets/fonts/kurdis-font-family/KurdisVariableFamilyTest-ExtraWideBold-BF64bf41e1032f4.otf');
@@ -367,6 +406,15 @@ section {
   #rightPortfolio {
     @apply scale-[120%];
   }
+}
+#services {
+  @apply h-fit pb-[20rem] !important;
+}
+#servicesWrapper {
+  @apply flex flex-col justify-center items-center gap-20 pt-20;
+}
+#servicesTitle {
+  @apply text-[2.2rem] text-center;
 }
 
 @keyframes case1 {
