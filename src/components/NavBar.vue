@@ -96,7 +96,7 @@ a {
 }
 
 .fade-enter-active {
-  animation: fadeIn 0.7s ease;
+  animation: fadeIn 0.2s ease;
 }
 .fade-leave-active {
   animation: fadeOut 0s ease forwards;

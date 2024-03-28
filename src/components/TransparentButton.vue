@@ -26,10 +26,13 @@ export default {
 <style scoped>
 button {
   @apply font-normal text-center rounded-3xl border border-violet-800 w-[70%] h-fit py-[1vh];
-  transition: all 0.2s ease;
+  transition: all 0.1s ease;
 }
 
 @media (hover: hover) {
+  button {
+    transition: all 0.3s ease;
+  }
   button:hover {
     @apply scale-105 bg-violet-800;
   }
