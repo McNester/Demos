@@ -2,22 +2,22 @@
   <transition name="fade">
     <nav v-show="isMenu">
       <ul id="links" class="inter">
-        <div @click="toggleChoice(0), scrollTo(options[0].name)" class="linkWrapper">
-          <li :class="{ chosen: chosenId == 0 }"><a>Home</a></li>
+        <div @click="scrollTo(options[0].name)" class="linkWrapper">
+          <li :class="{ chosen: currentSection == 0 }"><a>Home</a></li>
           <div class="line"></div>
         </div>
-        <div @click="toggleChoice(1), scrollTo(options[1].name)" class="linkWrapper">
-          <li :class="{ chosen: chosenId == 1 }"><a>About</a></li>
+        <div @click="scrollTo(options[1].name)" class="linkWrapper">
+          <li :class="{ chosen: currentSection == 1 }"><a>About</a></li>
           <div class="line"></div>
         </div>
-        <div @click="toggleChoice(2), scrollTo(options[2].name)" class="linkWrapper">
-          <li :class="{ chosen: chosenId == 2 }">
+        <div @click="scrollTo(options[2].name)" class="linkWrapper">
+          <li :class="{ chosen: currentSection == 2 }">
             <a>Portfolio</a>
           </li>
           <div class="line"></div>
         </div>
-        <div @click="toggleChoice(3), scrollTo(options[3].name)" class="linkWrapper">
-          <li :class="{ chosen: chosenId == 3 }"><a>Services</a></li>
+        <div @click="scrollTo(options[3].name)" class="linkWrapper">
+          <li :class="{ chosen: currentSection == 3 }"><a>Services</a></li>
           <div class="line"></div>
         </div>
       </ul>
@@ -29,11 +29,11 @@
 export default {
   name: 'my-nav',
   props: {
-    isMenu: false
+    isMenu: false,
+    currentSection: { type: Number }
   },
   data() {
     return {
-      chosenId: -1,
       options: [
         { id: 1, name: 'main' },
         { id: 2, name: 'about' },
@@ -43,9 +43,6 @@ export default {
     }
   },
   methods: {
-    toggleChoice(id) {
-      this.chosenId = id
-    },
     scrollTo(sectionId) {
       this.$emit('closeSideBar')
       const element = document.getElementById(sectionId)

@@ -1,7 +1,7 @@
 <template>
   <button
     @touchstart="toggleActive"
-    @touchend="toggleActive"
+    @touchend="toggleActive(), scrollTo()"
     :class="{ active: isActive }"
     class="inter"
   >
@@ -19,6 +19,12 @@ export default {
   methods: {
     toggleActive() {
       this.isActive = !this.isActive
+    },
+    scrollTo() {
+      const element = document.getElementById('contact')
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' })
+      }
     }
   }
 }

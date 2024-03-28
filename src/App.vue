@@ -3,7 +3,7 @@
     <button id="menuBtn" aria-label="Menu button" @click="toggleMenu">
       <img id="menuImg" :src="menuBtn" alt="Menu button" />
     </button>
-    <my-nav :isMenu="isMenu" @closeSideBar="toggleMenu"></my-nav>
+    <my-nav :currentSection="currentSection" :isMenu="isMenu" @closeSideBar="toggleMenu"></my-nav>
   </header>
 
   <main>
@@ -73,6 +73,11 @@
         ></service-card>
       </div>
     </section>
+    <section id="contact">
+      <h2 class="headingFont" id="contactTitle">Ready to discuss your ideas</h2>
+
+      <contact-small></contact-small>
+    </section>
   </main>
 </template>
 <script setup>
@@ -125,7 +130,8 @@ export default {
           desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac sodales est. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In hac habitasse platea dictumst. Maecenas semper tempor nulla, id cursus sem mattis et. Suspendisse ut purus sit amet arcu ultricies.',
           price: 421
         }
-      ]
+      ],
+      currentSection: 0
     }
   },
   methods: {
@@ -181,15 +187,49 @@ export default {
       }
 
       setTimeout(() => this.typingSlogan(), typeSpeed)
+    },
+    handleScroll() {
+      var current = this.currentSection
+      var getSection = this.getSectionById
+      var t = this
+      document.querySelectorAll('section').forEach(function (section) {
+        var sectionTop = section.offsetTop
+        var sectionHeight = section.offsetHeight
+        var scrollPosition = window.scrollY || document.documentElement.scrollTop
+
+        if (sectionTop <= scrollPosition && sectionTop + sectionHeight > scrollPosition) {
+          t.currentSection = t.getSectionById(section.getAttribute('id'))
+        }
+      })
+    },
+    getSectionById(sectionId) {
+      switch (sectionId) {
+        case 'main':
+          return 0
+        case 'about':
+          return 1
+        case 'portfolio':
+          return 2
+        case 'services':
+          return 3
+        case 'contact':
+          return 3
+      }
     }
   },
   mounted() {
+    //implementig the width handler so that we can see the navbar on bigger devices and it's not hidden
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
     this.typingSlogan()
+
+    //implementing the section handler to notify user with current section
+    window.addEventListener('scroll', this.handleScroll)
+    this.handleScroll() // Initialize on component mount
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.handleResize)
+    window.removeEventListener('scroll', this.handleScroll)
   }
 }
 </script>
@@ -415,6 +455,12 @@ section {
 }
 #servicesTitle {
   @apply text-[2.2rem] text-center;
+}
+#contact {
+  @apply flex flex-col justify-center items-center pb-[5vh] h-fit !important;
+}
+#contactTitle {
+  @apply text-[2rem] text-center;
 }
 
 @keyframes case1 {
