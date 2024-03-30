@@ -87,4 +87,10 @@ label {
 #message {
   @apply h-[30vh] pt-1;
 }
+
+@media (min-width: 1200px) {
+  #wrapper {
+    @apply hidden;
+  }
+}
 </style>

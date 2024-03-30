@@ -87,6 +87,7 @@
       <h2 class="headingFont" id="contactTitle">Ready to discuss your ideas</h2>
 
       <contact-small></contact-small>
+      <contact-big></contact-big>
     </section>
   </main>
 </template>
@@ -855,8 +856,18 @@ section {
 #contact {
   @apply flex flex-col justify-center items-center pb-[5vh] h-fit !important;
 }
+@media (min-width: 1200px) {
+  #contact {
+    @apply pb-0 pt-[8vh] flex-row-reverse !important;
+  }
+}
 #contactTitle {
   @apply text-[2rem] text-center;
+}
+@media (min-width: 1200px) {
+  #contactTitle {
+    @apply text-[6rem] text-left absolute ml-[50vw];
+  }
 }
 
 @keyframes case1 {

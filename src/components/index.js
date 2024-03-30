@@ -5,6 +5,7 @@ import PartialCase from '@/components/PartialCase.vue'
 import ServiceCard from '@/components/ServiceCard.vue'
 import TransparentButton from '@/components/TransparentButton.vue'
 import ContactSmall from '@/components/ContactSmall.vue'
+import ContactBig from '@/components/ContactBig.vue'
 export default [
   MyButton,
   NavBar,
@@ -12,5 +13,6 @@ export default [
   PartialCase,
   ServiceCard,
   TransparentButton,
-  ContactSmall
+  ContactSmall,
+  ContactBig
 ]
