@@ -3,6 +3,7 @@
     <button
       @touchstart="toggleActive"
       @touchend="toggleActive(), clearInputs()"
+      @click="clearInputs"
       :class="{ active: isActive }"
       id="send"
       aria-label="Send button"

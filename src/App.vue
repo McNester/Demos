@@ -31,10 +31,20 @@
     </section>
 
     <section id="about">
-      <img id="aboutBackPhone" src="../src/assets/icons/aboutBackPhone.svg" />
+      <img class="aboutBack" id="aboutBackPhone" src="../src/assets/icons/aboutBackPhone.svg" />
+      <img class="aboutBack" id="aboutBackBig" src="../src/assets/icons/aboutBackBig.svg" />
+
       <div id="textOverlap">
         <h2 class="headingFont" id="aboutTitle">Who we are?</h2>
       </div>
+
+      <div id="hostRestriction"></div>
+
+      <spline-viewer
+        id="host"
+        v-once
+        url="https://prod.spline.design/JIBI-FbPkFFge6AL/scene.splinecode"
+      ></spline-viewer>
       <h3 id="aboutDesc" class="inter">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac sodales est. Class aptent
         taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In hac
@@ -136,7 +146,7 @@ export default {
   },
   methods: {
     toggleMenu() {
-      if (window.innerWidth < 450) {
+      if (window.innerWidth < 500) {
         this.isMenu = !this.isMenu
         this.toggleMenuIcon()
       }
@@ -149,7 +159,7 @@ export default {
       }
     },
     handleResize() {
-      if (window.innerWidth < 450) {
+      if (window.innerWidth < 500) {
         this.isMenu = false
       } else {
         this.isMenu = true
@@ -215,6 +225,45 @@ export default {
         case 'contact':
           return 3
       }
+    },
+    loadSpline() {
+      if (
+        !document.querySelector(
+          'script[src="https://unpkg.com/@splinetool/viewer@1.0.47/build/spline-viewer.js"]'
+        )
+      ) {
+        console.log('Adding Spline viewer script to the document.')
+        const script = document.createElement('script')
+        script.type = 'module'
+        script.src = 'https://unpkg.com/@splinetool/viewer@1.0.47/build/spline-viewer.js'
+
+        script.onload = () => {
+          console.log('Spline viewer script loaded.')
+          console.log('must be here111:')
+          const shadowHost = document.getElementById('host')
+          const shadowRoot = shadowHost.shadowRoot
+          const logoElement = shadowRoot.querySelector('#logo')
+          console.log(logoElement)
+          logoElement.style.cssText = 'opacity: 0 !important;'
+
+          setTimeout(() => {
+            console.log('must be here2:')
+            //console.log(document.getElementById('logo'))
+
+            const shadowHost = document.getElementById('host')
+
+            // Access the shadow root from the host element
+            const shadowRoot = shadowHost.shadowRoot
+
+            // Query inside the shadow root for the #logo element
+            const logoElement = shadowRoot.querySelector('#logo')
+
+            logoElement.style.cssText = 'display: none !important;'
+          }, 1000)
+        }
+
+        document.head.appendChild(script)
+      }
     }
   },
   mounted() {
@@ -226,6 +275,8 @@ export default {
     //implementing the section handler to notify user with current section
     window.addEventListener('scroll', this.handleScroll)
     this.handleScroll() // Initialize on component mount
+
+    this.loadSpline()
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.handleResize)
@@ -285,10 +336,19 @@ header {
   @apply flex flex-col h-fit w-[100vw] h-[10vh] fixed items-end bg-black bg-opacity-[0.75];
   z-index: 10000;
 }
+@media (min-width: 500px) {
+  header {
+    @apply h-fit;
+  }
+}
 #menuBtn {
   @apply scale-[200%] p-8;
-  @apply sm:hidden;
   z-index: 999;
+}
+@media (min-width: 500px) {
+  #menuBtn {
+    @apply hidden;
+  }
 }
 section {
   @apply relative w-[100vw] h-[100vh] overflow-hidden !important;
@@ -301,14 +361,57 @@ section {
   @apply absolute bottom-0 scale-[200%] -ml-[49vw] mb-[19%];
   z-index: 10;
 }
+@media (min-width: 722px) {
+  #mainBack {
+    @apply -ml-[8vw] -mt-[10rem] mb-0;
+    --tw-scale-x: 120%;
+    --tw-scale-y: 110%;
+  }
+}
+
+@media (min-width: 1288px) {
+  #mainBack {
+    --tw-scale-x: 139%;
+  }
+}
+@media (min-width: 1328px) {
+  #mainBack {
+    --tw-scale-x: 170%;
+  }
+}
 #logoWrapper {
   @apply mt-[20vh] absolute flex flex-col justify-center items-start gap-5 ml-6;
+}
+@media (min-width: 560px) {
+  #logoWrapper {
+    @apply mt-[10vh];
+  }
+}
+@media (min-width: 722px) {
+  #logoWrapper {
+    @apply scale-[134%] ml-[5.5rem] mt-[16vh];
+  }
+}
+@media (min-width: 1024px) {
+  #logoWrapper {
+    @apply scale-[200%] mt-[23vh] ml-[11.5rem];
+  }
 }
 #logo {
   @apply text-6xl;
 }
 #slogan {
   @apply text-lg w-[70%] pl-1;
+}
+@media (min-width: 722px) {
+  #slogan {
+    @apply w-[80%] h-[10vh];
+  }
+}
+@media (min-width: 1024px) {
+  #slogan {
+    @apply w-[18rem];
+  }
 }
 
 #partialCasesWrapper {
@@ -326,6 +429,21 @@ section {
 @media (min-width: 382px) {
   #partialCasesWrapper {
     @apply -mr-7;
+  }
+}
+@media (min-width: 500px) {
+  #partialCasesWrapper {
+    @apply -mr-10 mb-[5rem] !important;
+  }
+}
+@media (min-width: 560px) {
+  #partialCasesWrapper {
+    @apply mb-[9rem] !important;
+  }
+}
+@media (min-width: 722px) {
+  #partialCasesWrapper {
+    @apply mb-[5rem] !important;
   }
 }
 #partialCasesWrapper > a {
@@ -375,11 +493,141 @@ section {
   right: 9vw;
 }
 
-#aboutBackPhone {
-  @apply absolute scale-[200%]  -ml-[49vw] mt-[2vh];
+@media (min-width: 722px) {
+  #case1 {
+    top: 90vh;
+    left: 10vw;
+  }
+  #case2 {
+    top: -86vh;
+    left: 0.4vw;
+  }
+  #case3 {
+    bottom: -70.5vh;
+    left: 0.4vw;
+  }
+  #case4 {
+    top: 90vh;
+    left: -9.2vw;
+  }
+  #case5 {
+    top: 90vh;
+    left: -18.7vw;
+  }
 }
+@media (min-width: 1328px) {
+  #case1 {
+    cursor: unset;
+  }
+  #case2 {
+    left: -0.6vw;
+  }
+  #case3 {
+    left: -0.6vw;
+  }
+  #case4 {
+    left: -11.2vw;
+  }
+  #case5 {
+    left: -21.7vw;
+  }
+}
+@media (min-width: 1377px) {
+  #case1 {
+    left: 9vw;
+  }
+}
+@media (min-width: 1440px) {
+  #case1 {
+    left: 7vw;
+  }
+  #case2 {
+    left: -2.1vw;
+  }
+  #case3 {
+    bottom: -68vh;
+    left: -2.1vw;
+  }
+}
+.aboutBack {
+  @apply absolute;
+}
+#aboutBackPhone {
+  @apply scale-[200%] -ml-[49vw] mt-[2vh];
+}
+#aboutBackBig {
+  @apply hidden;
+}
+@media (min-width: 722px) {
+  #aboutBackPhone {
+    @apply hidden !important;
+  }
+  #aboutBackBig {
+    @apply block scale-[121%] -ml-[8vw] -mt-[1vh] !important;
+    --tw-scale-y: 100% !important;
+  }
+}
+@media (min-width: 1300px) {
+  #aboutBackBig {
+    --tw-scale-x: 171% !important;
+    --tw-scale-y: 98% !important;
+  }
+}
+
+#host {
+  @apply absolute right-0 hidden  scale-[0.35]  h-[100vh] w-[120vw] -mr-[40.7vw] -mt-[30vh];
+}
+
 #textOverlap {
   @apply absolute right-0 h-[20vh] w-[67vw] mix-blend-difference;
+}
+@media (min-width: 1200px) {
+  #hostRestriction {
+    @apply block absolute w-[23vw] h-[50vh] mr-[38vw];
+    z-index: 20;
+    right: 0;
+  }
+}
+
+@media (min-height: 1000px) {
+  #host {
+    @apply -mt-[36vh];
+  }
+}
+@media (min-width: 722px) {
+  #host {
+    @apply block;
+  }
+}
+@media (min-width: 820px) {
+  #host {
+    @apply -mt-[35vh];
+  }
+}
+@media (min-width: 900px) {
+  #host {
+    @apply scale-[0.4];
+  }
+}
+@media (min-width: 1000px) {
+  #host {
+    @apply -mr-[41.7vw] -mt-[26vh];
+  }
+}
+@media (min-width: 1024px) {
+  #host {
+    @apply -mt-[35vh];
+  }
+}
+@media (min-width: 1200px) {
+  #host {
+    @apply -mt-[27vh] scale-[0.5];
+  }
+}
+@media (min-width: 1400px) {
+  #host {
+    @apply scale-[0.6];
+  }
 }
 #aboutTitle {
   @apply text-[2.6rem] mt-[5vh] -ml-[31vw];
@@ -394,12 +642,42 @@ section {
     @apply text-5xl;
   }
 }
+@media (min-width: 722px) {
+  #aboutTitle {
+    @apply text-[3.2rem] mt-[8vh];
+  }
+}
+@media (min-width: 1440px) {
+  #aboutTitle {
+    @apply text-[6rem];
+  }
+}
 #aboutDesc {
   @apply text-lg w-[90vw] font-semibold mt-[20vh] ml-[6vw];
+}
+@media (min-width: 500px) {
+  #aboutDesc {
+    @apply mt-[24vh];
+  }
+}
+@media (min-width: 722px) {
+  #aboutDesc {
+    @apply w-[54vw] ml-[3vw];
+  }
+}
+@media (min-width: 1440px) {
+  #aboutDesc {
+    @apply text-2xl font-normal;
+  }
 }
 @media (max-width: 375px) {
   #portfolio {
     @apply mt-[20vh];
+  }
+}
+@media (min-width: 1200px) {
+  #portfolio {
+    @apply gap-[26vw] !important;
   }
 }
 #portfolioTitle {
@@ -407,14 +685,64 @@ section {
   word-wrap: break-word;
   line-height: 1.5;
 }
+@media (min-width: 722px) {
+  #portfolioTitle {
+    @apply text-left w-[49vw] text-[3.9rem] -mr-[8vw] mt-[13vh];
+  }
+}
+@media (min-width: 1200px) {
+  #portfolioTitle {
+    @apply text-[5rem];
+  }
+}
+@media (min-width: 1440px) {
+  #portfolioTitle {
+    @apply text-[6.5rem];
+  }
+}
 #portfolio {
   @apply h-fit pb-[20rem] !important;
+}
+@media (min-width: 722px) {
+  #portfolio {
+    @apply flex flex-row-reverse justify-center items-start gap-[21vw];
+  }
+}
+@media (min-width: 1440px) {
+  #portfolio {
+    @apply gap-[30vw] !important;
+  }
 }
 #portfolioWrapper {
   @apply flex flex-row justify-around items-center h-fit mt-[5rem];
 }
+@media (min-width: 500px) {
+  #portfolioWrapper {
+    @apply mt-[6rem];
+  }
+}
+@media (min-width: 546px) {
+  #portfolioWrapper {
+    @apply mt-[8rem];
+  }
+}
 .portfolioColumn {
   @apply h-fit w-[80%] flex flex-col justify-center items-center gap-10;
+}
+@media (min-width: 500px) {
+  .portfolioColumn {
+    @apply gap-[4.5rem];
+  }
+}
+@media (min-width: 546px) {
+  .portfolioColumn {
+    @apply gap-[7rem];
+  }
+}
+@media (min-width: 722px) {
+  .portfolioColumn {
+    scale: 70% !important;
+  }
 }
 
 #rightPortfolio {
@@ -445,6 +773,29 @@ section {
   }
   #rightPortfolio {
     @apply scale-[120%];
+  }
+}
+@media (min-width: 722px) {
+  #portfolioWrapper {
+    @apply mt-0 pt-0 gap-[8vw] -mr-[15vw];
+  }
+}
+@media (min-width: 820px) {
+  #portfolioWrapper {
+    @apply mt-[3vh] -mr-[14vw];
+    scale: 110%;
+  }
+}
+@media (min-width: 1200px) {
+  #portfolioWrapper {
+    @apply gap-[5vw] mt-[11vh];
+    scale: 130%;
+  }
+}
+@media (min-width: 1440px) {
+  #portfolioWrapper {
+    @apply mt-[24vh];
+    scale: 160%;
   }
 }
 #services {
@@ -505,6 +856,53 @@ section {
   }
   to {
     transform: translateY(-70vh);
+  }
+}
+
+@media (min-width: 722px) {
+  @keyframes case1 {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-78vh);
+    }
+  }
+
+  @keyframes case2 {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(90vh);
+    }
+  }
+
+  @keyframes case3 {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-73vh);
+    }
+  }
+
+  @keyframes case4 {
+    from {
+      transform: translateY(0); /* Start from below the view */
+    }
+    to {
+      transform: translateY(-78vh);
+    }
+  }
+
+  @keyframes case5 {
+    from {
+      transform: translateY(0); /* Start from below the view */
+    }
+    to {
+      transform: translateY(-90vh);
+    }
   }
 }
 

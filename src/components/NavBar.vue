@@ -20,6 +20,8 @@
           <li :class="{ chosen: currentSection == 3 }"><a>Services</a></li>
           <div class="line"></div>
         </div>
+
+        <my-button @click="scrollTo(options[4].name)" id="hire">Hire us</my-button>
       </ul>
     </nav>
   </transition>
@@ -38,7 +40,8 @@ export default {
         { id: 1, name: 'main' },
         { id: 2, name: 'about' },
         { id: 3, name: 'portfolio' },
-        { id: 4, name: 'services' }
+        { id: 4, name: 'services' },
+        { id: 5, name: 'contact' }
       ]
     }
   },
@@ -68,11 +71,51 @@ nav {
 a {
   cursor: pointer;
 }
+#hire {
+  @apply hidden;
+}
+@media (min-width: 722px) {
+  ul,
+  a {
+    @apply font-bold;
+  }
+  #hire {
+    @apply block;
+  }
+}
 .chosen {
   @apply font-black;
 }
 .line {
   @apply absolute w-[100vw] h-[0.1rem] bg-white right-0 mt-1 bg-opacity-20;
+}
+
+@media (min-width: 500px) {
+  nav {
+    @apply backdrop-blur-md bg-opacity-[21%]  h-[4.5rem] mt-0 !important;
+  }
+  #links {
+    @apply flex-row justify-end items-center gap-5;
+  }
+  .linkWrapper {
+    @apply mb-0;
+  }
+  .line {
+    @apply hidden;
+  }
+  .chosen {
+    @apply font-normal;
+  }
+  .chosen:after {
+    margin-left: 40%;
+    background: none repeat scroll 0 0 white;
+    content: '';
+    display: block;
+    height: 0.1rem;
+    position: relative;
+    width: 1rem;
+    bottom: -0.1rem;
+  }
 }
 
 @keyframes fadeIn {

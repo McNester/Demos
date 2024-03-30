@@ -50,4 +50,14 @@ import case5 from '../assets/icons/case5.png'
   @apply scale-[110%];
   @apply flex justify-center items-center rounded-lg bg-white w-[8.5rem] h-[11.8rem];
 }
+@media (min-width: 500px) {
+  #maskBorder {
+    @apply scale-[130%];
+  }
+}
+@media (min-width: 546px) {
+  #maskBorder {
+    @apply scale-[145%] !important;
+  }
+}
 </style>
