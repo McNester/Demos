@@ -1,5 +1,5 @@
 <template>
-  <div id="wrapper">
+  <div class="wrapper">
     <h3 id="title" class="serviceHeadingFont">
       {{ title }}
     </h3>
@@ -9,7 +9,7 @@
     <h3 id="price" class="fira">
       {{ '$' + price }}
     </h3>
-    <transparent-button>Contact us</transparent-button>
+    <transparent-button id="contactBtn">Contact us</transparent-button>
   </div>
 </template>
 
@@ -25,8 +25,8 @@ export default {
 </script>
 
 <style scoped>
-#wrapper {
-  @apply w-[90vw] h-fit py-[5vh] flex flex-col justify-center items-center bg-[#131313] rounded-3xl text-center gap-10;
+.wrapper {
+  @apply w-[90vw] h-fit py-[5rem] flex flex-col justify-center items-center bg-[#131313] rounded-3xl text-center gap-10;
 }
 #title {
   @apply text-5xl;
@@ -36,5 +36,32 @@ export default {
 }
 #price {
   @apply text-5xl;
+}
+@media (min-width: 1200px) {
+  .wrapper {
+    @apply mr-[2vw] grid px-[3rem] h-[41rem];
+    grid-template-columns: auto auto auto;
+    grid-template-rows: 4rem 19rem;
+  }
+  #title {
+    @apply text-[8rem] text-left w-[53vw];
+    grid-row: 1;
+    grid-column: 1;
+  }
+  #description {
+    @apply w-[116%] relative pl-[1vh] text-left text-[1.6rem];
+    grid-row: 2;
+    grid-column: 1;
+    white-space: normal;
+  }
+  #contactBtn {
+    grid-row: 3;
+    grid-column: 1;
+  }
+  #price {
+    @apply text-[4rem] relative pl-[5vw];
+    grid-row: 3;
+    grid-column: 2;
+  }
 }
 </style>

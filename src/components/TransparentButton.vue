@@ -51,4 +51,11 @@ button {
     @apply scale-95 bg-violet-800;
   }
 }
+
+@media (min-width: 1200px) {
+  button {
+    @apply w-[81%] text-[2rem] relative;
+    border-radius: 4rem;
+  }
+}
 </style>

@@ -136,4 +136,9 @@ import case5 from '../assets/icons/case5.png'
     @apply scale-[230%];
   }
 }
+@media (min-width: 1500px) {
+  #maskBorder {
+    @apply scale-[250%];
+  }
+}
 </style>

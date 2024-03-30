@@ -130,7 +130,7 @@ export default {
         },
         {
           id: 3,
-          title: 'Internal service',
+          title: 'Services',
           desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac sodales est. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In hac habitasse platea dictumst. Maecenas semper tempor nulla, id cursus sem mattis et. Suspendisse ut purus sit amet arcu ultricies.',
           price: 830
         },
@@ -299,7 +299,14 @@ export default {
   font-family: Kurdis-wide-extrabold;
   src: url('../src/assets/fonts/kurdis-font-family/KurdisVariableFamilyTest-WideExtraBold-BF64bf41e172be8.otf');
 }
+*::-webkit-scrollbar {
+  display: none;
+}
 
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 html,
 body {
   @apply bg-black text-white;
@@ -379,6 +386,26 @@ section {
     --tw-scale-x: 170%;
   }
 }
+@media (min-width: 1440px) {
+  #mainBack {
+    --tw-scale-x: 178%;
+  }
+}
+@media (min-width: 1470px) {
+  #mainBack {
+    --tw-scale-x: 186%;
+  }
+}
+@media (min-width: 1500px) {
+  #mainBack {
+    --tw-scale-x: 195%;
+  }
+}
+@media (min-width: 1530px) {
+  #mainBack {
+    --tw-scale-x: 203%;
+  }
+}
 #logoWrapper {
   @apply mt-[20vh] absolute flex flex-col justify-center items-start gap-5 ml-6;
 }
@@ -443,9 +470,15 @@ section {
 }
 @media (min-width: 722px) {
   #partialCasesWrapper {
-    @apply mb-[5rem] !important;
+    @apply mb-[4.5rem] !important;
   }
 }
+@media (min-width: 1200px) {
+  #partialCasesWrapper {
+    @apply mb-[6rem] !important;
+  }
+}
+
 #partialCasesWrapper > a {
   @apply relative w-[18vw];
 }
@@ -804,8 +837,20 @@ section {
 #servicesWrapper {
   @apply flex flex-col justify-center items-center gap-20 pt-20;
 }
+@media (min-width: 1200px) {
+  #servicesWrapper {
+    @apply overflow-x-scroll flex-row justify-start pt-[7vh] pl-[7rem] overflow-y-visible gap-0;
+    white-space: nowrap;
+  }
+}
+
 #servicesTitle {
   @apply text-[2.2rem] text-center;
+}
+@media (min-width: 1200px) {
+  #servicesTitle {
+    @apply text-left text-[7rem] pl-[3vw];
+  }
 }
 #contact {
   @apply flex flex-col justify-center items-center pb-[5vh] h-fit !important;
