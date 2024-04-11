@@ -6,7 +6,14 @@ import vue from '@vitejs/plugin-vue'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    vue(),
+    vue({
+      template: {
+        compilerOptions: {
+          // Use a regex to match the tag name of your custom element
+          isCustomElement: (tag) => tag === 'spline-viewer'
+        }
+      }
+    })
   ],
   resolve: {
     alias: {

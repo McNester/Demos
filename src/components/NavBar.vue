@@ -7,17 +7,17 @@
           <div class="line"></div>
         </div>
         <div @click="scrollTo(options[1].name)" class="linkWrapper">
-          <li :class="{ chosen: currentSection == 1 }"><a>About</a></li>
+          <li :class="{ chosen: currentSection == 1 }"><a>Cases</a></li>
           <div class="line"></div>
         </div>
         <div @click="scrollTo(options[2].name)" class="linkWrapper">
           <li :class="{ chosen: currentSection == 2 }">
-            <a>Portfolio</a>
+            <a>Services</a>
           </li>
           <div class="line"></div>
         </div>
         <div @click="scrollTo(options[3].name)" class="linkWrapper">
-          <li :class="{ chosen: currentSection == 3 }"><a>Services</a></li>
+          <li :class="{ chosen: currentSection == 3 }"><a>About</a></li>
           <div class="line"></div>
         </div>
 
@@ -38,9 +38,9 @@ export default {
     return {
       options: [
         { id: 1, name: 'main' },
-        { id: 2, name: 'about' },
-        { id: 3, name: 'portfolio' },
-        { id: 4, name: 'services' },
+        { id: 2, name: 'cases' },
+        { id: 3, name: 'services' },
+        { id: 4, name: 'about' },
         { id: 5, name: 'contact' }
       ]
     }
