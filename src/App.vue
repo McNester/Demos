@@ -20,7 +20,13 @@
       ></spline-viewer>
     </section>
 
-    <section id="cases"></section>
+    <section id="cases">
+      <h2 id="casesTitle" class="headingFont">CASES</h2>
+
+      <div id="casesWrapper" ref="casesWrapper">
+        <case-card v-for="i in [1, 2, 3, 4, 5, 6]"></case-card>
+      </div>
+    </section>
 
     <section id="services">
       <h2 class="headingFont" id="servicesTitle">WHAT WE OFFER?</h2>
@@ -222,7 +228,6 @@ export default {
 
     //implementing the section handler to notify user with current section
     window.addEventListener('scroll', this.handleScroll)
-    this.handleScroll() // Initialize on component mount
 
     //loading the 3d element
     this.loadSpline()
@@ -313,6 +318,20 @@ section {
   @apply absolute right-0;
   /*mobile*/
   @apply scale-[120%] w-[200%] -mr-[110vw] mt-[6rem];
+}
+
+#cases {
+  @apply h-fit mb-[10rem] !important;
+}
+#casesTitle {
+  @apply text-[4rem] text-white text-center mt-[15rem];
+}
+
+#casesWrapper {
+  @apply flex flex-col gap-14 justify-start items-center w-full h-fit mt-[5rem];
+}
+#casesWrapper::-webkit-scrollbar {
+  display: none;
 }
 
 #services {
