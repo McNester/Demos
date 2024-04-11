@@ -37,12 +37,12 @@ export default {
 </script>
 <style scoped>
 #wrapper {
-  @apply grid w-[90%] h-[10rem] bg-[#1E1E1E] rounded-2xl p-4 text-left;
+  @apply grid w-[90%] h-fit bg-[#1E1E1E] rounded-2xl p-4 text-left gap-[0.3rem];
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto auto auto;
 }
 #companyWrapper {
-  @apply flex flex-col justify-start;
+  @apply flex flex-col justify-start gap-[0.5rem];
   grid-column: 1;
   grid-row: 1 / span 3;
 }
@@ -93,5 +93,8 @@ export default {
   .statDesc {
     font-size: 0.65rem;
   }
+}
+.highlight {
+  @apply shadow-[#6242BD] shadow-md !important;
 }
 </style>

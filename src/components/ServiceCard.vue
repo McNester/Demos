@@ -9,7 +9,9 @@
     <h3 id="price" class="fira">
       {{ '$' + price }}
     </h3>
-    <transparent-button id="contactBtn">Contact us</transparent-button>
+    <transparent-button @click="$emit('toggleServiceInfo'), $emit('infoOpen')" id="contactBtn"
+      >More info</transparent-button
+    >
   </div>
 </template>
 

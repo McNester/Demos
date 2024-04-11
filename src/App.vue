@@ -24,20 +24,30 @@
       <h2 id="casesTitle" class="headingFont">CASES</h2>
 
       <div id="casesWrapper" ref="casesWrapper">
-        <case-card v-for="i in [1, 2, 3, 4, 5, 6]"></case-card>
+        <case-card v-for="i in [1, 2, 3, 4, 5, 6]" :key="i"></case-card>
       </div>
     </section>
 
     <section id="services">
+      <transition name="fade">
+        <service-info
+          :title="currentService"
+          @close="toggleServiceInfo"
+          v-if="isService"
+        ></service-info>
+      </transition>
+
       <h2 class="headingFont" id="servicesTitle">WHAT WE OFFER?</h2>
 
       <div id="servicesWrapper">
         <service-card
+          @toggleServiceInfo="toggleServiceInfo"
           v-for="service in services"
           :key="service.id"
           :title="service.title"
           :description="service.desc"
           :price="service.price"
+          @infoOpen="currentService = service.title"
         ></service-card>
       </div>
     </section>
@@ -54,6 +64,7 @@ import closeBtn from '../src/assets/icons/closeBtn.svg'
 export default {
   data() {
     return {
+      isService: false,
       isMenu: true,
       phrases: [
         'Making dreams togehter.',
@@ -65,6 +76,7 @@ export default {
         'Beyond the Code.',
         'Innovation at Every Click.'
       ],
+      gurrentService: '',
       slogan: '',
       currentPhraseIndex: 0,
       typingSpeed: 70,
@@ -100,6 +112,26 @@ export default {
     }
   },
   methods: {
+    toggleServiceInfo() {
+      this.isService = !this.isService
+      if (this.isService) {
+        this.disableScroll()
+      } else {
+        this.enableScroll()
+      }
+    },
+    disableScroll() {
+      // Save the current page scroll position
+      document.body.style.top = `-${window.scrollY}px`
+      document.body.style.position = 'fixed'
+      document.body.style.width = '100%'
+    },
+    enableScroll() {
+      const scrollY = document.body.style.top
+      document.body.style.position = ''
+      document.body.style.top = ''
+      window.scrollTo(0, parseInt(scrollY || '0') * -1)
+    },
     toggleMenu() {
       if (window.innerWidth < 500) {
         this.isMenu = !this.isMenu
@@ -401,5 +433,28 @@ section {
   #servicesTitle {
     @apply text-left text-[7rem] pl-[3vw];
   }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.fade-enter-active {
+  animation: fadeIn 0.3s ease;
+}
+.fade-leave-active {
+  animation: fadeOut 0.3s ease forwards;
 }
 </style>
