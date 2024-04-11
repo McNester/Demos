@@ -227,7 +227,7 @@ export default {
     this.typingSlogan()
 
     //implementing the section handler to notify user with current section
-    window.addEventListener('scroll', this.handleScroll)
+    window.addEventListener('scroll', this.handleScroll, { passive: true })
 
     //loading the 3d element
     this.loadSpline()
