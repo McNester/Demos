@@ -54,7 +54,12 @@
     <section id="about">
       <bento></bento>
     </section>
-    <section id="contact"></section>
+    <section id="contact">
+      <legend class="headingFont" id="contactTitle">
+        Our Team Is Ready To Help! Get started now!
+      </legend>
+      <contact-form></contact-form>
+    </section>
   </main>
 </template>
 <script setup>
@@ -384,6 +389,13 @@ section {
 
 #about {
   @apply h-fit !important;
+}
+
+#contact {
+  @apply flex flex-col mt-[10rem] h-fit pb-20 justify-start items-center gap-10 !important;
+}
+#contactTitle {
+  @apply text-center w-[80%] text-3xl;
 }
 
 /*min-width*/
