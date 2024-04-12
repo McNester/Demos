@@ -495,6 +495,9 @@ section {
     @apply ml-[7%];
     scale: 130%;
   }
+  #about {
+    @apply mb-[30rem] scale-[120%];
+  }
 }
 
 /*1024px*/
@@ -518,6 +521,13 @@ section {
     @apply w-[37vw] !important;
     scale: 120%;
   }
+  #contact {
+    @apply flex-row items-start mb-[10rem] !important;
+  }
+  #contactTitle {
+    @apply text-[3rem] w-[100%] text-left ml-5;
+    line-height: 3.9rem !important;
+  }
 }
 
 /*1200px*/
@@ -529,6 +539,20 @@ section {
   }
   #servicesTitle {
     @apply text-left text-[7rem] pl-[3vw];
+  }
+  #about {
+    @apply scale-[140%];
+  }
+  #contactTitle {
+    @apply text-[4rem];
+    line-height: 4.9rem !important;
+  }
+}
+
+/*1400*/
+@media (min-width: 1400px) {
+  #about {
+    @apply scale-[150%];
   }
 }
 

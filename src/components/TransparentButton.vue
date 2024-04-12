@@ -37,7 +37,7 @@ button {
     @apply scale-105 bg-violet-800;
   }
   button:active {
-    @apply scale-100;
+    @apply scale-100 bg-violet-900 border-violet-900;
   }
 }
 @media (hover: none) {

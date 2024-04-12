@@ -78,7 +78,7 @@ textarea {
 }
 
 textarea {
-  @apply pt-[4.2%];
+  @apply pt-[1rem] overflow-y-hidden;
 }
 input:focus,
 textarea:focus {
@@ -87,5 +87,10 @@ textarea:focus {
 
 #submitBtn {
   @apply w-[40%] border-2 scale-110;
+}
+@media (min-width: 1100px) {
+  #submitBtn {
+    @apply mr-[35%] text-[1rem] mt-[2rem];
+  }
 }
 </style>

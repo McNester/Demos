@@ -100,6 +100,9 @@ li {
 
 /*1200px*/
 @media (min-width: 1200px) {
+  #closeBtn {
+    right: calc(100% - 92%) !important;
+  }
   #serviceInfoWrapper {
     @apply flex-row overflow-hidden !important;
   }

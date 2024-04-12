@@ -88,7 +88,15 @@ export default {
 }
 .card {
   @apply h-[9.8rem] rounded-3xl;
+  transition: all 0.7s;
 }
+/*
+@media (hover: hover) {
+  .card:hover {
+    @apply shadow-lg shadow-[#6242BD] scale-[105%];
+  }
+}
+*/
 
 @media (max-width: 345px) {
   .card {
@@ -96,6 +104,37 @@ export default {
   }
   #bentoWrapper {
     @apply gap-0;
+  }
+}
+
+@media (min-width: 722px) {
+  #bentoWrapper {
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
+  #card1 {
+    grid-column: 1 / span 2;
+    grid-row: 1;
+  }
+  #card2 {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  #card3 {
+    grid-column: 2;
+    grid-row: 2;
+  }
+  #card4 {
+    grid-column: 1 / span 2;
+    grid-row: 3;
+  }
+  #card5 {
+    grid-column: 3 / span 3;
+    grid-row: 1 / span 2;
+  }
+  #card6 {
+    grid-column: 3 / span2;
+    grid-row: 3;
   }
 }
 </style>
