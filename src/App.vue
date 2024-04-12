@@ -51,7 +51,9 @@
         ></service-card>
       </div>
     </section>
-    <section id="about"></section>
+    <section id="about">
+      <bento></bento>
+    </section>
     <section id="contact"></section>
   </main>
 </template>
@@ -378,6 +380,10 @@ section {
 
 #servicesTitle {
   @apply text-[2.2rem] text-center;
+}
+
+#about {
+  @apply h-fit !important;
 }
 
 /*min-width*/
