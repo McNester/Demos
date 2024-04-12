@@ -90,14 +90,11 @@ export default {
   @apply h-[9.8rem] rounded-3xl;
   transition: all 0.7s;
 }
-/*
 @media (hover: hover) {
   .card:hover {
     @apply shadow-lg shadow-[#6242BD] scale-[105%];
   }
 }
-*/
-
 @media (max-width: 345px) {
   .card {
     @apply scale-[90%];
@@ -129,10 +126,14 @@ export default {
     grid-row: 3;
   }
   #card5 {
+    height: 21rem;
+    width: 23rem;
     grid-column: 3 / span 3;
     grid-row: 1 / span 2;
   }
   #card6 {
+    height: 10rem;
+    width: 23rem;
     grid-column: 3 / span2;
     grid-row: 3;
   }
