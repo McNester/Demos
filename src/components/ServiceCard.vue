@@ -9,7 +9,7 @@
     <h3 id="price" class="fira">
       {{ '$' + price }}
     </h3>
-    <transparent-button @click="$emit('toggleServiceInfo'), $emit('infoOpen')" id="contactBtn"
+    <transparent-button @click="$emit('toggleServiceInfo'), $emit('infoOpen')" class="contactBtn"
       >More info</transparent-button
     >
   </div>
@@ -56,7 +56,7 @@ export default {
     grid-column: 1;
     white-space: normal;
   }
-  #contactBtn {
+  .contactBtn {
     grid-row: 3;
     grid-column: 1;
   }

@@ -3,21 +3,25 @@
     <nav v-show="isMenu">
       <ul id="links" class="inter">
         <div @click="scrollTo(options[0].name)" class="linkWrapper">
-          <li :class="{ chosen: currentSection == 0 }"><a>Home</a></li>
+          <li :class="{ chosen: currentSection == 0 }"><a @click.prevent href="#main">Home</a></li>
           <div class="line"></div>
         </div>
         <div @click="scrollTo(options[1].name)" class="linkWrapper">
-          <li :class="{ chosen: currentSection == 1 }"><a>Cases</a></li>
+          <li :class="{ chosen: currentSection == 1 }">
+            <a @click.prevent href="#cases">Cases</a>
+          </li>
           <div class="line"></div>
         </div>
         <div @click="scrollTo(options[2].name)" class="linkWrapper">
           <li :class="{ chosen: currentSection == 2 }">
-            <a>Services</a>
+            <a @click.prevent href="#services">Services</a>
           </li>
           <div class="line"></div>
         </div>
         <div @click="scrollTo(options[3].name)" class="linkWrapper">
-          <li :class="{ chosen: currentSection == 3 }"><a>About</a></li>
+          <li :class="{ chosen: currentSection == 3 }">
+            <a @click.prevent href="#about">About</a>
+          </li>
           <div class="line"></div>
         </div>
 
