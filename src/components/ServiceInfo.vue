@@ -107,10 +107,10 @@ li {
     @apply mt-0 p-10 items-start;
   }
   #title {
-    @apply text-5xl text-left !important;
+    @apply text-[4rem] text-left !important;
   }
   .description {
-    @apply text-left !important;
+    @apply text-left text-[1.55rem] !important;
   }
   #fullDesc {
     @apply w-[96%] !important;
