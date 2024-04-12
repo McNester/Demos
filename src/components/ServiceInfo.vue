@@ -80,4 +80,49 @@ li {
   @apply w-[100%] shadow-lg shadow-[#6242BD] !important;
   scale: 90%;
 }
+
+/*800px*/
+
+@media (min-width: 800px) {
+  #title {
+    @apply text-[7rem];
+  }
+  .description {
+    @apply text-[1.5rem];
+  }
+  #servicesList {
+    @apply mt-[5%] !important;
+  }
+  .case {
+    @apply w-[66%] !important;
+  }
+}
+
+/*1200px*/
+@media (min-width: 1200px) {
+  #serviceInfoWrapper {
+    @apply flex-row overflow-hidden !important;
+  }
+  #infoWrapper {
+    @apply mt-0 p-10 items-start;
+  }
+  #title {
+    @apply text-5xl text-left !important;
+  }
+  .description {
+    @apply text-left !important;
+  }
+  #fullDesc {
+    @apply w-[96%] !important;
+  }
+  #servicesList {
+    @apply ml-7;
+  }
+  .case {
+    scale: 140%;
+  }
+  #correspCases {
+    @apply mt-[10.5rem] w-[114%] mr-[2vw] gap-[9rem];
+  }
+}
 </style>

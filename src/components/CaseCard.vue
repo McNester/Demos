@@ -40,6 +40,7 @@ export default {
   @apply grid w-[90%] h-fit bg-[#1E1E1E] rounded-2xl p-4 text-left gap-[0.3rem];
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto auto auto;
+  transition: all 0.6s ease;
 }
 #companyWrapper {
   @apply flex flex-col justify-start gap-[0.5rem];
@@ -94,7 +95,13 @@ export default {
     font-size: 0.65rem;
   }
 }
-.highlight {
-  @apply shadow-[#6242BD] shadow-md !important;
+.highlighted {
+  @apply shadow-[#6242BD] shadow-lg !important;
+}
+
+@media (min-width: 722px) {
+  #wrapper {
+    @apply w-[97%];
+  }
 }
 </style>

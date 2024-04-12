@@ -21,10 +21,14 @@
     </section>
 
     <section id="cases">
-      <h2 id="casesTitle" class="headingFont">CASES</h2>
+      <div id="casesTitleWrapper">
+        <h3 class="casesSlogan fira">Honored projects</h3>
+        <h2 id="casesTitle" class="headingFont">CASES</h2>
+        <h3 class="casesSlogan fira">Our principles. We’re partners, not providers</h3>
+      </div>
 
-      <div id="casesWrapper" ref="casesWrapper">
-        <case-card v-for="i in [1, 2, 3, 4, 5, 6]" :key="i"></case-card>
+      <div id="casesWrapper" ref="casesWrapper" @scroll="checkScroll">
+        <case-card v-for="i in [1, 2, 3, 4, 5, 6]" :key="i" class="case"></case-card>
       </div>
     </section>
 
@@ -257,6 +261,29 @@ export default {
 
         document.head.appendChild(script)
       }
+    },
+    checkScroll() {
+      const container = this.$refs.casesWrapper
+      const items = container.querySelectorAll('.case')
+      let topElement = null
+      let closestToTop = Infinity
+
+      items.forEach((item) => {
+        const elementTop = item.getBoundingClientRect().top - container.getBoundingClientRect().top
+
+        if (elementTop < closestToTop && elementTop >= 0) {
+          closestToTop = elementTop
+          topElement = item
+        }
+      })
+
+      // Remove highlighted class from all items
+      items.forEach((item) => item.classList.remove('highlighted'))
+
+      // Add highlighted class to the top-most element within the viewport
+      if (topElement) {
+        topElement.classList.add('highlighted')
+      }
     }
   },
   mounted() {
@@ -279,7 +306,7 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@700&family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300,700&family=Inter:wght@100..900&display=swap');
 @font-face {
   font-family: Kurdis-extrawide-bold;
   src: url('../src/assets/fonts/kurdis-font-family/KurdisVariableFamilyTest-ExtraWideBold-BF64bf41e1032f4.otf');
@@ -363,11 +390,17 @@ section {
   @apply h-fit mb-[10rem] !important;
 }
 #casesTitle {
-  @apply text-[4rem] text-white text-center mt-[15rem];
+  @apply text-[4rem] self-center text-white text-center mt-[15rem];
+}
+#casesTitleWrapper {
+  @apply flex flex-col justify-start items-start;
+}
+.casesSlogan {
+  @apply hidden;
 }
 
 #casesWrapper {
-  @apply flex flex-col gap-14 justify-start items-center w-full h-fit mt-[5rem];
+  @apply flex flex-col gap-14 justify-start items-center w-full h-[80vh] pb-[50vh] overflow-scroll mt-[5rem];
 }
 #casesWrapper::-webkit-scrollbar {
   display: none;
@@ -422,11 +455,45 @@ section {
 /*722px*/
 
 @media (min-width: 722px) {
+  #services {
+    @apply mt-[23rem];
+  }
   #logoWrapper {
     @apply scale-[134%] ml-[5.5rem] mt-[16vh];
   }
   #slogan {
     @apply w-[80%] h-[10vh];
+  }
+  #host {
+    @apply scale-[100%] w-[100%] -mr-[20vw] mt-[6rem] !important;
+  }
+  #cases {
+    @apply flex justify-center mt-[10rem] h-[61vh] px-[1rem] !important;
+  }
+  #casesWrapper {
+    @apply w-[55vw] gap-[1.5rem];
+  }
+
+  #casesTitleWrapper {
+    @apply mt-[8rem];
+  }
+  #casesTitle {
+    @apply mt-0 self-start;
+  }
+  .casesSlogan {
+    @apply block font-light text-[#777777];
+  }
+}
+
+/*1000px*/
+
+@media (min-width: 1000px) {
+  #cases {
+    @apply gap-[6rem] !important;
+  }
+  #casesTitleWrapper {
+    @apply ml-[7%];
+    scale: 130%;
   }
 }
 
@@ -438,6 +505,18 @@ section {
   }
   #slogan {
     @apply w-[18rem];
+  }
+}
+
+/*1100px*/
+
+@media (min-width: 1100px) {
+  #casesTitleWrapper {
+    @apply w-[37%] ml-0 !important;
+  }
+  #casesWrapper {
+    @apply w-[37vw] !important;
+    scale: 120%;
   }
 }
 
