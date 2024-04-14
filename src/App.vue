@@ -20,8 +20,8 @@
       ></spline-viewer>
     </section>
 
-    <section id="cases">
-      <div id="casesTitleWrapper">
+    <section ref="cases" id="cases">
+      <div ref="casesTitle" id="casesTitleWrapper">
         <h3 class="casesSlogan fira">Honored projects</h3>
         <h2 id="casesTitle" class="headingFont">CASES</h2>
         <h3 class="casesSlogan fira">Our principles. We’re partners, not providers</h3>
@@ -69,6 +69,9 @@
 <script setup>
 import menuBtn from '../src/assets/icons/menuBtn.svg'
 import closeBtn from '../src/assets/icons/closeBtn.svg'
+import { gsap } from 'gsap'
+import ScrollTrigger from 'gsap/ScrollTrigger'
+gsap.registerPlugin(ScrollTrigger)
 </script>
 
 <script>
@@ -284,9 +287,27 @@ export default {
       if (topElement) {
         topElement.classList.add('highlighted')
       }
+    },
+    initScrollTrigger() {
+      let pinnedContent = this.$refs.casesTitle
+      let section = this.$refs.cases
+
+      // Create a timeline for the animation
+      let tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top top', // Animation starts when the top of the section hits the top of the viewport
+          end: 'bottom bottom', // Ends when the bottom of the section leaves the top of the viewport
+          scrub: true,
+          pin: pinnedContent, // Pin the entire content section
+          markers: false, // Optional, for debugging
+          pinSpacing: false
+        }
+      })
     }
   },
   mounted() {
+    this.initScrollTrigger()
     //implementig the width handler so that we can see the navbar on bigger devices and it's not hidden
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
@@ -394,13 +415,14 @@ section {
 }
 #casesTitleWrapper {
   @apply flex flex-col justify-start items-start;
+  width: 100% !important;
 }
 .casesSlogan {
   @apply hidden;
 }
 
 #casesWrapper {
-  @apply flex flex-col gap-14 justify-start items-center w-full h-[80vh] pb-[50vh] overflow-scroll mt-[5rem];
+  @apply flex flex-col gap-14 justify-start items-center w-full h-full pb-[50vh]  mt-[5rem];
 }
 #casesWrapper::-webkit-scrollbar {
   display: none;
@@ -468,7 +490,7 @@ section {
     @apply scale-[100%] w-[100%] -mr-[20vw] mt-[6rem] !important;
   }
   #cases {
-    @apply flex justify-center mt-[10rem] h-[61vh] px-[1rem] !important;
+    @apply flex justify-center mt-[10rem] px-[1rem] !important;
   }
   #casesWrapper {
     @apply w-[55vw] gap-[1.5rem];
