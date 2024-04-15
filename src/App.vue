@@ -266,7 +266,7 @@ export default {
       }
     },
     checkScroll() {
-      const container = this.$refs.casesWrapper
+      const container = this.$refs.cases
       const items = container.querySelectorAll('.case')
       let topElement = null
       let closestToTop = Infinity
@@ -300,8 +300,10 @@ export default {
           end: 'bottom bottom', // Ends when the bottom of the section leaves the top of the viewport
           scrub: true,
           pin: pinnedContent, // Pin the entire content section
-          markers: false, // Optional, for debugging
-          pinSpacing: false
+          markers: true, // Optional, for debugging
+          pinSpacing: true,
+          onLeave: () => gsap.to(pinnedContent, { opacity: '0', duration: 0.5 }),
+          onEnterBack: () => gsap.to(pinnedContent, { opacity: '1', duration: 0.5 })
         }
       })
     }
@@ -422,7 +424,7 @@ section {
 }
 
 #casesWrapper {
-  @apply flex flex-col gap-14 justify-start items-center w-full h-full pb-[50vh]  mt-[5rem];
+  @apply flex flex-col gap-14 justify-start items-center w-full h-full pt-[1vh] pb-[50vh] mt-[9rem];
 }
 #casesWrapper::-webkit-scrollbar {
   display: none;
@@ -478,7 +480,7 @@ section {
 
 @media (min-width: 722px) {
   #services {
-    @apply mt-[23rem];
+    @apply -mt-[150vh];
   }
   #logoWrapper {
     @apply scale-[134%] ml-[5.5rem] mt-[16vh];
@@ -511,14 +513,21 @@ section {
 
 @media (min-width: 1000px) {
   #cases {
-    @apply gap-[6rem] !important;
+    @apply gap-[10rem] !important;
   }
   #casesTitleWrapper {
     @apply ml-[7%];
-    scale: 130%;
   }
   #about {
     @apply mb-[30rem] scale-[120%];
+  }
+
+  #casesTitle {
+    @apply text-[5rem];
+  }
+  .casesSlogan {
+    @apply text-[1.3rem];
+    width: 100% !important;
   }
 }
 
@@ -550,6 +559,13 @@ section {
     @apply text-[3rem] w-[100%] text-left ml-5;
     line-height: 3.9rem !important;
   }
+  #casesTitle {
+    @apply text-[5.5rem];
+  }
+  .casesSlogan {
+    @apply text-[1.3rem];
+    width: 170% !important;
+  }
 }
 
 /*1200px*/
@@ -568,6 +584,13 @@ section {
   #contactTitle {
     @apply text-[4rem];
     line-height: 4.9rem !important;
+  }
+  #casesTitle {
+    @apply text-[5.9rem];
+  }
+  .casesSlogan {
+    @apply text-[1.3rem];
+    width: 170% !important;
   }
 }
 
