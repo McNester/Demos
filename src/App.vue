@@ -28,7 +28,7 @@
       </div>
 
       <div id="casesWrapper" ref="casesWrapper" @scroll="checkScroll">
-        <case-card v-for="i in [1, 2, 3, 4, 5, 6]" :key="i" class="case"></case-card>
+        <case-card v-for="i in [1, 2, 3, 4, 5, 6]" ref="case" :key="i" class="case"></case-card>
       </div>
     </section>
 
@@ -265,29 +265,6 @@ export default {
         document.head.appendChild(script)
       }
     },
-    checkScroll() {
-      const container = this.$refs.cases
-      const items = container.querySelectorAll('.case')
-      let topElement = null
-      let closestToTop = Infinity
-
-      items.forEach((item) => {
-        const elementTop = item.getBoundingClientRect().top - container.getBoundingClientRect().top
-
-        if (elementTop < closestToTop && elementTop >= 0) {
-          closestToTop = elementTop
-          topElement = item
-        }
-      })
-
-      // Remove highlighted class from all items
-      items.forEach((item) => item.classList.remove('highlighted'))
-
-      // Add highlighted class to the top-most element within the viewport
-      if (topElement) {
-        topElement.classList.add('highlighted')
-      }
-    },
     initScrollTrigger() {
       let pinnedContent = this.$refs.casesTitle
       let section = this.$refs.cases
@@ -300,15 +277,42 @@ export default {
           end: 'bottom bottom', // Ends when the bottom of the section leaves the top of the viewport
           scrub: true,
           pin: pinnedContent, // Pin the entire content section
-          markers: true, // Optional, for debugging
+          markers: false, // Optional, for debugging
           pinSpacing: true,
           onLeave: () => gsap.to(pinnedContent, { opacity: '0', duration: 0.5 }),
           onEnterBack: () => gsap.to(pinnedContent, { opacity: '1', duration: 0.5 })
         }
       })
+    },
+    createObserver() {
+      const options = {
+        root: null,
+        rootMargin: '-10% 0px -30% 0px',
+        threshold: 0.95
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('highlighted')
+          } else {
+            entry.target.classList.remove('highlighted')
+          }
+        })
+      }, options)
+
+      // Observing the root element of each Vue component instance
+      if (this.$refs.case && Array.isArray(this.$refs.case)) {
+        this.$refs.case.forEach((componentInstance) => {
+          observer.observe(componentInstance.$el) // Observing the actual element
+        })
+      } else {
+        console.error('Refs not found or not an array:', this.$refs.case)
+      }
     }
   },
   mounted() {
+    this.createObserver()
     this.initScrollTrigger()
     //implementig the width handler so that we can see the navbar on bigger devices and it's not hidden
     window.addEventListener('resize', this.handleResize)
@@ -480,7 +484,7 @@ section {
 
 @media (min-width: 722px) {
   #services {
-    @apply -mt-[150vh];
+    @apply -mt-[77rem];
   }
   #logoWrapper {
     @apply scale-[134%] ml-[5.5rem] mt-[16vh];
@@ -516,7 +520,7 @@ section {
     @apply gap-[10rem] !important;
   }
   #casesTitleWrapper {
-    @apply ml-[7%];
+    @apply ml-[1%];
   }
   #about {
     @apply mb-[30rem] scale-[120%];

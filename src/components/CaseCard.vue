@@ -97,6 +97,7 @@ export default {
 }
 .highlighted {
   @apply shadow-[#6242BD] shadow-lg !important;
+  scale: 102%;
 }
 
 @media (min-width: 722px) {
