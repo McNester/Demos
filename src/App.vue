@@ -8,7 +8,7 @@
 
   <main>
     <section id="main">
-      <div id="logoWrapper">
+      <div ref="logoWrapper" id="logoWrapper">
         <h1 id="logo" class="headingFont">Demos</h1>
         <h2 id="slogan" class="fira">{{ slogan + '|' }}</h2>
       </div>
@@ -266,12 +266,21 @@ export default {
       } else {
         console.error('Refs not found or not an array:', this.$refs.case)
       }
+    },
+    startLogoAnimation() {
+      const logoWrapper = this.$refs.logoWrapper
+      logoWrapper.style.transition = 'transform 0.3s ease'
+      logoWrapper.style.transform = 'translateX(0%)'
     }
   },
   mounted() {
     this.createObserver()
 
+    //scroll trigger for the cases section
     this.initScrollTrigger()
+
+    //starts the animation for the navbar
+    this.startLogoAnimation()
 
     //implementig the width handler so that we can see the navbar on bigger devices and it's not hidden
     window.addEventListener('resize', this.handleResize)
@@ -356,6 +365,7 @@ section {
 
 #logoWrapper {
   @apply mt-[20vh] absolute flex flex-col justify-center items-start gap-5 ml-6;
+  transform: translateX(-40%);
 }
 #logo {
   @apply text-6xl;
@@ -444,7 +454,8 @@ section {
     @apply -mt-[77rem];
   }
   #logoWrapper {
-    @apply scale-[134%] ml-[5.5rem] mt-[16vh];
+    @apply ml-[5.5rem] mt-[16vh];
+    scale: 134%;
   }
   #slogan {
     @apply w-[80%] h-[10vh];
@@ -496,7 +507,8 @@ section {
 
 @media (min-width: 1024px) {
   #logoWrapper {
-    @apply scale-[200%] mt-[23vh] ml-[11.5rem];
+    @apply mt-[23vh] ml-[11.5rem];
+    scale: 200%;
   }
   #slogan {
     @apply w-[18rem];

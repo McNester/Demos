@@ -89,7 +89,7 @@ export default {
     },
     animateLargeScreen() {
       const box = this.$refs.nav
-      box.style.transition = 'transform 0.3s ease-out'
+      box.style.transition = 'transform 0.3s ease'
       box.style.transform = 'translateY(0%)'
       // Add any additional styling or animation setup here
     }
