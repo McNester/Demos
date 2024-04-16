@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <nav v-show="isMenu">
+    <nav ref="nav" v-show="isMenu">
       <img ref="logo" id="logo" src="../assets/icons/logo.png" alt="Demos logo" loading="lazy" />
 
       <ul id="links" class="inter">
@@ -79,10 +79,27 @@ export default {
           onEnterBack: () => gsap.to(logo, { opacity: '0', duration: 0.5 })
         }
       })
+    },
+    startAnimation() {
+      // Check if the screen width is more than 600px
+      if (window.innerWidth >= 500) {
+        // Trigger animation for large screens
+        this.animateLargeScreen()
+      }
+    },
+    animateLargeScreen() {
+      const box = this.$refs.nav
+      box.style.transition = 'transform 0.3s ease-out'
+      box.style.transform = 'translateY(0%)'
+      // Add any additional styling or animation setup here
     }
   },
   mounted() {
+    //enables scroll trigger for the logo to appear later
     this.scrollTriggerLogo()
+
+    //starts the animation for the navbar
+    this.startAnimation()
   }
 }
 </script>
@@ -112,6 +129,7 @@ a {
 @media (min-width: 500px) {
   nav {
     @apply backdrop-blur-md bg-opacity-[21%]  h-[4.5rem] mt-0 !important;
+    transform: translateY(-50%);
   }
   #links {
     @apply flex-row justify-center items-center gap-5;
@@ -165,7 +183,6 @@ a {
 .line {
   @apply absolute w-[100vw] h-[0.1rem] bg-white right-0 mt-1 bg-opacity-20;
 }
-
 @keyframes fadeIn {
   0% {
     opacity: 0;
