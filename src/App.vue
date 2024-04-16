@@ -407,7 +407,7 @@ section {
   @apply h-fit pb-[20rem] !important;
 }
 #servicesWrapper {
-  @apply flex flex-col justify-center items-center gap-20 pt-20;
+  @apply flex flex-col justify-center items-center gap-[1rem] pt-20;
 }
 #servicesWrapper::-webkit-scrollbar {
   display: none;
@@ -547,11 +547,11 @@ section {
 
 @media (min-width: 1200px) {
   #servicesWrapper {
-    @apply overflow-x-scroll flex-row justify-start pt-[7vh] pl-[7rem] overflow-y-visible gap-0;
+    @apply overflow-x-scroll overflow-y-visible gap-[2rem];
     white-space: nowrap;
   }
   #servicesTitle {
-    @apply text-left text-[7rem] pl-[3vw];
+    @apply text-left text-[4rem] mb-[2rem] pl-[1vw];
   }
   #about {
     @apply scale-[140%];
