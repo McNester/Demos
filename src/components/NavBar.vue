@@ -26,6 +26,18 @@
           </li>
           <div class="line"></div>
         </div>
+
+        <a class="social" href="https://web.telegram.org/a/">
+          <img
+            id="telegram"
+            src="../assets/icons/telegram.png"
+            alt="telegram icon"
+            loading="lazy"
+          />
+        </a>
+        <a class="social" href="https://www.instagram.com/">
+          <img id="instagram" src="../assets/icons/inst.png" alt="instagram icon" loading="lazy" />
+        </a>
       </ul>
       <my-button @click="scrollTo(options[4].name)" id="hire">Hire us</my-button>
     </nav>
@@ -125,6 +137,9 @@ a {
 #hire {
   @apply hidden;
 }
+.social {
+  @apply hidden;
+}
 
 @media (min-width: 500px) {
   nav {
@@ -145,7 +160,8 @@ a {
   }
 
   @media (hover: hover) {
-    .linkWrapper:hover {
+    .linkWrapper,
+    .social:hover {
       @apply scale-110;
     }
   }
@@ -154,6 +170,10 @@ a {
 @media (min-width: 722px) {
   #links {
     @apply p-0 gap-[0.25rem] !important;
+    scale: 85%;
+  }
+  .linkWrapper {
+    @apply px-[0.5rem];
   }
   nav {
     @apply flex justify-between px-[1rem] items-center;
@@ -162,6 +182,11 @@ a {
   a {
     @apply font-bold;
   }
+  /*
+  ul {
+    @apply bg-black bg-opacity-30 p-1 rounded-full;
+  }
+  */
   #hire {
     @apply block;
   }
@@ -169,11 +194,19 @@ a {
     @apply opacity-0 block h-[35%] w-auto;
     aspect-ratio: 7/1.5;
   }
+  .social {
+    @apply block h-[3rem];
+    aspect-ratio: 1;
+    transition: all 0.3s ease;
+  }
 }
 
 @media (min-width: 1000px) {
   #links {
     @apply gap-[1.25rem] !important;
+  }
+  .linkWrapper {
+    @apply px-[1.5rem] !important;
   }
 }
 
