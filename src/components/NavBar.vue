@@ -27,7 +27,7 @@
           <div class="line"></div>
         </div>
 
-        <a class="social" href="https://web.telegram.org/a/">
+        <a target="_blank" class="social" href="https://web.telegram.org/a/">
           <img
             id="telegram"
             src="../assets/icons/telegram.png"
@@ -35,7 +35,7 @@
             loading="lazy"
           />
         </a>
-        <a class="social" href="https://www.instagram.com/">
+        <a target="_blank" class="social" href="https://www.instagram.com/">
           <img id="instagram" src="../assets/icons/inst.png" alt="instagram icon" loading="lazy" />
         </a>
       </ul>
