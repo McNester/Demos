@@ -3,7 +3,7 @@
     <button id="menuBtn" aria-label="Menu button" @click="toggleMenu">
       <img id="menuImg" :src="menuBtn" alt="Menu button" />
     </button>
-    <my-nav :currentSection="currentSection" :isMenu="isMenu" @closeSideBar="toggleMenu"></my-nav>
+    <my-nav :isMenu="isMenu" @closeSideBar="toggleMenu"></my-nav>
   </header>
 
   <main>
@@ -90,7 +90,7 @@ export default {
         'Beyond the Code.',
         'Innovation at Every Click.'
       ],
-      gurrentService: '',
+      currentService: '',
       slogan: '',
       currentPhraseIndex: 0,
       typingSpeed: 70,
@@ -121,8 +121,7 @@ export default {
           desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac sodales est. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In hac habitasse platea dictumst. Maecenas semper tempor nulla, id cursus sem mattis et. Suspendisse ut purus sit amet arcu ultricies.',
           price: 421
         }
-      ],
-      gurrentSection: 0
+      ]
     }
   },
   methods: {
@@ -182,32 +181,7 @@ export default {
 
       setTimeout(() => this.typingSlogan(), typeSpeed)
     },
-    handleScroll() {
-      var t = this
-      document.querySelectorAll('section').forEach(function (section) {
-        var sectionTop = section.offsetTop
-        var sectionHeight = section.offsetHeight
-        var scrollPosition = window.scrollY || document.documentElement.scrollTop
 
-        if (sectionTop <= scrollPosition && sectionTop + sectionHeight > scrollPosition) {
-          t.currentSection = t.getSectionById(section.getAttribute('id'))
-        }
-      })
-    },
-    getSectionById(sectionId) {
-      switch (sectionId) {
-        case 'main':
-          return 0
-        case 'cases':
-          return 1
-        case 'services':
-          return 2
-        case 'about':
-          return 3
-        case 'contact':
-          return 3
-      }
-    },
     loadSpline() {
       if (
         !document.querySelector(
@@ -296,21 +270,21 @@ export default {
   },
   mounted() {
     this.createObserver()
+
     this.initScrollTrigger()
+
     //implementig the width handler so that we can see the navbar on bigger devices and it's not hidden
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
     this.typingSlogan()
 
-    //implementing the section handler to notify user with current section
-    window.addEventListener('scroll', this.handleScroll, { passive: true })
-
     //loading the 3d element
     this.loadSpline()
+
+    //define the slogan dom element to pass to the navbar
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.handleResize)
-    window.removeEventListener('scroll', this.handleScroll)
   }
 }
 </script>
