@@ -6,6 +6,7 @@ import CaseCard from '@/components/CaseCard.vue'
 import ServiceInfo from '@/components/ServiceInfo.vue'
 import Bento from '@/components/Bento.vue'
 import ContactForm from '@/components/ContactForm.vue'
+import MyFooter from '@/components/MyFooter.vue'
 
 export default [
   MyButton,
@@ -15,5 +16,6 @@ export default [
   CaseCard,
   ServiceInfo,
   Bento,
-  ContactForm
+  ContactForm,
+  MyFooter
 ]

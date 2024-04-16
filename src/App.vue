@@ -64,6 +64,8 @@
       </legend>
       <contact-form></contact-form>
     </section>
+
+    <my-footer></my-footer>
   </main>
 </template>
 <script setup>
