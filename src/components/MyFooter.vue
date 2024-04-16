@@ -5,11 +5,11 @@
     <p id="copyright" class="inter">© 2024 DEMOS</p>
 
     <div id="socialWrapper">
-      <a class="social" href="https://web.telegram.org/a/">
-        <img id="telegram" src="../assets/icons/telegram.png" alt="telegram icon" loading="lazy" />
+      <a class="social" href="https://discord.com/">
+        <img id="telegram" src="../assets/icons/discord.png" alt="telegram icon" loading="lazy" />
       </a>
-      <a class="social" href="https://www.instagram.com/">
-        <img id="instagram" src="../assets/icons/inst.png" alt="instagram icon" loading="lazy" />
+      <a class="social" href="https://twitter.com/">
+        <img id="instagram" src="../assets/icons/twitter.png" alt="instagram icon" loading="lazy" />
       </a>
     </div>
   </footer>
