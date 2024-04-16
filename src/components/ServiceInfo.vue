@@ -56,6 +56,7 @@ export default {
   scale: 170%;
   right: calc(100% - 88%);
   top: calc(100% - 85%);
+  z-index: 100;
 }
 #title {
   @apply text-5xl;
@@ -104,7 +105,7 @@ li {
     right: calc(100% - 92%) !important;
   }
   #serviceInfoWrapper {
-    @apply flex-row overflow-hidden !important;
+    @apply flex-row overflow-auto pb-3;
   }
   #infoWrapper {
     @apply mt-0 p-10 items-start;
@@ -128,4 +129,8 @@ li {
     @apply mt-[10.5rem] w-[114%] mr-[2vw] gap-[9rem];
   }
 }
+
+/* min-hieght */
+
+/*800px*/
 </style>

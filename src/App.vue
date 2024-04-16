@@ -128,23 +128,6 @@ export default {
   methods: {
     toggleServiceInfo() {
       this.isService = !this.isService
-      if (this.isService) {
-        this.disableScroll()
-      } else {
-        this.enableScroll()
-      }
-    },
-    disableScroll() {
-      // Save the current page scroll position
-      document.body.style.top = `-${window.scrollY}px`
-      document.body.style.position = 'fixed'
-      document.body.style.width = '100%'
-    },
-    enableScroll() {
-      const scrollY = document.body.style.top
-      document.body.style.position = ''
-      document.body.style.top = ''
-      window.scrollTo(0, parseInt(scrollY || '0') * -1)
     },
     toggleMenu() {
       if (window.innerWidth < 500) {
