@@ -130,14 +130,19 @@ li {
   }
 }
 
-#serviceInfoWrapper::-webkit-scrollbar {
-  background-color: black;
-  width: 0.6rem;
-}
-#serviceInfoWrapper::-webkit-scrollbar-track {
-  background-color: black;
-}
-#serviceInfoWrapper::-webkit-scrollbar-thumb {
-  @apply rounded-full bg-[#0C0C0C];
+@media (min-width: 722px) {
+  #serviceInfoWrapper {
+    overflow-x: hidden;
+  }
+  #serviceInfoWrapper::-webkit-scrollbar {
+    background-color: black;
+    width: 0.6rem;
+  }
+  #serviceInfoWrapper::-webkit-scrollbar-track {
+    background-color: black;
+  }
+  #serviceInfoWrapper::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-[#0C0C0C];
+  }
 }
 </style>
