@@ -246,11 +246,11 @@ export default {
           scrollTrigger: {
             trigger: section,
             start: 'top top', // Animation starts when the top of the section hits the top of the viewport
-            end: 'bottom bottom', // Ends when the bottom of the section leaves the top of the viewport
+            end: () => `+=${document.body.offsetHeight}`, // Ends when the bottom of the section leaves the top of the viewport
             scrub: true,
             pin: pinnedContent, // Pin the entire content section
-            markers: false, // Optional, for debugging
-            pinSpacing: !this.isMobile
+            markers: true, // Optional, for debugging
+            pinSpacing: false
           }
         })
 
@@ -481,7 +481,7 @@ section {
 
 @media (min-width: 722px) {
   #services {
-    @apply -mt-[95rem];
+    @apply -mt-[30rem];
   }
   #logoWrapper {
     @apply ml-[5.5rem] mt-[16vh];
@@ -583,9 +583,6 @@ section {
   }
   #about {
     @apply scale-[140%];
-  }
-  #services {
-    @apply -mt-[77rem];
   }
 
   #contactTitle {
