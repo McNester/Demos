@@ -249,7 +249,7 @@ export default {
             end: () => `+=${document.body.offsetHeight}`, // Ends when the bottom of the section leaves the top of the viewport
             scrub: true,
             pin: pinnedContent, // Pin the entire content section
-            markers: true, // Optional, for debugging
+            markers: false, // Optional, for debugging
             pinSpacing: false
           }
         })
