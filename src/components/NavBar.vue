@@ -43,12 +43,6 @@
     </nav>
   </transition>
 </template>
-<script setup>
-import { gsap } from 'gsap'
-import ScrollTrigger from 'gsap/ScrollTrigger'
-gsap.registerPlugin(ScrollTrigger)
-</script>
-
 <script>
 export default {
   name: 'my-nav',
@@ -74,24 +68,6 @@ export default {
         element.scrollIntoView({ behavior: 'smooth' })
       }
     },
-    scrollTriggerLogo() {
-      let trig = document.getElementById('slogan')
-      let logo = this.$refs.logo
-
-      console.log(this.sloganElem)
-      // Create a timeline for the animation
-      let tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: trig,
-          start: 'top top', // Animation starts when the top of the section hits the top of the viewport
-          end: 'top top', // Ends when the bottom of the section leaves the top of the viewport
-          markers: false, // Optional, for debugging
-          pinSpacing: true,
-          onEnter: () => gsap.to(logo, { opacity: '1', duration: 0.5 }),
-          onEnterBack: () => gsap.to(logo, { opacity: '0', duration: 0.5 })
-        }
-      })
-    },
     startAnimation() {
       // Check if the screen width is more than 600px
       if (window.innerWidth >= 500) {
@@ -107,9 +83,6 @@ export default {
     }
   },
   mounted() {
-    //enables scroll trigger for the logo to appear later
-    this.scrollTriggerLogo()
-
     //starts the animation for the navbar
     this.startAnimation()
   }
@@ -191,7 +164,7 @@ a {
     @apply block;
   }
   #logo {
-    @apply opacity-0 block h-[35%] w-auto;
+    @apply block h-[35%] w-auto;
     aspect-ratio: 7/1.5;
   }
   .social {

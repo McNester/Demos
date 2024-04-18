@@ -1,5 +1,6 @@
 <template>
   <header>
+    <img id="logoImg" alt="Demos logo" loading="lazy" src="./assets/icons/logo.png" />
     <button id="menuBtn" aria-label="Menu button" @click="toggleMenu">
       <img id="menuImg" :src="menuBtn" alt="Menu button" />
     </button>
@@ -41,7 +42,7 @@
         ></service-info>
       </transition>
 
-      <h2 class="headingFont" id="servicesTitle">WHAT WE OFFER?</h2>
+      <h2 ref="offer" class="headingFont" id="servicesTitle">WHAT WE OFFER?</h2>
 
       <div id="servicesWrapper">
         <service-card
@@ -82,6 +83,8 @@ export default {
     return {
       isService: false,
       isMenu: true,
+      isMobile: false,
+      tl: null,
       phrases: [
         'Making dreams togehter.',
         'Helping all the way.',
@@ -149,6 +152,14 @@ export default {
       } else {
         this.isMenu = true
       }
+      if (window.innerWidth < 722) {
+        this.isMobile = true
+      } else {
+        this.isMobile = false
+      }
+      if (this.tl != null) {
+        this.tl.scrollTrigger.refresh()
+      }
       this.toggleMenuIcon()
     },
     typingSlogan() {
@@ -187,13 +198,13 @@ export default {
     loadSpline() {
       if (
         !document.querySelector(
-          'script[src="https://unpkg.com/@splinetool/viewer@1.0.47/build/spline-viewer.js"]'
+          'script[src="https://unpkg.com/@splinetool/viewer@1.1.1/build/spline-viewer.js"]'
         )
       ) {
         console.log('Adding Spline viewer script to the document.')
         const script = document.createElement('script')
         script.type = 'module'
-        script.src = 'https://unpkg.com/@splinetool/viewer@1.0.47/build/spline-viewer.js'
+        script.src = 'https://unpkg.com/@splinetool/viewer@1.1.1/build/spline-viewer.js'
 
         script.onload = () => {
           console.log('Spline viewer script loaded.')
@@ -227,21 +238,33 @@ export default {
     initScrollTrigger() {
       let pinnedContent = this.$refs.casesTitle
       let section = this.$refs.cases
+      let offer = this.$refs.offer
 
       // Create a timeline for the animation
-      let tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: 'top top', // Animation starts when the top of the section hits the top of the viewport
-          end: 'bottom bottom', // Ends when the bottom of the section leaves the top of the viewport
-          scrub: true,
-          pin: pinnedContent, // Pin the entire content section
-          markers: false, // Optional, for debugging
-          pinSpacing: true,
-          onLeave: () => gsap.to(pinnedContent, { opacity: '0', duration: 0.5 }),
-          onEnterBack: () => gsap.to(pinnedContent, { opacity: '1', duration: 0.5 })
-        }
-      })
+      if (this.isMobile == false) {
+        this.tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: section,
+            start: 'top top', // Animation starts when the top of the section hits the top of the viewport
+            end: 'bottom bottom', // Ends when the bottom of the section leaves the top of the viewport
+            scrub: true,
+            pin: pinnedContent, // Pin the entire content section
+            markers: false, // Optional, for debugging
+            pinSpacing: !this.isMobile
+          }
+        })
+
+        this.tl.to(pinnedContent, {
+          scrollTrigger: {
+            trigger: offer,
+            start: 'bottom bottom', // Animation starts when the top of the section hits the top of the viewport
+            end: 'bottom 50%', // Ends when the bottom of the section leaves the top of the viewport
+            scrub: true,
+            markers: false // Optional, for debugging
+          },
+          opacity: '0'
+        })
+      }
     },
     createObserver() {
       const options = {
@@ -278,9 +301,6 @@ export default {
   mounted() {
     this.createObserver()
 
-    //scroll trigger for the cases section
-    this.initScrollTrigger()
-
     //starts the animation for the navbar
     this.startLogoAnimation()
 
@@ -292,7 +312,8 @@ export default {
     //loading the 3d element
     this.loadSpline()
 
-    //define the slogan dom element to pass to the navbar
+    //scroll trigger for the cases section
+    this.initScrollTrigger()
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.handleResize)
@@ -353,6 +374,10 @@ body {
 header {
   @apply flex flex-col h-fit w-[100vw] h-[10vh] fixed items-end bg-black bg-opacity-[0.75];
   z-index: 10000;
+}
+#logoImg {
+  @apply absolute left-0 top-0 mt-[1.5rem] ml-[1rem] h-[35%] w-auto;
+  aspect-ratio: 7/1.5;
 }
 #menuBtn {
   @apply scale-[200%] p-8;
@@ -433,6 +458,9 @@ section {
 /*500px*/
 
 @media (min-width: 500px) {
+  #logoImg {
+    @apply hidden;
+  }
   header {
     @apply h-fit;
   }
@@ -453,7 +481,7 @@ section {
 
 @media (min-width: 722px) {
   #services {
-    @apply -mt-[77rem];
+    @apply -mt-[95rem];
   }
   #logoWrapper {
     @apply ml-[5.5rem] mt-[16vh];
@@ -487,7 +515,7 @@ section {
 
 @media (min-width: 1000px) {
   #cases {
-    @apply gap-[10rem] !important;
+    @apply gap-[5rem] !important;
   }
   #casesTitleWrapper {
     @apply ml-[1%];
@@ -547,15 +575,19 @@ section {
 
 @media (min-width: 1200px) {
   #servicesWrapper {
-    @apply overflow-x-scroll overflow-y-visible gap-[2rem];
+    @apply overflow-visible gap-[2rem];
     white-space: nowrap;
   }
   #servicesTitle {
-    @apply text-left text-[4rem] mb-[2rem] pl-[1vw];
+    @apply text-left text-[3rem] mb-[2rem] pl-[2vw];
   }
   #about {
     @apply scale-[140%];
   }
+  #services {
+    @apply -mt-[77rem];
+  }
+
   #contactTitle {
     @apply text-[4rem];
     line-height: 4.9rem !important;

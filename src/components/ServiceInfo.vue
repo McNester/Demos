@@ -1,7 +1,7 @@
 <template>
   <div id="pageOverlay">
     <div id="serviceInfoWrapper">
-      <button @click="$emit('close')" id="closeBtn" aria-label="Close">
+      <button ref="close" @click="$emit('close')" id="closeBtn" aria-label="Close">
         <img src="/src/assets/icons/closeBtn.svg" alt="close icon" aria-hidden="true" />
       </button>
 
@@ -23,17 +23,48 @@
         </ul>
       </div>
 
-      <div id="correspCases">
-        <case-card class="case" v-for="i in [1, 2]" :key="i"></case-card>
+      <div id="correspCases" ref="correspContainer">
+        <case-card class="case" v-for="i in [1, 2, 3, 4, 5]" :key="i"></case-card>
       </div>
     </div>
   </div>
 </template>
+<script setup>
+import { gsap } from 'gsap'
+import ScrollTrigger from 'gsap/ScrollTrigger'
+gsap.registerPlugin(ScrollTrigger)
+</script>
 <script>
 export default {
   name: 'service-info',
   props: {
     title: { type: String }
+  },
+  methods: {
+    initScrollTrigger() {
+      const container = document.querySelector('#correspCases') // The scrollable container
+      const fadingElements = container.querySelectorAll('.case') // Elements that will fade
+
+      if (window.innerWidth >= 1200) {
+        fadingElements.forEach((fadingElement) => {
+          // Initialize ScrollTrigger for each fading element
+          gsap.to(fadingElement, {
+            scrollTrigger: {
+              trigger: fadingElement,
+              scroller: container, // Scrollable container
+              start: 'top top', // Starts fading when the top of the element hits the top of the container
+              end: 'top center', // Complete the fade when the top of the element is at the center of the container
+              scrub: true
+            },
+            opacity: 0, // Animate opacity to 0 by the end
+            ease: 'none'
+          })
+        })
+      }
+    }
+  },
+  mounted() {
+    this.initScrollTrigger()
   }
 }
 </script>
@@ -61,6 +92,7 @@ export default {
 #title {
   @apply text-5xl;
 }
+
 .description {
   @apply font-medium text-center !important;
 }
@@ -75,7 +107,7 @@ li {
   list-style-type: disc;
 }
 #correspCases {
-  @apply flex flex-col justify-center items-center w-full h-fit mt-10 gap-8;
+  @apply flex flex-col  justify-center items-center w-full mt-10 gap-8;
 }
 .case {
   @apply w-[100%] shadow-lg shadow-[#6242BD] !important;
@@ -126,7 +158,23 @@ li {
     scale: 140%;
   }
   #correspCases {
-    @apply mt-[10.5rem] w-[114%] mr-[2vw] gap-[9rem];
+    @apply mt-[4.5rem] overflow-y-scroll justify-start pt-[5%] h-[88%] pb-[4.5%] w-[114%] mr-[2vw];
+  }
+
+  #correspCases::-webkit-scrollbar {
+    background-color: black;
+    width: 0.6rem;
+  }
+  #correspCases::-webkit-scrollbar-track {
+    background-color: black;
+  }
+  #correspCases::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-[#0C0C0C];
+  }
+}
+@media (min-height: 540px) {
+  #correspCases {
+    @apply gap-[6rem] !important;
   }
 }
 
