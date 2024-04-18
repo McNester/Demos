@@ -257,8 +257,8 @@ export default {
         this.tl.to(pinnedContent, {
           scrollTrigger: {
             trigger: offer,
-            start: 'bottom bottom', // Animation starts when the top of the section hits the top of the viewport
-            end: 'bottom 25%', // Ends when the bottom of the section leaves the top of the viewport
+            start: 'bottom 70%', // Animation starts when the top of the section hits the top of the viewport
+            end: 'bottom 45%', // Ends when the bottom of the section leaves the top of the viewport
             scrub: true,
             markers: false // Optional, for debugging
           },
