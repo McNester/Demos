@@ -258,7 +258,7 @@ export default {
           scrollTrigger: {
             trigger: offer,
             start: 'bottom bottom', // Animation starts when the top of the section hits the top of the viewport
-            end: 'bottom 50%', // Ends when the bottom of the section leaves the top of the viewport
+            end: 'bottom 25%', // Ends when the bottom of the section leaves the top of the viewport
             scrub: true,
             markers: false // Optional, for debugging
           },
