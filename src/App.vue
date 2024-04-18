@@ -208,18 +208,13 @@ export default {
 
         script.onload = () => {
           console.log('Spline viewer script loaded.')
-          console.log('must be here111:')
           const shadowHost = document.getElementById('host')
           const shadowRoot = shadowHost.shadowRoot
           const logoElement = shadowRoot.querySelector('#logo')
           const canvas = shadowRoot.querySelector('#container')
-          console.log(logoElement)
           logoElement.style.cssText = 'opacity: 0 !important;'
 
           setTimeout(() => {
-            console.log('must be here2:')
-            //console.log(document.getElementById('logo'))
-
             const shadowHost = document.getElementById('host')
 
             // Access the shadow root from the host element
@@ -269,16 +264,25 @@ export default {
     createObserver() {
       const options = {
         root: null,
-        rootMargin: '-10% 0px -30% 0px',
+        rootMargin: '-10% 0px -50% 0px',
         threshold: 0.95
       }
 
+      let current = null
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
+          let sizeInFocus = document.getElementsByClassName('highlighted').length
+
           if (entry.isIntersecting) {
-            entry.target.classList.add('highlighted')
-          } else {
-            entry.target.classList.remove('highlighted')
+            if (sizeInFocus == 0) {
+              current = entry.target
+              current.classList.add('highlighted')
+            }
+            if (sizeInFocus == 1) {
+              current.classList.remove('highlighted')
+              entry.target.classList.add('highlighted')
+              current = entry.target
+            }
           }
         })
       }, options)
