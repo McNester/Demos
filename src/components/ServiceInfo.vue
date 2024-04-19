@@ -1,32 +1,34 @@
 <template>
   <div id="pageOverlay">
-    <div id="serviceInfoWrapper">
-      <button ref="close" @click="$emit('close')" id="closeBtn" aria-label="Close">
-        <img src="/src/assets/icons/closeBtn.svg" alt="close icon" aria-hidden="true" />
-      </button>
+    <transition name="jump">
+      <div id="serviceInfoWrapper">
+        <button ref="close" @click="$emit('close')" id="closeBtn" aria-label="Close">
+          <img src="/src/assets/icons/closeBtn.svg" alt="close icon" aria-hidden="true" />
+        </button>
 
-      <div id="infoWrapper">
-        <h2 class="serviceHeadingFont" id="title">{{ title }}</h2>
-        <h2 id="fullDesc" class="inter description">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac sodales est. Class
-            aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In
-            hac habitasse platea dictumst. Maecenas semper tempor nulla, id cursus sem mattis et.
-            Suspendisse ut purus sit amet arcu ultricies
-          </p>
-        </h2>
-        <ul id="servicesList" class="inter description">
-          <li><p>We offer you this</p></li>
-          <li><p>And also you would get that</p></li>
-          <li><p>Furthemore you’d got this</p></li>
-          <li><p>We help you do this</p></li>
-        </ul>
-      </div>
+        <div id="infoWrapper">
+          <h2 class="serviceHeadingFont" id="title">{{ title }}</h2>
+          <h2 id="fullDesc" class="inter description">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac sodales est. Class
+              aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+              In hac habitasse platea dictumst. Maecenas semper tempor nulla, id cursus sem mattis
+              et. Suspendisse ut purus sit amet arcu ultricies
+            </p>
+          </h2>
+          <ul id="servicesList" class="inter description">
+            <li><p>We offer you this</p></li>
+            <li><p>And also you would get that</p></li>
+            <li><p>Furthemore you’d got this</p></li>
+            <li><p>We help you do this</p></li>
+          </ul>
+        </div>
 
-      <div id="correspCases" ref="correspContainer">
-        <case-card class="case" v-for="i in [1, 2, 3, 4, 5]" :key="i"></case-card>
+        <div id="correspCases" ref="correspContainer">
+          <case-card class="case" v-for="i in [1, 2, 3, 4, 5]" :key="i"></case-card>
+        </div>
       </div>
-    </div>
+    </transition>
   </div>
 </template>
 <script setup>
@@ -41,43 +43,89 @@ export default {
     title: { type: String }
   },
   methods: {
+    createObserver() {
+      const options = {
+        root: this.$refs.correspContainer,
+        rootMargin: '-10% 0px -50% 0px',
+        threshold: 0.95
+      }
+
+      let current = null
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          let sizeInFocus = document.getElementsByClassName('highlighted').length
+
+          if (entry.isIntersecting) {
+            if (sizeInFocus == 0) {
+              current = entry.target
+              current.classList.add('highlighted')
+            }
+            if (sizeInFocus == 1) {
+              current.classList.remove('highlighted')
+              entry.target.classList.add('highlighted')
+              current = entry.target
+            }
+          }
+        })
+      }, options)
+
+      // Observing the root element of each Vue component instance
+      if (this.$refs.case && Array.isArray(this.$refs.case)) {
+        this.$refs.case.forEach((componentInstance) => {
+          observer.observe(componentInstance.$el) // Observing the actual element
+        })
+      } else {
+        console.error('Refs not found or not an array:', this.$refs.case)
+      }
+    },
     initScrollTrigger() {
       const container = document.querySelector('#correspCases') // The scrollable container
       const fadingElements = container.querySelectorAll('.case') // Elements that will fade
 
       if (window.innerWidth >= 1200) {
+        let factor = 0
         fadingElements.forEach((fadingElement) => {
-          // Initialize ScrollTrigger for each fading element
           gsap.to(fadingElement, {
             scrollTrigger: {
               trigger: fadingElement,
               scroller: container, // Scrollable container
-              start: 'top top', // Starts fading when the top of the element hits the top of the container
-              end: 'top center', // Complete the fade when the top of the element is at the center of the container
-              scrub: true
+              start: 'top+=' + 110 * factor + '% top', // Starts fading when the top of the element hits the top of the container
+              end: 'top+=' + 110 * factor + '% center', // Complete the fade when the top of the element is at the center of the container
+              scrub: true,
+              markers: false
             },
-            opacity: 0, // Animate opacity to 0 by the end
             ease: 'none'
           })
         })
+        ScrollTrigger.refresh()
       }
+    },
+    startCardsAnim() {
+      const container = document.querySelector('#correspCases') // The scrollable container
+      const cards = container.querySelectorAll('.case') // Elements that will fade
+
+      cards.forEach((card) => {
+        card.style.transition = 'transform 1.5s ease, opacity 1s ease'
+        card.style.transform = 'translateY(0%)'
+      })
     }
   },
   mounted() {
     this.initScrollTrigger()
+    this.startCardsAnim()
   }
 }
 </script>
 <style scoped>
 #pageOverlay {
   @apply fixed flex justify-center items-center bg-black bg-opacity-40 w-[100vw] h-[100vh] !important;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
   z-index: 100;
 }
 #serviceInfoWrapper {
   @apply flex flex-col justify-start items-start w-[90vw] h-[80vh] bg-[#191919] rounded-2xl overflow-scroll pb-16;
+  transfrom: translateY(-50%);
 }
 #infoWrapper {
   @apply flex flex-col justify-center items-center w-full h-fit mt-[20%];
@@ -110,10 +158,26 @@ li {
   @apply flex flex-col  justify-center items-center w-full mt-10 gap-8;
 }
 .case {
-  @apply w-[100%] shadow-lg shadow-[#6242BD] !important;
   scale: 90%;
+  @apply w-[100%] shadow-lg shadow-[#6242BD] !important;
+  --n: 1;
+  transform: translateY(calc(var(--n) * -110%));
 }
-
+.case:nth-child(1) {
+  --n: 0;
+}
+.case:nth-child(2) {
+  --n: 1;
+}
+.case:nth-child(3) {
+  --n: 2;
+}
+.case:nth-child(4) {
+  --n: 3;
+}
+.case:nth-child(5) {
+  --n: 4;
+}
 /*800px*/
 
 @media (min-width: 800px) {
@@ -192,5 +256,29 @@ li {
   #serviceInfoWrapper::-webkit-scrollbar-thumb {
     @apply rounded-full bg-[#0C0C0C];
   }
+}
+
+@keyframes fadeIn {
+  0% {
+    transform: translateY(50%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(50%);
+  }
+}
+.jump-enter-active {
+  animation: fadeIn 0.3s ease-out;
+}
+.jump-leave-active {
+  animation: fadeOut 0.3s ease-in forwards;
 }
 </style>

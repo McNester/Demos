@@ -1,5 +1,8 @@
 <template>
-  <button @click="$emit('toggleServiceInfo'), $emit('infoOpen')" class="shortService">
+  <button
+    @click="$emit('toggleServiceInfo'), $emit('infoOpen'), expandWrapper()"
+    class="shortService"
+  >
     <h3 class="serviceHeadingFont" id="wrapperTitle">{{ title }}</h3>
     <img
       class="arrow"
@@ -24,7 +27,34 @@ export default {
   props: {
     title: { type: String },
     description: { type: String },
-    price: { type: Number }
+    price: { type: Number },
+    current: { type: String },
+    isService: { type: Boolean }
+  },
+  watch: {
+    isService(newValue, oldValue) {
+      if (newValue == false && this.current == this.title) {
+        this.expandWrapper()
+      }
+    }
+  },
+  methods: {
+    expandWrapper() {
+      this.isOpen = !this.isOpen
+      if (this.isOpen) {
+        this.rotateArrowUp()
+      } else {
+        this.rotateArrowDown()
+      }
+    },
+    rotateArrowUp() {
+      let arrow = this.$refs.arrow
+      arrow.style.rotate = '-90deg'
+    },
+    rotateArrowDown() {
+      let arrow = this.$refs.arrow
+      arrow.style.rotate = '0deg'
+    }
   }
 }
 </script>

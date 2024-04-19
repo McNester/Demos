@@ -52,6 +52,8 @@
           :title="service.title"
           :description="service.desc"
           :price="service.price"
+          :current="currentService"
+          :isService="isService"
           @infoOpen="currentService = service.title"
         ></service-card>
       </div>
@@ -612,23 +614,28 @@ section {
 @keyframes fadeIn {
   0% {
     opacity: 0;
+    transform: translateY(50%);
   }
   100% {
     opacity: 1;
+    transform: translateY(0%);
   }
 }
+
 @keyframes fadeOut {
   0% {
     opacity: 1;
+    transform: translateY(0%);
   }
   100% {
     opacity: 0;
+    transform: translateY(50%);
   }
 }
 .fade-enter-active {
-  animation: fadeIn 0.3s ease;
+  animation: fadeIn 0.4s ease;
 }
 .fade-leave-active {
-  animation: fadeOut 0.3s ease forwards;
+  animation: fadeOut 0.4s ease forwards;
 }
 </style>
