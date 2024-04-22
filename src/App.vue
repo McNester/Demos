@@ -305,7 +305,9 @@ export default {
     }
   },
   mounted() {
-    this.createObserver()
+    if (window.innerWidth <= 1024) {
+      this.createObserver()
+    }
 
     //starts the animation for the navbar
     this.startLogoAnimation()
@@ -430,6 +432,16 @@ section {
 #casesWrapper {
   @apply flex flex-col gap-14 justify-start items-center w-full h-full pt-[1vh] pb-[50vh] mt-[9rem];
 }
+.case {
+  transition: all 0.3s ease;
+}
+@media (hover: hover) {
+  #casesWrapper > .case:hover {
+    @apply shadow-[#6242BD] shadow-lg !important;
+    scale: 102%;
+  }
+}
+
 #casesWrapper::-webkit-scrollbar {
   display: none;
 }
