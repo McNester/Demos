@@ -115,6 +115,7 @@ export default {
 
 .statTitle {
   @apply text-[1.4rem] text-right;
+  font-weight: 900;
 }
 .statDesc {
   @apply text-xs;

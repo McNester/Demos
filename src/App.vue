@@ -10,7 +10,7 @@
   <main>
     <section id="main">
       <div ref="logoWrapper" id="logoWrapper">
-        <h1 id="logo" class="headingFont">Demos</h1>
+        <h1 id="logo" class="headingFont">Asphera</h1>
         <h2 id="slogan" class="fira">{{ slogan + '|' }}</h2>
       </div>
 
@@ -331,6 +331,9 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300,700&family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap');
+/*
 @font-face {
   font-family: Kurdis-extrawide-bold;
   src: url('../src/assets/fonts/kurdis-font-family/KurdisVariableFamilyTest-ExtraWideBold-BF64bf41e1032f4.otf');
@@ -339,6 +342,7 @@ export default {
   font-family: Kurdis-extrawide-extrabold;
   src: url('../src/assets/fonts/kurdis-font-family/KurdisVariableFamilyTest-ExtraWideExtraBold-BF64bf41e13a4b4.otf');
 }
+*/
 body::-webkit-scrollbar {
   background-color: black;
   width: 0.6rem;
@@ -363,13 +367,13 @@ body {
   overscroll-behavior-y: none;
 }
 .headingFont {
-  font-family: Kurdis-extrawide-extrabold;
+  font-family: 'Red Hat Display', sans-serif;
 }
 .serviceHeadingFont {
-  font-family: Kurdis-extrawide-bold;
+  font-family: 'Red Hat Display', sans-serif;
 }
 .fira {
-  font-family: 'Fira Code', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
@@ -404,6 +408,7 @@ section {
 }
 #logo {
   @apply text-6xl;
+  font-weight: 200;
 }
 #slogan {
   @apply text-lg w-[70%] pl-1;
@@ -420,6 +425,7 @@ section {
 }
 #casesTitle {
   @apply text-[4rem] self-center text-white text-center mt-[15rem];
+  font-weight: 600;
 }
 #casesTitleWrapper {
   @apply flex flex-col justify-start items-start;
@@ -458,6 +464,7 @@ section {
 
 #servicesTitle {
   @apply text-[2.2rem] text-center;
+  font-weight: 600;
 }
 
 #about {
@@ -570,7 +577,7 @@ section {
     @apply w-[37%] ml-0 !important;
   }
   #casesWrapper {
-    @apply w-[37vw] !important;
+    @apply w-[37vw]  mt-[18rem] !important;
     scale: 120%;
   }
   #contact {

@@ -2,7 +2,7 @@
   <footer ref="footer">
     <img ref="logo" id="logo" src="../assets/icons/logo.png" alt="Demos logo" loading="lazy" />
 
-    <p id="copyright" class="inter">© 2024 DEMOS</p>
+    <p id="copyright" class="inter">© 2024 ASPHERA</p>
 
     <div id="socialWrapper">
       <a target="_blank" class="social" href="https://discord.com/">
