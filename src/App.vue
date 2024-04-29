@@ -587,7 +587,7 @@ section {
   }
 
   #casesTitleWrapper {
-    @apply mt-[15rem];
+    @apply mt-[9rem];
   }
   #casesTitle {
     @apply mt-0 self-start;
