@@ -263,7 +263,7 @@ export default {
         this.tl = gsap.timeline({
           scrollTrigger: {
             trigger: section,
-            start: 'top top', // Animation starts when the top of the section hits the top of the viewport
+            start: 'top-=10% top', // Animation starts when the top of the section hits the top of the viewport
             end: () => `+=${document.body.offsetHeight}`, // Ends when the bottom of the section leaves the top of the viewport
             scrub: true,
             pin: pinnedContent, // Pin the entire content section
@@ -275,8 +275,8 @@ export default {
         this.tl.to(pinnedContent, {
           scrollTrigger: {
             trigger: offer,
-            start: 'bottom 70%', // Animation starts when the top of the section hits the top of the viewport
-            end: 'bottom 45%', // Ends when the bottom of the section leaves the top of the viewport
+            start: 'bottom 90%', // Animation starts when the top of the section hits the top of the viewport
+            end: 'bottom 65%', // Ends when the bottom of the section leaves the top of the viewport
             scrub: true,
             markers: false // Optional, for debugging
           },
@@ -518,7 +518,7 @@ section {
     transform: translateX(0%);
   }
   to {
-    transform: translateX(-51%);
+    transform: translateX(-50.9%);
   }
 }
 
