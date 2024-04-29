@@ -57,6 +57,19 @@
           @infoOpen="currentService = service.title"
         ></service-card>
       </div>
+      <div
+        class="marquee-container headingFont"
+        @mouseover="stopAnimation"
+        @mouseleave="startAnimation"
+        @touchstart="stopAnimation"
+        @touchend="startAnimation"
+      >
+        <div class="marquee" :style="{ 'animation-play-state': animationPlayState }">
+          <span class="justify-self-center self-center">
+            Making dreams together | Helping all the way
+          </span>
+        </div>
+      </div>
     </section>
     <section id="about">
       <bento></bento>
@@ -83,6 +96,7 @@ gsap.registerPlugin(ScrollTrigger)
 export default {
   data() {
     return {
+      animationPlayState: 'running',
       isService: false,
       isMenu: true,
       isMobile: false,
@@ -132,6 +146,12 @@ export default {
     }
   },
   methods: {
+    stopAnimation() {
+      this.animationPlayState = 'paused'
+    },
+    startAnimation() {
+      this.animationPlayState = 'running'
+    },
     toggleServiceInfo() {
       this.isService = !this.isService
     },
@@ -464,6 +484,31 @@ section {
 #servicesTitle {
   @apply text-[2.2rem] text-center;
   font-weight: 600;
+}
+.marquee-container {
+  overflow-x: hidden;
+  position: relative;
+  @apply text-2xl;
+  @apply flex h-fit py-2 -mb-[7rem] mt-[6rem] font-bold lg:text-8xl;
+}
+
+.marquee {
+  display: inline-block;
+  white-space: nowrap;
+  padding: 24px 0;
+  animation: marquee 20s linear infinite;
+}
+.marquee:after {
+  content: ' | Making dreams together | Helping all the way';
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-51%);
+  }
 }
 
 #about {
