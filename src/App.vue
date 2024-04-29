@@ -69,9 +69,7 @@
         @touchend="startAnimation"
       >
         <div class="marquee" :style="{ 'animation-play-state': animationPlayState }">
-          <span class="justify-self-center self-center">
-            Making dreams together | Helping all the way
-          </span>
+          <span class="justify-self-center self-center">Web3 | Web2 | Telegram | Softs </span>
         </div>
       </div>
     </section>
@@ -510,7 +508,7 @@ section {
   animation: marquee 20s linear infinite;
 }
 .marquee:after {
-  content: ' | Making dreams together | Helping all the way';
+  content: ' | Web3 | Web2 | Telegram | Softs';
 }
 
 @keyframes marquee {
@@ -518,7 +516,7 @@ section {
     transform: translateX(0%);
   }
   to {
-    transform: translateX(-50.9%);
+    transform: translateX(-50.999%);
   }
 }
 
