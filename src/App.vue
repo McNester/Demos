@@ -6,7 +6,6 @@
     </button>
     <my-nav :isMenu="isMenu" @closeSideBar="toggleMenu"></my-nav>
   </header>
-
   <main>
     <section id="main">
       <div ref="logoWrapper" id="logoWrapper">
@@ -84,6 +83,7 @@
     <my-footer></my-footer>
   </main>
 </template>
+
 <script setup>
 import menuBtn from '../src/assets/icons/menuBtn.svg'
 import closeBtn from '../src/assets/icons/closeBtn.svg'
@@ -328,7 +328,6 @@ export default {
     if (window.innerWidth <= 1024) {
       this.createObserver()
     }
-
     //starts the animation for the navbar
     this.startLogoAnimation()
 
@@ -362,17 +361,24 @@ export default {
   src: url('../src/assets/fonts/kurdis-font-family/KurdisVariableFamilyTest-ExtraWideExtraBold-BF64bf41e13a4b4.otf');
 }
 */
+.simplebar-scrollbar::before {
+  background-color: red;
+  max-height: 100vh;
+}
+
 body::-webkit-scrollbar {
   background-color: black;
   width: 0.6rem;
+  height: 1px;
+  max-height: 10px;
 }
 body::-webkit-scrollbar-track {
   background-color: black;
 }
 body::-webkit-scrollbar-thumb {
-  @apply rounded-full bg-[#0C0C0C];
+  height: 25px !important;
+  @apply rounded-full bg-[#6242BD];
 }
-
 html,
 body {
   @apply bg-black text-white;
@@ -385,6 +391,7 @@ body {
 body {
   overscroll-behavior-y: none;
 }
+
 .headingFont {
   font-family: 'Red Hat Display', sans-serif;
 }
@@ -570,7 +577,7 @@ section {
   }
 
   #casesTitleWrapper {
-    @apply mt-[8rem];
+    @apply mt-[15rem];
   }
   #casesTitle {
     @apply mt-0 self-start;
