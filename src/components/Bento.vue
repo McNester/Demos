@@ -1,6 +1,9 @@
 <template>
   <div id="bentoWrapper">
-    <div class="card" id="card1"></div>
+    <div class="headingFont cardText" id="card1">
+      <span class="headingFont" id="upperText">WHO WE ARE</span>
+      <span>ASPHERASY<br />ECOSYSTEM</span>
+    </div>
     <div class="card" id="card2"></div>
     <div class="card" id="card3"></div>
     <div class="card" id="card4"></div>
@@ -23,12 +26,18 @@ export default {
 #card1 {
   grid-column: 1 / span 2;
   grid-row: 1;
+  @apply text-[2rem] flex flex-col gap-2 justify-center items-center;
 
   aspect-ratio: 16/8;
   width: 100%;
-  background-size: cover;
+  /*background-size: cover;
   background-position: center;
   background-image: url('/src/assets/icons/bentoPartners.png');
+  */
+}
+#upperText {
+  @apply ml-1 text-white text-opacity-20 font-normal text-[0.7rem];
+  letter-spacing: 0.2rem;
 }
 #card2 {
   grid-column: 1;
@@ -79,12 +88,24 @@ export default {
   grid-column: 1 / span 2;
   grid-row: 6;
 
+  /*
   aspect-ratio: 5/2;
   width: 100%;
   height: 100%;
   background-size: cover;
   background-position: center;
   background-image: url('/src/assets/icons/bentoBest.png');
+  */
+
+  aspect-ratio: 16/8;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-image: url('/src/assets/icons/bentoPartners.png');
+}
+.cardText {
+  @apply h-[9.8rem] rounded-3xl;
+  transition: all 0.7s;
 }
 .card {
   @apply h-[9.8rem] rounded-3xl;
@@ -99,6 +120,9 @@ export default {
   .card {
     @apply scale-[90%];
   }
+  .cardText {
+    @apply scale-[90%];
+  }
   #bentoWrapper {
     @apply gap-0;
   }
@@ -110,6 +134,7 @@ export default {
     grid-template-rows: 1fr 1fr 1fr;
   }
   #card1 {
+    @apply justify-start items-start text-5xl flex flex-col gap-2;
     grid-column: 1 / span 2;
     grid-row: 1;
   }

@@ -69,7 +69,9 @@
         @touchend="startAnimation"
       >
         <div class="marquee" :style="{ 'animation-play-state': animationPlayState }">
-          <span class="justify-self-center self-center">Web3 | Web2 | Telegram | Softs </span>
+          <span v-for="i in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" class="justify-self-center self-center"
+            >Web3 | Web2 | Telegram | Softs
+          </span>
         </div>
       </div>
     </section>
@@ -505,7 +507,7 @@ section {
   display: inline-block;
   white-space: nowrap;
   padding: 24px 0;
-  animation: marquee 20s linear infinite;
+  animation: marquee 80s linear infinite;
 }
 .marquee:after {
   content: ' | Web3 | Web2 | Telegram | Softs';
