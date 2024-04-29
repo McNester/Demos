@@ -9,8 +9,13 @@
   <main>
     <section id="main">
       <div ref="logoWrapper" id="logoWrapper">
-        <h1 id="logo" class="headingFont">Asphera</h1>
+        <h1 id="logo" class="headingFont">Asphera Technologies</h1>
+
         <h2 id="slogan" class="fira">{{ slogan + '|' }}</h2>
+        <h2 id="logoShort" class="fira">
+          Singular company. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac
+          sodales est. Class aptent taciti
+        </h2>
       </div>
 
       <spline-viewer
@@ -104,12 +109,8 @@ export default {
       phrases: [
         'Making dreams togehter.',
         'Helping all the way.',
-        'Innovate, Create, Elevate.',
-        'Making the Web Work for You.',
-        'Building Your Digital Future.',
         'Where Ideas Meet Impact.',
-        'Beyond the Code.',
-        'Innovation at Every Click.'
+        'Beyond the Code.'
       ],
       currentService: '',
       slogan: '',
@@ -432,12 +433,15 @@ section {
   @apply mt-[20vh] absolute flex flex-col justify-center items-start gap-5 ml-6;
   transform: translateX(-40%);
 }
-#logo {
-  @apply text-6xl;
+#logoWrapper > #logo {
+  @apply text-4xl ml-[0.1rem] w-[50%];
   font-weight: 200;
 }
+#logoShort {
+  @apply ml-1 text-[#777777] text-[0.6rem] font-light w-[74%];
+}
 #slogan {
-  @apply font-light text-lg w-[70%] pl-1;
+  @apply text-[#777777] font-light text-lg w-[70%] pl-1;
 }
 
 #host {
@@ -559,9 +563,15 @@ section {
   #services {
     @apply -mt-[30rem];
   }
+  #logoWrapper > #logo {
+    width: 100%;
+  }
   #logoWrapper {
-    @apply ml-[5.5rem] mt-[16vh];
+    @apply ml-[8.5rem] mt-[16vh];
     scale: 134%;
+  }
+  #logoShort {
+    @apply -mt-[3rem];
   }
   #slogan {
     @apply w-[80%] h-[10vh];
@@ -613,8 +623,11 @@ section {
 
 @media (min-width: 1024px) {
   #logoWrapper {
-    @apply mt-[23vh] ml-[11.5rem];
+    @apply mt-[23vh] ml-[23.5rem];
     scale: 200%;
+  }
+  #logoShort {
+    @apply -mt-[3.5rem] w-[50%];
   }
   #slogan {
     @apply w-[18rem];
@@ -678,6 +691,9 @@ section {
 @media (min-width: 1400px) {
   #about {
     @apply scale-[150%];
+  }
+  #logoShort {
+    @apply -mt-[10%];
   }
 }
 
