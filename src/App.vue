@@ -61,9 +61,9 @@
           @infoOpen="currentService = service.title"
         ></service-card>
       </div>
-      <marquee size="big" direction="toLeft"></marquee>
-      <marquee size="medium" direction="toRight"></marquee>
-      <marquee size="small" direction="toLeft"></marquee>
+      <marquee v-once size="big" direction="toLeft"></marquee>
+      <marquee v-once size="medium" direction="toRight"></marquee>
+      <marquee v-once size="small" direction="toLeft"></marquee>
     </section>
     <section id="about">
       <bento></bento>
