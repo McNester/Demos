@@ -357,7 +357,7 @@ body::-webkit-scrollbar-track {
 }
 body::-webkit-scrollbar-thumb {
   @apply rounded-full bg-[#6242BD];
-  box-shadow: inset 0px -5rem 0px 0px black;
+  box-shadow: inset 0px 3rem 0px 0px black;
 }
 html,
 body {
