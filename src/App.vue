@@ -346,23 +346,18 @@ export default {
   src: url('../src/assets/fonts/kurdis-font-family/KurdisVariableFamilyTest-ExtraWideExtraBold-BF64bf41e13a4b4.otf');
 }
 */
-.simplebar-scrollbar::before {
-  background-color: red;
-  max-height: 100vh;
-}
-
 body::-webkit-scrollbar {
   background-color: black;
   width: 0.6rem;
-  height: 1px;
-  max-height: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
 }
 body::-webkit-scrollbar-track {
   background-color: black;
 }
 body::-webkit-scrollbar-thumb {
-  height: 25px !important;
   @apply rounded-full bg-[#6242BD];
+  box-shadow: inset 0px -5rem 0px 0px black;
 }
 html,
 body {
@@ -370,11 +365,9 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  overflow-y: auto;
   max-width: 100vw;
   overscroll-behavior: none;
-}
-body {
-  overscroll-behavior-y: none;
 }
 
 .headingFont {
