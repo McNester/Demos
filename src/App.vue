@@ -61,19 +61,9 @@
           @infoOpen="currentService = service.title"
         ></service-card>
       </div>
-      <div
-        class="marquee-container headingFont"
-        @mouseover="stopAnimation"
-        @mouseleave="startAnimation"
-        @touchstart="stopAnimation"
-        @touchend="startAnimation"
-      >
-        <div class="marquee" :style="{ 'animation-play-state': animationPlayState }">
-          <span v-for="i in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" class="justify-self-center self-center"
-            >Web3 | Web2 | Telegram | Softs
-          </span>
-        </div>
-      </div>
+      <marquee size="big" direction="toLeft"></marquee>
+      <marquee size="medium" direction="toRight"></marquee>
+      <marquee size="small" direction="toLeft"></marquee>
     </section>
     <section id="about">
       <bento></bento>
@@ -147,12 +137,6 @@ export default {
     }
   },
   methods: {
-    stopAnimation() {
-      this.animationPlayState = 'paused'
-    },
-    startAnimation() {
-      this.animationPlayState = 'running'
-    },
     toggleServiceInfo() {
       this.isService = !this.isService
     },
@@ -496,32 +480,6 @@ section {
   @apply text-[2.2rem] text-center;
   font-weight: 600;
 }
-.marquee-container {
-  overflow-x: hidden;
-  position: relative;
-  @apply text-2xl;
-  @apply flex h-fit py-2 -mb-[7rem] mt-[6rem] font-bold lg:text-8xl;
-}
-
-.marquee {
-  display: inline-block;
-  white-space: nowrap;
-  padding: 24px 0;
-  animation: marquee 80s linear infinite;
-}
-.marquee:after {
-  content: ' | Web3 | Web2 | Telegram | Softs';
-}
-
-@keyframes marquee {
-  from {
-    transform: translateX(0%);
-  }
-  to {
-    transform: translateX(-50.999%);
-  }
-}
-
 #about {
   @apply h-fit !important;
 }
