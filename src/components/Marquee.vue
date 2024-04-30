@@ -67,6 +67,7 @@ export default {
 
 <style scoped>
 .marquee-container {
+  pointer-events: none;
   overflow-x: hidden;
   position: relative;
   @apply text-2xl;
