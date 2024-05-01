@@ -4,19 +4,19 @@
       <img ref="logo" id="logo" src="../assets/icons/logo.png" alt="Demos logo" loading="lazy" />
 
       <ul id="links" class="inter">
-        <div @mouseleave="handleHover" @mouseenter="handleHover" @click="scrollTo(options[0].name)" class="linkWrapper">
+        <div @mouseenter="openPreview(options[0])" @click="scrollTo(options[0].name)" class="linkWrapper">
           <li>
             <a @click.prevent href="#cases">Cases</a>
           </li>
           <div class="line"></div>
         </div>
-        <div @mouseleave="handleHover" @mouseenter="handleHover" @click="scrollTo(options[1].name)" class="linkWrapper">
+        <div @mouseenter="openPreview(options[1])" @click="scrollTo(options[1].name)" class="linkWrapper">
           <li>
             <a @click.prevent href="#services">Services</a>
           </li>
           <div class="line"></div>
         </div>
-        <div @mouseleave="handleHover" @mouseenter="handleHover" @click="scrollTo(options[2].name)" class="linkWrapper">
+        <div @mouseenter="openPreview(options[2])" @click="scrollTo(options[2].name)" class="linkWrapper">
           <li>
             <a @click.prevent href="#about">About</a>
           </li>
@@ -51,8 +51,8 @@ export default {
     }
   },
   methods: {
-    handleHover() {
-      this.$emit('hoverNav')
+    openPreview(name) {
+      this.$emit('openPreview', name);
     },
     scrollTo(sectionId) {
       this.$emit('closeSideBar')

@@ -4,9 +4,9 @@
     <button id="menuBtn" aria-label="Menu button" @click="toggleMenu">
       <img id="menuImg" :src="menuBtn" alt="Menu button" />
     </button>
-    <my-nav @hoverNav="toggleNavHower" :isMenu="isMenu" @closeSideBar="toggleMenu"></my-nav>
+    <my-nav @openPreview="openPreview" :isMenu="isMenu" @closeSideBar="toggleMenu"></my-nav>
   </header>
-  <nav-preview :isVisible="isNavHowered"></nav-preview>
+  <nav-preview :name="previewName" @mouseleave="toggleNavHower" :isVisible="isNavHowered"></nav-preview>
   <main>
     <section id="main">
       <div ref="logoWrapper" id="logoWrapper">
@@ -82,6 +82,7 @@ gsap.registerPlugin(ScrollTrigger)
 export default {
   data() {
     return {
+      previewName: '',
       isNavHowered: false,
       animationPlayState: 'running',
       isService: false,
@@ -129,7 +130,12 @@ export default {
     }
   },
   methods: {
+    openPreview(name) {
+      this.previewName = name
+      this.isNavHowered = true;
+    },
     toggleNavHower() {
+      console.log('leave')
       if (this.isNavHowered == false) {
         this.isNavHowered = true
         return;

@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
     <div v-show="isVisible" id="previewWrapper">
-      <p class="headingFont" id="prev">Preview</p>
+      <p class="headingFont" id="prev">Preview{{ name }}</p>
     </div>
   </transition>
 </template>
@@ -9,15 +9,21 @@
 <script>
 export default {
   name: 'nav-preview',
+  data() {
+    return {
+      isOnHover: false,
+    }
+  },
   props: {
     isVisible: { type: Boolean },
+    name: { type: String },
   }
 }
 </script>
 
 <style scoped>
 #previewWrapper {
-  @apply opacity-0 flex justify-end items-start p-2 opacity-0 fixed top-0 mt-[4.5rem] h-40 w-full bg-black backdrop-blur-md bg-opacity-[20%] border-y-gray-500 border-y-2;
+  @apply opacity-0 flex justify-start items-start p-5 opacity-0 fixed top-0 mt-[4.5rem] h-40 w-full bg-black backdrop-blur-md bg-opacity-[20%] border-y-gray-500 border-y-2;
   z-index: 1000;
 }
 
