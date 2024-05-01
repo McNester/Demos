@@ -8,6 +8,7 @@ import Bento from '@/components/Bento.vue'
 import ContactForm from '@/components/ContactForm.vue'
 import MyFooter from '@/components/MyFooter.vue'
 import Marquee from '@/components/Marquee.vue'
+import NavBarPreview from '@/components/NavBarPreview.vue'
 
 export default [
   MyButton,
@@ -19,5 +20,6 @@ export default [
   Bento,
   ContactForm,
   MyFooter,
-  Marquee
+  Marquee,
+  NavBarPreview
 ]

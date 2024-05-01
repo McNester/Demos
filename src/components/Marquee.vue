@@ -10,8 +10,8 @@
         medium: getSize['medium']
       }"
     >
-      <span v-for="i in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" class="justify-self-center self-center"
-        >Web3 | Web2 | Telegram | Softs
+      <span v-for="i in [1, 2, 3]" class="justify-self-center self-center">
+        | Web3 | Web2 | Telegram | Softs
       </span>
     </div>
   </div>
@@ -92,13 +92,13 @@ export default {
   padding: 2rem 0;
 }
 .toLeft {
-  animation: toLeft 80s linear infinite;
+  animation: toLeft 30s linear infinite;
 }
 .toRight {
-  animation: toRight 80s linear infinite;
+  animation: toRight 30s linear infinite;
 }
 .marquee:after {
-  content: ' | Web3 | Web2 | Telegram | Softs';
+  content: ' | Web3 | Web2 | Telegram | Softs |';
 }
 
 @keyframes toRight {

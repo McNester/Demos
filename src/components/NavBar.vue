@@ -4,23 +4,19 @@
       <img ref="logo" id="logo" src="../assets/icons/logo.png" alt="Demos logo" loading="lazy" />
 
       <ul id="links" class="inter">
-        <div @click="scrollTo(options[0].name)" class="linkWrapper">
-          <li><a @click.prevent href="#main">Home</a></li>
-          <div class="line"></div>
-        </div>
-        <div @click="scrollTo(options[1].name)" class="linkWrapper">
+        <div @mouseleave="handleHover" @mouseenter="handleHover" @click="scrollTo(options[0].name)" class="linkWrapper">
           <li>
             <a @click.prevent href="#cases">Cases</a>
           </li>
           <div class="line"></div>
         </div>
-        <div @click="scrollTo(options[2].name)" class="linkWrapper">
+        <div @mouseleave="handleHover" @mouseenter="handleHover" @click="scrollTo(options[1].name)" class="linkWrapper">
           <li>
             <a @click.prevent href="#services">Services</a>
           </li>
           <div class="line"></div>
         </div>
-        <div @click="scrollTo(options[3].name)" class="linkWrapper">
+        <div @mouseleave="handleHover" @mouseenter="handleHover" @click="scrollTo(options[2].name)" class="linkWrapper">
           <li>
             <a @click.prevent href="#about">About</a>
           </li>
@@ -28,18 +24,13 @@
         </div>
 
         <a target="_blank" class="social" href="https://web.telegram.org/a/">
-          <img
-            id="telegram"
-            src="../assets/icons/telegram.png"
-            alt="telegram icon"
-            loading="lazy"
-          />
+          <img id="telegram" src="../assets/icons/telegram.png" alt="telegram icon" loading="lazy" />
         </a>
         <a target="_blank" class="social" href="https://www.instagram.com/">
           <img id="instagram" src="../assets/icons/inst.png" alt="instagram icon" loading="lazy" />
         </a>
       </ul>
-      <my-button @click="scrollTo(options[4].name)" id="hire">Hire us</my-button>
+      <my-button @click="scrollTo(options[3].name)" id="hire">Hire us</my-button>
     </nav>
   </transition>
 </template>
@@ -52,7 +43,6 @@ export default {
   data() {
     return {
       options: [
-        { id: 1, name: 'main' },
         { id: 2, name: 'cases' },
         { id: 3, name: 'services' },
         { id: 4, name: 'about' },
@@ -61,6 +51,9 @@ export default {
     }
   },
   methods: {
+    handleHover() {
+      this.$emit('hoverNav')
+    },
     scrollTo(sectionId) {
       this.$emit('closeSideBar')
       const element = document.getElementById(sectionId)
@@ -97,45 +90,56 @@ nav {
   @apply text-xl bg-black bg-opacity-[0.75] w-[100vw] h-[100vh] fixed mt-[10vh];
   z-index: 1000;
 }
+
 #links {
   @apply flex flex-col justify-center items-end p-5;
 }
+
 .linkWrapper {
   @apply mb-8;
   transition: all 0.3s ease;
 }
+
 #logo {
   @apply hidden;
 }
+
 a {
   cursor: pointer;
 }
+
 #hire {
   @apply hidden;
 }
+
 .social {
   @apply hidden;
 }
 
 @media (min-width: 500px) {
   nav {
-    @apply backdrop-blur-md bg-opacity-[21%]  h-[4.5rem] mt-0 !important;
+    @apply backdrop-blur-md bg-opacity-[21%] h-[4.5rem] mt-0 !important;
     transform: translateY(-50%);
   }
+
   #links {
     @apply flex-row justify-center items-center gap-5;
   }
+
   .linkWrapper {
     @apply mb-0 rounded-full bg-[#131313] bg-opacity-25 p-2 px-4;
   }
+
   .line {
     @apply hidden;
   }
+
   .chosen {
     @apply font-normal;
   }
 
   @media (hover: hover) {
+
     .linkWrapper,
     .social:hover {
       @apply scale-110;
@@ -148,16 +152,25 @@ a {
     @apply p-0 gap-[0.25rem] !important;
     scale: 85%;
   }
+
   .linkWrapper {
     @apply px-[0.5rem];
+    transition: all 1s ease;
   }
+
+  .linkWrapper:hover {
+    @apply bg-white text-black;
+  }
+
   nav {
     @apply flex justify-between px-[1rem] items-center;
   }
+
   ul,
   a {
     @apply font-bold;
   }
+
   /*
   ul {
     @apply bg-black bg-opacity-30 p-1 rounded-full;
@@ -166,10 +179,12 @@ a {
   #hire {
     @apply block;
   }
+
   #logo {
     @apply block h-[35%] w-auto;
     aspect-ratio: 7/1.5;
   }
+
   .social {
     @apply block h-[3rem];
     aspect-ratio: 1;
@@ -181,6 +196,7 @@ a {
   #links {
     @apply gap-[1.25rem] !important;
   }
+
   .linkWrapper {
     @apply px-[1.5rem] !important;
   }
@@ -189,21 +205,26 @@ a {
 .chosen {
   @apply font-black;
 }
+
 .line {
   @apply absolute w-[100vw] h-[0.1rem] bg-white right-0 mt-1 bg-opacity-20;
 }
+
 @keyframes fadeIn {
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
 }
+
 @keyframes fadeOut {
   0% {
     opacity: 1;
   }
+
   100% {
     opacity: 0;
   }
@@ -212,6 +233,7 @@ a {
 .fade-enter-active {
   animation: fadeIn 0.2s ease;
 }
+
 .fade-leave-active {
   animation: fadeOut 0s ease forwards;
 }

@@ -4,8 +4,9 @@
     <button id="menuBtn" aria-label="Menu button" @click="toggleMenu">
       <img id="menuImg" :src="menuBtn" alt="Menu button" />
     </button>
-    <my-nav :isMenu="isMenu" @closeSideBar="toggleMenu"></my-nav>
+    <my-nav @hoverNav="toggleNavHower" :isMenu="isMenu" @closeSideBar="toggleMenu"></my-nav>
   </header>
+  <nav-preview :isVisible="isNavHowered"></nav-preview>
   <main>
     <section id="main">
       <div ref="logoWrapper" id="logoWrapper">
@@ -18,11 +19,8 @@
         </h2>
       </div>
 
-      <spline-viewer
-        id="host"
-        v-once
-        url="https://prod.spline.design/9yoCKQd-0-E6Tx1j/scene.splinecode"
-      ></spline-viewer>
+      <spline-viewer id="host" v-once
+        url="https://prod.spline.design/9yoCKQd-0-E6Tx1j/scene.splinecode"></spline-viewer>
     </section>
 
     <section ref="cases" id="cases">
@@ -39,27 +37,15 @@
 
     <section id="services">
       <transition name="fade">
-        <service-info
-          :title="currentService"
-          @close="toggleServiceInfo"
-          v-if="isService"
-        ></service-info>
+        <service-info :title="currentService" @close="toggleServiceInfo" v-if="isService"></service-info>
       </transition>
 
       <h2 ref="offer" class="headingFont" id="servicesTitle">WHAT WE OFFER?</h2>
 
       <div id="servicesWrapper">
-        <service-card
-          @toggleServiceInfo="toggleServiceInfo"
-          v-for="service in services"
-          :key="service.id"
-          :title="service.title"
-          :description="service.desc"
-          :price="service.price"
-          :current="currentService"
-          :isService="isService"
-          @infoOpen="currentService = service.title"
-        ></service-card>
+        <service-card @toggleServiceInfo="toggleServiceInfo" v-for="service in services" :key="service.id"
+          :title="service.title" :description="service.desc" :price="service.price" :current="currentService"
+          :isService="isService" @infoOpen="currentService = service.title"></service-card>
       </div>
       <marquee v-once size="big" direction="toLeft"></marquee>
       <marquee v-once size="medium" direction="toRight"></marquee>
@@ -81,16 +67,22 @@
 
 <script setup>
 import menuBtn from '../src/assets/icons/menuBtn.svg'
+
 import closeBtn from '../src/assets/icons/closeBtn.svg'
+
 import { gsap } from 'gsap'
+
 import ScrollTrigger from 'gsap/ScrollTrigger'
+
 gsap.registerPlugin(ScrollTrigger)
+
 </script>
 
 <script>
 export default {
   data() {
     return {
+      isNavHowered: false,
       animationPlayState: 'running',
       isService: false,
       isMenu: true,
@@ -137,6 +129,13 @@ export default {
     }
   },
   methods: {
+    toggleNavHower() {
+      if (this.isNavHowered == false) {
+        this.isNavHowered = true
+        return;
+      }
+      this.isNavHowered = false
+    },
     toggleServiceInfo() {
       this.isService = !this.isService
     },
@@ -336,6 +335,7 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
 /*
 @font-face {
   font-family: Kurdis-extrawide-bold;
@@ -352,13 +352,16 @@ body::-webkit-scrollbar {
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
 }
+
 body::-webkit-scrollbar-track {
   background-color: black;
 }
+
 body::-webkit-scrollbar-thumb {
   @apply rounded-full bg-[#6242BD];
   box-shadow: inset 0px 3rem 0px 0px black;
 }
+
 html,
 body {
   @apply bg-black text-white;
@@ -373,35 +376,43 @@ body {
 .headingFont {
   font-family: 'Red Hat Display', sans-serif;
 }
+
 .serviceHeadingFont {
   font-family: 'Red Hat Display', sans-serif;
 }
+
 .fira {
   font-family: 'IBM Plex Mono', monospace;
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
 }
+
 .inter {
   font-family: 'Public Sans', sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
 }
+
 header {
-  @apply flex flex-col h-fit w-[100vw] h-[10vh] fixed items-end bg-black bg-opacity-[0.75];
+  @apply flex flex-col w-[100vw] h-[10vh] fixed items-end bg-black bg-opacity-[0.75];
   z-index: 10000;
 }
+
 #logoImg {
   @apply absolute left-0 top-0 mt-[1.5rem] ml-[1rem] h-[35%] w-auto;
   aspect-ratio: 7/1.5;
 }
+
 #menuBtn {
   @apply scale-[200%] p-8;
   z-index: 999;
 }
+
 section {
   @apply relative w-[100vw] h-[100vh] overflow-hidden !important;
 }
+
 #main {
   @apply relative;
 }
@@ -410,13 +421,16 @@ section {
   @apply mt-[20vh] absolute flex flex-col justify-center items-start gap-5 ml-6;
   transform: translateX(-40%);
 }
-#logoWrapper > #logo {
+
+#logoWrapper>#logo {
   @apply text-4xl ml-[0.1rem] w-[50%];
   font-weight: 200;
 }
+
 #logoShort {
   @apply ml-1 text-[#777777] text-[0.6rem] font-light w-[74%];
 }
+
 #slogan {
   @apply text-[#777777] font-light text-lg w-[70%] pl-1;
 }
@@ -430,14 +444,17 @@ section {
 #cases {
   @apply h-fit mb-[10rem] !important;
 }
+
 #casesTitle {
   @apply text-[4rem] self-center text-white text-center mt-[15rem];
   font-weight: 600;
 }
+
 #casesTitleWrapper {
   @apply flex flex-col justify-start items-start;
   width: 100% !important;
 }
+
 .casesSlogan {
   @apply hidden;
 }
@@ -445,11 +462,13 @@ section {
 #casesWrapper {
   @apply flex flex-col gap-14 justify-start items-center w-full h-full pt-[1vh] pb-[50vh] mt-[9rem];
 }
+
 .case {
   transition: all 0.3s ease;
 }
+
 @media (hover: hover) {
-  #casesWrapper > .case:hover {
+  #casesWrapper>.case:hover {
     @apply shadow-[#6242BD] shadow-lg !important;
     scale: 102%;
   }
@@ -462,9 +481,11 @@ section {
 #services {
   @apply h-fit pb-[20rem] !important;
 }
+
 #servicesWrapper {
   @apply flex flex-col justify-center items-center gap-[1rem] pt-20;
 }
+
 #servicesWrapper::-webkit-scrollbar {
   display: none;
 }
@@ -473,6 +494,7 @@ section {
   @apply text-[2.2rem] text-center;
   font-weight: 600;
 }
+
 #about {
   @apply h-fit !important;
 }
@@ -480,6 +502,7 @@ section {
 #contact {
   @apply flex flex-col mt-[10rem] h-fit pb-20 justify-start items-center gap-10 !important;
 }
+
 #contactTitle {
   @apply text-center w-[80%] text-3xl;
 }
@@ -492,9 +515,11 @@ section {
   #logoImg {
     @apply hidden;
   }
+
   header {
     @apply h-fit;
   }
+
   #menuBtn {
     @apply hidden;
   }
@@ -514,25 +539,32 @@ section {
   #services {
     @apply -mt-[30rem];
   }
-  #logoWrapper > #logo {
+
+  #logoWrapper>#logo {
     width: 100%;
   }
+
   #logoWrapper {
     @apply ml-[8.5rem] mt-[16vh];
     scale: 134%;
   }
+
   #logoShort {
     @apply -mt-[3rem];
   }
+
   #slogan {
     @apply w-[80%] h-[10vh];
   }
+
   #host {
     @apply scale-[100%] w-[100%] -mr-[20vw] mt-[6rem] !important;
   }
+
   #cases {
     @apply flex justify-center mt-[10rem] px-[1rem] !important;
   }
+
   #casesWrapper {
     @apply w-[55vw] gap-[1.5rem];
   }
@@ -540,9 +572,11 @@ section {
   #casesTitleWrapper {
     @apply mt-[9rem];
   }
+
   #casesTitle {
     @apply mt-0 self-start;
   }
+
   .casesSlogan {
     @apply block font-light text-[#777777];
   }
@@ -554,9 +588,11 @@ section {
   #cases {
     @apply gap-[5rem] !important;
   }
+
   #casesTitleWrapper {
     @apply ml-[1%];
   }
+
   #about {
     @apply mb-[30rem] scale-[120%];
   }
@@ -564,6 +600,7 @@ section {
   #casesTitle {
     @apply text-[5rem];
   }
+
   .casesSlogan {
     @apply text-[1.3rem];
     width: 100% !important;
@@ -577,9 +614,11 @@ section {
     @apply mt-[23vh] ml-[23.5rem];
     scale: 200%;
   }
+
   #logoShort {
     @apply -mt-[3.5rem] w-[50%];
   }
+
   #slogan {
     @apply w-[18rem];
   }
@@ -591,20 +630,25 @@ section {
   #casesTitleWrapper {
     @apply w-[37%] ml-0 !important;
   }
+
   #casesWrapper {
-    @apply w-[37vw]  mt-[18rem] !important;
+    @apply w-[37vw] mt-[18rem] !important;
     scale: 120%;
   }
+
   #contact {
     @apply flex-row items-start mb-[10rem] !important;
   }
+
   #contactTitle {
     @apply text-[3rem] w-[100%] text-left ml-5;
     line-height: 3.9rem !important;
   }
+
   #casesTitle {
     @apply text-[5.5rem];
   }
+
   .casesSlogan {
     @apply text-[1.3rem];
     width: 170% !important;
@@ -618,9 +662,11 @@ section {
     @apply overflow-visible gap-[2rem];
     white-space: nowrap;
   }
+
   #servicesTitle {
     @apply text-left text-[3rem] mb-[2rem] pl-[2vw];
   }
+
   #about {
     @apply scale-[140%];
   }
@@ -629,9 +675,11 @@ section {
     @apply text-[4rem];
     line-height: 4.9rem !important;
   }
+
   #casesTitle {
     @apply text-[5.9rem];
   }
+
   .casesSlogan {
     @apply text-[1.3rem];
     width: 170% !important;
@@ -643,6 +691,7 @@ section {
   #about {
     @apply scale-[150%];
   }
+
   #logoShort {
     @apply -mt-[10%];
   }
@@ -653,6 +702,7 @@ section {
     opacity: 0;
     transform: translateY(50%);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0%);
@@ -664,14 +714,17 @@ section {
     opacity: 1;
     transform: translateY(0%);
   }
+
   100% {
     opacity: 0;
     transform: translateY(50%);
   }
 }
+
 .fade-enter-active {
   animation: fadeIn 0.4s ease;
 }
+
 .fade-leave-active {
   animation: fadeOut 0.4s ease forwards;
 }
