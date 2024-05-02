@@ -337,7 +337,7 @@ export default {
 
     //implementig the width handler so that we can see the navbar on bigger devices and it's not hidden
     window.addEventListener('resize', this.handleResize)
-    window.addEventListener('scroll', this.handleScrollBar)
+    // window.addEventListener('scroll', this.handleScrollBar)
     this.handleResize()
     this.typingSlogan()
 

@@ -11,8 +11,13 @@ import Marquee from '@/components/Marquee.vue'
 import NavBarPreview from '@/components/NavBarPreview.vue'
 import MainTry from '@/components/MainTry.vue'
 import PreviewBigPart from '@/components/PreviewBigPart.vue'
+import SideBar from '@/components/SideBar.vue'
+import MyDropdown from '@/components/MyDropdown.vue'
+import InnerSideLink from '@/components/InnerSideLink.vue'
 
 export default [
+  InnerSideLink,
+  SideBar,
   PreviewBigPart,
   MyButton,
   NavBar,
@@ -26,4 +31,5 @@ export default [
   Marquee,
   NavBarPreview,
   MainTry,
+  MyDropdown
 ]

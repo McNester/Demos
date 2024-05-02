@@ -6,6 +6,23 @@
 
 <script>
 export default {
+  methods: {
+
+    handleScrollBar() {
+      clearTimeout(this.scrollTimeout);
+
+      // Add active class to show scrollbar
+      document.documentElement.classList.add('active-scrollbar');
+
+      // Set a timeout to remove the active class after 1 second of inactivity
+      this.scrollTimeout = setTimeout(() => {
+        document.documentElement.classList.remove('active-scrollbar');
+      }, 1000);
+    },
+  },
+  mounted() {
+    window.addEventListener('scroll', this.handleScrollBar)
+  }
 }
 </script>
 
