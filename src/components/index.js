@@ -14,8 +14,11 @@ import PreviewBigPart from '@/components/PreviewBigPart.vue'
 import SideBar from '@/components/SideBar.vue'
 import MyDropdown from '@/components/MyDropdown.vue'
 import InnerSideLink from '@/components/InnerSideLink.vue'
+import PreviewSmallPart from '@/components/PreviewSmallPart.vue'
+
 
 export default [
+  PreviewSmallPart,
   InnerSideLink,
   SideBar,
   PreviewBigPart,

@@ -4,6 +4,11 @@
       <prev-big @click="goToAbout" id="prevFirst" :teaser="getFirstTeaser" :title="getFirstTitle"></prev-big>
       <prev-big @click="goToAbout" id="prevSecond" class="big" :teaser="getSecondTeaser"
         :title="getSecondTitle"></prev-big>
+
+      <prev-small @click="goToAbout" :title="getFirstCase" id="prevCaseFirst"></prev-small>
+      <prev-small @click="goToAbout" :title="getSecondCase" id="prevCaseSecond"></prev-small>
+      <prev-small @click="goToAbout" :title="getThirdCase" id="prevCaseThird"></prev-small>
+
     </div>
   </transition>
 </template>
@@ -77,6 +82,24 @@ export default {
         return this.previews[this.prevId].secondTeaser;
       }
       return this.previews[0].secondTeaser;
+    },
+    getFirstCase() {
+      if (this.prevId > -1) {
+        return this.previews[this.prevId].thirdCase;
+      }
+      return this.previews[0].thirdCase;
+    },
+    getSecondCase() {
+      if (this.prevId > -1) {
+        return this.previews[this.prevId].fourthCase;
+      }
+      return this.previews[0].fourthCase;
+    },
+    getThirdCase() {
+      if (this.prevId > -1) {
+        return this.previews[this.prevId].fourthCase;
+      }
+      return this.previews[0].fourthCase;
     }
   }
 }
@@ -100,6 +123,22 @@ export default {
   grid-column: 2;
   grid-row: 1 / span 3;
   @apply border-x-[#373737] border-x-2;
+}
+
+#prevCaseFirst {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+#prevCaseSecond {
+  grid-column: 3;
+  grid-row: 2;
+  @apply border-y-[#373737] border-y-2;
+}
+
+#prevCaseThird {
+  grid-column: 3;
+  grid-row: 3;
 }
 
 
