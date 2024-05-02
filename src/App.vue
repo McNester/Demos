@@ -82,6 +82,7 @@ gsap.registerPlugin(ScrollTrigger)
 export default {
   data() {
     return {
+      scrollTimeout: null,
       previewName: '',
       isNavHowered: false,
       animationPlayState: 'running',
@@ -130,6 +131,17 @@ export default {
     }
   },
   methods: {
+    handleScrollBar() {
+      clearTimeout(this.scrollTimeout);
+
+      // Add active class to show scrollbar
+      document.documentElement.classList.add('active-scrollbar');
+
+      // Set a timeout to remove the active class after 1 second of inactivity
+      this.scrollTimeout = setTimeout(() => {
+        document.documentElement.classList.remove('active-scrollbar');
+      }, 1000);
+    },
     openPreview(name) {
       this.previewName = name
       this.isNavHowered = true;
@@ -323,6 +335,7 @@ export default {
 
     //implementig the width handler so that we can see the navbar on bigger devices and it's not hidden
     window.addEventListener('resize', this.handleResize)
+    window.addEventListener('scroll', this.handleScrollBar)
     this.handleResize()
     this.typingSlogan()
 
@@ -352,18 +365,32 @@ export default {
   src: url('../src/assets/fonts/kurdis-font-family/KurdisVariableFamilyTest-ExtraWideExtraBold-BF64bf41e13a4b4.otf');
 }
 */
-body::-webkit-scrollbar {
+html::-webkit-scrollbar {
   background-color: black;
   width: 0.6rem;
   opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
-body::-webkit-scrollbar-track {
-  background-color: black;
+/* html::-webkit-scrollbar-track { */
+/*   background-color: black; */
+/* } */
+
+/* html::-webkit-scrollbar-thumb { */
+/*   @apply rounded-full bg-[#6242BD]; */
+/*   box-shadow: inset 0px 3rem 0px 0px black; */
+/* } */
+
+.active-scrollbar {
+  transition: all 0.5s ease;
 }
 
-body::-webkit-scrollbar-thumb {
+/* Style for scrollbar when active */
+.active-scrollbar::-webkit-scrollbar {
+  opacity: 1;
+}
+
+.active-scrollbar::-webkit-scrollbar-thumb {
   @apply rounded-full bg-[#6242BD];
   box-shadow: inset 0px 3rem 0px 0px black;
 }
