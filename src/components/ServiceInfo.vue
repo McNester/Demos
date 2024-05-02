@@ -17,10 +17,18 @@
             </p>
           </h2>
           <ul id="servicesList" class="inter description">
-            <li><p>We offer you this</p></li>
-            <li><p>And also you would get that</p></li>
-            <li><p>Furthemore you’d got this</p></li>
-            <li><p>We help you do this</p></li>
+            <li>
+              <p>We offer you this</p>
+            </li>
+            <li>
+              <p>And also you would get that</p>
+            </li>
+            <li>
+              <p>Furthemore you’d got this</p>
+            </li>
+            <li>
+              <p>We help you do this</p>
+            </li>
           </ul>
         </div>
 
@@ -123,13 +131,15 @@ export default {
   left: 0;
   z-index: 100;
 }
+
 #serviceInfoWrapper {
   @apply flex flex-col justify-start items-start w-[90vw] h-[80vh] bg-[#191919] rounded-2xl overflow-scroll pb-16;
-  transfrom: translateY(-50%);
 }
+
 #infoWrapper {
   @apply flex flex-col justify-center items-center w-full h-fit mt-[20%];
 }
+
 #closeBtn {
   @apply absolute;
   scale: 170%;
@@ -137,6 +147,7 @@ export default {
   top: calc(100% - 85%);
   z-index: 100;
 }
+
 #title {
   @apply text-5xl;
 }
@@ -144,9 +155,11 @@ export default {
 .description {
   @apply font-medium text-center !important;
 }
+
 #fullDesc {
   @apply mt-[10%] w-[76%];
 }
+
 #servicesList {
   @apply text-left mt-[10%] !important;
 }
@@ -154,42 +167,53 @@ export default {
 li {
   list-style-type: disc;
 }
+
 #correspCases {
-  @apply flex flex-col  justify-center items-center w-full mt-10 gap-8;
+  @apply flex flex-col justify-center items-center w-full mt-10 gap-8;
 }
+
 .case {
   scale: 90%;
   @apply w-[100%] shadow-lg shadow-[#6242BD] !important;
   --n: 1;
   transform: translateY(calc(var(--n) * -110%));
 }
+
 .case:nth-child(1) {
   --n: 0;
 }
+
 .case:nth-child(2) {
   --n: 1;
 }
+
 .case:nth-child(3) {
   --n: 2;
 }
+
 .case:nth-child(4) {
   --n: 3;
 }
+
 .case:nth-child(5) {
   --n: 4;
 }
+
 /*800px*/
 
 @media (min-width: 800px) {
   #title {
     @apply text-[7rem];
   }
+
   .description {
     @apply text-[1.5rem];
   }
+
   #servicesList {
     @apply mt-[5%] !important;
   }
+
   .case {
     @apply w-[66%] !important;
   }
@@ -200,27 +224,35 @@ li {
   #closeBtn {
     right: calc(100% - 92%) !important;
   }
+
   #serviceInfoWrapper {
     @apply flex-row overflow-auto pb-3;
   }
+
   #infoWrapper {
     @apply mt-0 p-10 items-start;
   }
+
   #title {
     @apply text-[4rem] text-left !important;
   }
+
   .description {
     @apply text-left text-[1.55rem] !important;
   }
+
   #fullDesc {
     @apply w-[96%] !important;
   }
+
   #servicesList {
     @apply ml-7;
   }
+
   .case {
     scale: 140%;
   }
+
   #correspCases {
     @apply mt-[4.5rem] overflow-y-scroll justify-start pt-[5%] h-[88%] pb-[4.5%] w-[114%] mr-[2vw];
   }
@@ -229,13 +261,16 @@ li {
     background-color: black;
     width: 0.6rem;
   }
+
   #correspCases::-webkit-scrollbar-track {
     background-color: black;
   }
+
   #correspCases::-webkit-scrollbar-thumb {
     @apply rounded-full bg-[#0C0C0C];
   }
 }
+
 @media (min-height: 540px) {
   #correspCases {
     @apply gap-[6rem] !important;
@@ -246,13 +281,16 @@ li {
   #serviceInfoWrapper {
     overflow-x: hidden;
   }
+
   #serviceInfoWrapper::-webkit-scrollbar {
     background-color: black;
     width: 0.6rem;
   }
+
   #serviceInfoWrapper::-webkit-scrollbar-track {
     background-color: black;
   }
+
   #serviceInfoWrapper::-webkit-scrollbar-thumb {
     @apply rounded-full bg-[#0C0C0C];
   }
@@ -262,6 +300,7 @@ li {
   0% {
     transform: translateY(50%);
   }
+
   100% {
     transform: translateY(0%);
   }
@@ -271,13 +310,16 @@ li {
   0% {
     transform: translateY(0%);
   }
+
   100% {
     transform: translateY(50%);
   }
 }
+
 .jump-enter-active {
   animation: fadeIn 0.3s ease-out;
 }
+
 .jump-leave-active {
   animation: fadeOut 0.3s ease-in forwards;
 }

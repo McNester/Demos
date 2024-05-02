@@ -9,8 +9,11 @@ import ContactForm from '@/components/ContactForm.vue'
 import MyFooter from '@/components/MyFooter.vue'
 import Marquee from '@/components/Marquee.vue'
 import NavBarPreview from '@/components/NavBarPreview.vue'
+import MainTry from '@/components/MainTry.vue'
+import PreviewBigPart from '@/components/PreviewBigPart.vue'
 
 export default [
+  PreviewBigPart,
   MyButton,
   NavBar,
   ServiceCard,
@@ -21,5 +24,6 @@ export default [
   ContactForm,
   MyFooter,
   Marquee,
-  NavBarPreview
+  NavBarPreview,
+  MainTry,
 ]

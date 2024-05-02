@@ -4,19 +4,19 @@
       <img ref="logo" id="logo" src="../assets/icons/logo.png" alt="Demos logo" loading="lazy" />
 
       <ul id="links" class="inter">
-        <div @mouseenter="openPreview(options[0])" @click="scrollTo(options[0].name)" class="linkWrapper">
+        <div @mouseenter="openPreview(options[0].id)" @click="scrollTo(options[0].name)" class="linkWrapper">
           <li>
             <a @click.prevent href="#cases">Cases</a>
           </li>
           <div class="line"></div>
         </div>
-        <div @mouseenter="openPreview(options[1])" @click="scrollTo(options[1].name)" class="linkWrapper">
+        <div @mouseenter="openPreview(options[1].id)" @click="scrollTo(options[1].name)" class="linkWrapper">
           <li>
             <a @click.prevent href="#services">Services</a>
           </li>
           <div class="line"></div>
         </div>
-        <div @mouseenter="openPreview(options[2])" @click="scrollTo(options[2].name)" class="linkWrapper">
+        <div @mouseenter="openPreview(options[2].id)" @click="scrollTo(options[2].name)" class="linkWrapper">
           <li>
             <a @click.prevent href="#about">About</a>
           </li>
@@ -52,7 +52,9 @@ export default {
   },
   methods: {
     openPreview(name) {
-      this.$emit('openPreview', name);
+      if (window.innerWidth >= 722) {
+        this.$emit('openPreview', name);
+      }
     },
     scrollTo(sectionId) {
       this.$emit('closeSideBar')
