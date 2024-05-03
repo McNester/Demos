@@ -1,10 +1,12 @@
 <template>
   <!-- <my-main></my-main> -->
+  <SpeedInsights></SpeedInsights>
   <RouterView></RouterView>
 </template>
 
 
 <script>
+import { SpeedInsights } from "@vercel/speed-insights/vue"
 export default {
   methods: {
 
