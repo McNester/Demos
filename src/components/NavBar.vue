@@ -157,7 +157,7 @@ a {
 
   .linkWrapper {
     @apply px-[0.5rem];
-    transition: all 1s ease;
+    transition: all 0.5s ease;
   }
 
   .linkWrapper:hover {
