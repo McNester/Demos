@@ -1,6 +1,6 @@
 <template>
   <!-- <my-main></my-main> -->
-  <SpeedInsights></SpeedInsights>
+  <SpeedInsights />
   <RouterView></RouterView>
 </template>
 
