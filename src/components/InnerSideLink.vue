@@ -23,11 +23,13 @@ export default {
 @media (hover:hover) {
   .innerLink:hover {
     @apply font-black;
+    font-weight: 900;
 
   }
 
   .innerLink:active {
     @apply font-bold;
+    font-weight: 800;
 
   }
 
