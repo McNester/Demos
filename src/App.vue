@@ -6,7 +6,6 @@
 
 
 <script>
-import { SpeedInsights } from "@vercel/speed-insights/vue"
 export default {
   methods: {
 
