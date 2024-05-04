@@ -15,9 +15,11 @@ import SideBar from '@/components/SideBar.vue'
 import MyDropdown from '@/components/MyDropdown.vue'
 import InnerSideLink from '@/components/InnerSideLink.vue'
 import PreviewSmallPart from '@/components/PreviewSmallPart.vue'
+import BottomCover from '@/components/BottomCover.vue'
 
 
 export default [
+  BottomCover,
   PreviewSmallPart,
   InnerSideLink,
   SideBar,

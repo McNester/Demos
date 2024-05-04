@@ -1,12 +1,36 @@
 <template>
-  <p class="headingFont innerLink">
+  <p @click="setNewActive" :class="{ active: isActive() }" class="headingFont innerLink">
     <slot></slot>
   </p>
 </template>
 
 <script>
 export default {
-  name: 'inner-link'
+  name: 'inner-link',
+  props: {
+    id: { type: Number },
+    parentSectionId: { type: Number }
+  },
+  methods: {
+    setNewActive() {
+      this.$store.commit('docs/setCurrentPartId', this.id)
+      this.$store.commit('docs/setCurrentArticle')
+    },
+    isActive() {
+      let partId = this.$store.getters['docs/getCurrentPartId']
+
+      let parentId = this.$store.getters['docs/getCurrentSectionId']
+
+
+      let isSameParent = parentId == this.parentSectionId
+      let isSamePart = partId == this.id
+
+      return isSameParent == true && isSamePart == true
+    }
+
+  },
+  computed: {
+  }
 
 }
 
@@ -22,16 +46,18 @@ export default {
 
 @media (hover:hover) {
   .innerLink:hover {
-    @apply font-black;
-    font-weight: 900;
-
+    @apply text-white;
+    font-weight: 400;
   }
 
   .innerLink:active {
-    @apply font-bold;
-    font-weight: 800;
+    font-weight: 300;
 
   }
+}
 
+.active {
+  @apply text-white;
+  font-weight: 400;
 }
 </style>

@@ -51,9 +51,10 @@ export default {
     }
   },
   methods: {
-    openPreview(name) {
+    openPreview(id) {
       if (window.innerWidth >= 722) {
-        this.$emit('openPreview', name);
+        this.$store.commit('docs/setCurrentSectionId', id - 2);
+        this.$emit('openPreview', id);
       }
     },
     scrollTo(sectionId) {

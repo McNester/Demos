@@ -1,6 +1,6 @@
 <template>
-  <ul :class="{ expanded: isExpanded }" class="headingFont" id="dropdownWrapper">
-    <p class="expandTitle" @click="expand"> Hey, expand me</p>
+  <ul :class="{ expanded: id == $store.getters['docs/getCurrentSectionId'] }" class="headingFont" id="dropdownWrapper">
+    <p class="expandTitle" @click="expand">{{ name }}</p>
     <slot></slot>
   </ul>
 
@@ -10,22 +10,16 @@
 <script>
 export default {
   name: 'my-dropdown',
-  data() {
-    return {
-      isExpanded: false,
-    }
+  props: {
+    name: { type: String },
+    id: { type: Number }
   },
   methods: {
     expand() {
-      if (this.isExpanded) {
-        this.isExpanded = false
-        return;
-      }
-      this.$emit('expanded', this.num)
-      this.isExpanded = true
-
+      this.$store.commit('docs/setCurrentSectionId', this.id)
+      this.$store.commit('docs/setCurrentPartId', -1)
     }
-  }
+  },
 }
 
 </script>
@@ -43,6 +37,6 @@ export default {
 }
 
 .expandTitle {
-  transition: all 0.3s ease;
+  transition: all 0.1s ease;
 }
 </style>

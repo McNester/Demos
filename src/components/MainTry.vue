@@ -6,7 +6,9 @@
     </button>
     <my-nav @openPreview="openPreview" :isMenu="isMenu" @closeSideBar="toggleMenu"></my-nav>
   </header>
-  <nav-preview :prevId="previewId" @mouseleave="toggleNavHower" :isVisible="isNavHowered"></nav-preview>
+  <nav-preview @mouseleave="toggleNavHower" :isVisible="isNavHowered"></nav-preview>
+  <bottom-cover :isVisible="isNavHowered"></bottom-cover>
+
   <main>
     <section id="main">
       <div ref="logoWrapper" id="logoWrapper">
@@ -84,7 +86,6 @@ export default {
   data() {
     return {
       scrollTimeout: null,
-      previewId: -1,
       isNavHowered: false,
       animationPlayState: 'running',
       isService: false,
@@ -143,9 +144,7 @@ export default {
         document.documentElement.classList.remove('active-scrollbar');
       }, 1000);
     },
-    openPreview(id) {
-      console.log(id)
-      this.previewId = id - 2
+    openPreview() {
       this.isNavHowered = true;
     },
     toggleNavHower() {
