@@ -30,6 +30,8 @@ export default {
       this.$store.commit('docs/setCurrentPartId', id)
       this.$store.commit('docs/setCurrentArticle')
       this.$store.commit('docs/setCurrentPageInfo')
+      this.$store.commit('docs/setCurrentNavigationHooks')
+
 
       this.$router.push('/about')
     }
