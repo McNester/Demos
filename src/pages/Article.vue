@@ -1,10 +1,13 @@
 <template>
-  <div class="headingFont" id="articleWrapper">
-    <side-bar @changeArticle="rerender"></side-bar>
-    <article>
-
-      <div v-html="markdownToHtml"></div>
-    </article>
+  <div id="wrapper">
+    <div class="headingFont" id="articleWrapper">
+      <side-bar @changeArticle="rerender"></side-bar>
+      <article>
+        <div v-html="markdownToHtml"></div>
+      </article>
+      <left-sidebar @scrolTo="scrollToWord"></left-sidebar>
+    </div>
+    <art-header></art-header>
   </div>
 </template>
 
@@ -23,13 +26,30 @@ export default {
   methods: {
     rerender() {
       window.location.reload();
+    },
+    scrollToWord(text) {
+      console.log(text)
+      const elements = Array.from(document.querySelectorAll('*'))
+        .filter(el => el.textContent.includes(text));
+
+      const n = 7;
+      if (elements.length > n) {
+        const element = elements[n];
+
+        //By playing with yOffest you can adjust where to scroll
+        const yOffset = 5
+        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset
+        window.scrollTo({
+          top: y,
+          behavior: 'smooth'
+        });
+      } else {
+        console.error('No element found or index out of range');
+      }
     }
   },
   computed: {
     markdownToHtml() {
-      // let msg = this.$store.getters['docs/getCurrentArticle']
-      let g = this.$store.getters['docs/getCurrentSectionParts']
-      this.$store.getters['docs/getCurrentPartId']
       return marked(this.msg);
     }
   },
@@ -40,8 +60,12 @@ export default {
 
 </script>
 <style scoped>
+#wrapper {
+  @apply flex flex-col justify-around items-center;
+}
+
 #articleWrapper {
-  @apply text-white flex flex-row justify-start items-start w-[100vw] h-fit;
+  @apply mb-20 text-white flex flex-row justify-start items-start w-[100vw] h-fit;
   overflow-y: auto;
   scrollbar-color: yellow;
 }
@@ -74,7 +98,7 @@ export default {
 }
 
 :deep(ul > li) {
-  @applytext-lg mb-2;
+  @apply text-lg mb-2;
 
 }
 </style>

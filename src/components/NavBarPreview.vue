@@ -29,6 +29,8 @@ export default {
     goToAbout(id) {
       this.$store.commit('docs/setCurrentPartId', id)
       this.$store.commit('docs/setCurrentArticle')
+      this.$store.commit('docs/setCurrentPageInfo')
+
       this.$router.push('/about')
     }
   }, computed: {

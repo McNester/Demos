@@ -5,6 +5,44 @@ export const docsModule = {
     currentSectionId: 0,
     currentPartId: 0,
     currentArticle: '',
+    currentNavigationHook: [],
+
+    navigationHooks: [
+      {
+        'id': 0,
+        'parts': [
+          ['This is first company case', 'What is this', 'And talking about this', "But we also can't omit this", 'And finishing this part'],
+          ['Our second company cas', 'What is this', 'And talking about this', "But we also can't omit this", 'And finishing this part'],
+          ['Here is the third company', 'What is this', 'And talking about this', "But we also can't omit this", 'And finishing this part'],
+          ['Fourth company case', 'What is this', 'And talking about this', "But we also can't omit this", 'And finishing this part'],
+          ['Fifth case', 'What is this', 'And talking about this', "But we also can't omit this", 'And finishing this part']
+
+        ]
+      },
+      {
+        'id': 1,
+        'parts': [
+          ['Web3', 'What is this', 'And talking about this', "But we also can't omit this", 'And finishing this part'],
+          ['Web2', 'What is this', 'And talking about this', "But we also can't omit this", 'And finishing this part'],
+          ['Telegram', 'What is this', 'And talking about this', "But we also can't omit this", 'And finishing this part'],
+          ['Softs', 'What is this', 'And talking about this', "But we also can't omit this", 'And finishing this part'],
+          ['ERP', 'What is this', 'And talking about this', "But we also can't omit this", 'And finishing this part'],
+        ]
+      },
+      {
+        'id': 2,
+        'parts': [
+          ['Who we are?', 'What is this', 'And talking about this', "But we also can't omit this", 'And finishing this part'],
+          ['Us compared to others', 'What is this', 'And talking about this', "But we also can't omit this", 'And finishing this part'],
+          ['Our blog', 'What is this', 'And talking about this', "But we also can't omit this", 'And finishing this part'],
+          ['Why we are the', 'What is this', 'And talking about this', "But we also can't omit this", 'And finishing this part'],
+          ['How to join us', 'What is this', 'And talking about this', "But we also can't omit this", 'And finishing this part']
+        ]
+      },
+
+
+    ],
+
     sectionParts: [
       {
         'id': 0,
@@ -34,6 +72,152 @@ export const docsModule = {
           { 'id': 2, 'name': 'Our blog' },
           { 'id': 3, 'name': 'Why we are the best?' },
           { 'id': 4, 'name': 'How to join us?' },
+        ]
+      }
+    ],
+
+    currentOnPageInfo: '',
+
+    onPage: [
+      {
+        'id': 0,
+        'parts': [
+          {
+            'id': 0
+            , 'info': `
+- Introduction 
+- Main part 
+- Talking about this
+- Conclusion for first company`
+          },
+          {
+            'id': 1,
+            'info': `
+- Introduction 
+- Main part 
+- Talking about this
+- Conclusion for second company`
+          },
+
+          {
+            'id': 2,
+            'info': `
+- Introduction 
+- Main part 
+- Talking about this
+- Conclusion for third company`
+          },
+          {
+            'id': 3,
+            'info': `
+- Introduction 
+- Main part 
+- Talking about this
+- Conclusion for fourth company`
+          },
+
+          {
+            'id': 4,
+            'info': `
+- Introduction 
+- Main part 
+- Talking about this
+- Conclusion for fifth company`},
+
+        ]
+      },
+      {
+        'id': 1,
+        'parts': [
+          {
+            'id': 0
+            , 'info': `
+- Introduction 
+- Main part 
+- Talking about this
+- Conclusion web3`
+          },
+          {
+            'id': 1,
+            'info': `
+- Introduction 
+- Main part 
+- Talking about this
+- Conclusion web2`
+          },
+
+          {
+            'id': 2,
+            'info': `
+- Introduction 
+- Main part 
+- Talking about this
+- Conclusion telegram`
+          },
+          {
+            'id': 3,
+            'info': `
+- Introduction 
+- Main part 
+- Talking about this
+- Conclusion softs`
+          },
+
+          {
+            'id': 4,
+            'info': `
+- Introduction 
+- Main part 
+- Talking about this
+- Conclusion erp`},
+
+        ]
+      },
+      {
+        'id': 2,
+        'parts': [
+          {
+            'id': 0
+            , 'info': `
+- Introduction 
+- Main part 
+- Talking about this
+- Conclusion who we are`
+          },
+          {
+            'id': 1,
+            'info': `
+- Introduction 
+- Main part 
+- Talking about this
+- Conclusion comparison`
+          },
+
+          {
+            'id': 2,
+            'info': `
+- Introduction 
+- Main part 
+- Talking about this
+- Conclusion our blog`
+          },
+          {
+            'id': 3,
+            'info': `
+- Introduction 
+- Main part 
+- Talking about this
+- Conclusion why the best`
+          },
+
+          {
+            'id': 4,
+            'info': `
+- Introduction 
+- Main part 
+- Talking about this
+- Conclusion how to join`},
+
         ]
       }
     ],
@@ -492,10 +676,31 @@ export const docsModule = {
       return state.currentPartId
     },
     getCurrentArticle(state) {
+      if (state.currentArticle === '') {
+        return state.articles[0].parts[0].msg
+      }
       return state.currentArticle
-    }
+    },
+    getInfoForCurrentPart(state) {
+      if (state.currentOnPageInfo === '') {
+        return state.onPage[0].parts[0].info
+      }
+
+      return state.currentOnPageInfo
+    },
+    getCurrentNavigationHook(state) {
+      if (state.currentNavigationHook.length == 0) {
+        return state.navigationHooks[0].parts[0]
+      }
+      return state.currentNavigationHook
+    },
   },
   mutations: {
+    setCurrentNavigationHooks(state) {
+      console.log('article ' + state.currentArticel)
+      console.log('part ' + state.currentPartId)
+      state.currentNavigationHook = state.navigationHooks[state.currentSectionId].parts[state.currentPartId]
+    },
     increaseShares(state) {
       state.numberOfShares += 1
 
@@ -511,6 +716,9 @@ export const docsModule = {
     },
     setCurrentArticle(state) {
       state.currentArticle = state.articles[state.currentSectionId].parts[state.currentPartId].msg
+    },
+    setCurrentPageInfo(state) {
+      state.currentOnPageInfo = state.onPage[state.currentSectionId].parts[state.currentPartId].info
     }
 
 

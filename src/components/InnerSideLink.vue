@@ -15,6 +15,9 @@ export default {
     setNewActive() {
       this.$store.commit('docs/setCurrentPartId', this.id)
       this.$store.commit('docs/setCurrentArticle')
+      this.$store.commit('docs/setCurrentPageInfo')
+      this.$store.commit('docs/setCurrentNavigationHooks')
+
     },
     isActive() {
       let partId = this.$store.getters['docs/getCurrentPartId']
