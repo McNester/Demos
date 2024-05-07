@@ -107,25 +107,25 @@ export default {
       services: [
         {
           id: 1,
-          title: 'Website',
+          title: 'Web3',
           desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac sodales est. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In hac habitasse platea dictumst. Maecenas semper tempor nulla, id cursus sem mattis et. Suspendisse ut purus sit amet arcu ultricies.',
           price: 499
         },
         {
           id: 2,
-          title: 'App',
+          title: 'Web2',
           desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac sodales est. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In hac habitasse platea dictumst. Maecenas semper tempor nulla, id cursus sem mattis et. Suspendisse ut purus sit amet arcu ultricies.',
           price: 759
         },
         {
           id: 3,
-          title: 'Services',
+          title: 'Telegram',
           desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac sodales est. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In hac habitasse platea dictumst. Maecenas semper tempor nulla, id cursus sem mattis et. Suspendisse ut purus sit amet arcu ultricies.',
           price: 830
         },
         {
           id: 4,
-          title: 'ERP',
+          title: 'Softs',
           desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac sodales est. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In hac habitasse platea dictumst. Maecenas semper tempor nulla, id cursus sem mattis et. Suspendisse ut purus sit amet arcu ultricies.',
           price: 421
         }
@@ -155,8 +155,35 @@ export default {
       }
       this.isNavHowered = false
     },
+    getPartIdByTitle(title) {
+      console.log('here in getpartID ' + title)
+      if (title === 'Web3') {
+        return 0;
+      }
+      else if (title === 'Web2') {
+        return 1;
+      } else if (title === 'Telegram') {
+        return 2;
+      } else if (title === 'Softs') {
+        return 3;
+      }
+    },
     toggleServiceInfo() {
       this.isService = !this.isService
+
+      this.$nextTick(() => {
+        let partId = this.getPartIdByTitle(this.currentService)
+        console.log('part: ' + partId)
+
+        this.$store.commit('docs/setCurrentSectionId', 1)
+        console.log(this.$store.getters['docs/getCurrentSectionId'])
+        this.$store.commit('docs/setCurrentPartId', partId)
+        console.log('part id: ' + this.$store.getters['docs/getCurrentPartId'])
+        this.$store.commit('docs/setCurrentArticle')
+        this.$store.commit('docs/setCurrentPageInfo')
+        this.$store.commit('docs/setCurrentNavigationHooks')
+      });
+
     },
     toggleMenu() {
       if (window.innerWidth < 500) {

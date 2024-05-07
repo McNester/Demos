@@ -30,6 +30,7 @@
               <p>We help you do this</p>
             </li>
           </ul>
+          <my-button @click="goToServices" id="moreBtn">Learn more</my-button>
         </div>
 
         <div id="correspCases" ref="correspContainer">
@@ -51,6 +52,9 @@ export default {
     title: { type: String }
   },
   methods: {
+    goToServices() {
+      this.$router.push('/about')
+    },
     createObserver() {
       const options = {
         root: this.$refs.correspContainer,
@@ -197,6 +201,10 @@ li {
 
 .case:nth-child(5) {
   --n: 4;
+}
+
+#moreBtn {
+  @apply font-bold scale-150 ml-10 mt-10;
 }
 
 /*800px*/

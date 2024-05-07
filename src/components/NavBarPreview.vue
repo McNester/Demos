@@ -32,7 +32,6 @@ export default {
       this.$store.commit('docs/setCurrentPageInfo')
       this.$store.commit('docs/setCurrentNavigationHooks')
 
-
       this.$router.push('/about')
     }
   }, computed: {
