@@ -32,7 +32,11 @@ export default {
       const elements = Array.from(document.querySelectorAll('*'))
         .filter(el => el.textContent.includes(text));
 
-      const n = 7;
+
+      let n = 7;
+      if (elements.length >= 14) {
+        n = 14;
+      }
       if (elements.length > n) {
         const element = elements[n];
 
@@ -99,6 +103,37 @@ export default {
 
 :deep(ul > li) {
   @apply text-lg mb-2;
+}
 
+@media (max-width: 500px) {
+  :deep(article) {
+    @apply ml-[1rem] w-[72%];
+  }
+}
+
+@media(max-width: 800px) {
+  :deep(h1) {
+    @apply text-5xl;
+  }
+
+  :deep(h2) {
+    @apply text-3xl;
+  }
+
+  :deep(h3) {
+    @apply text-lg;
+  }
+}
+
+@media(min-height: 950px) {
+  :deep(article) {
+    @apply ml-[26%];
+  }
+}
+
+@media(min-width:1300px) {
+  :deep(article) {
+    @apply ml-[26%];
+  }
 }
 </style>

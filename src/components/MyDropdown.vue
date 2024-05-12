@@ -39,4 +39,20 @@ export default {
 .expandTitle {
   transition: all 0.1s ease;
 }
+
+
+
+@media(max-width: 1200px) {
+  .expanded {
+    @apply h-[36rem] !important;
+  }
+
+}
+
+@media(max-width: 500px) {
+  .expanded {
+    @apply h-[19rem] !important;
+
+  }
+}
 </style>

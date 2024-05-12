@@ -46,6 +46,11 @@ export default {
   transition: all 0.3s ease;
 }
 
+@media(max-width: 800px) {
+  .innerLink {
+    @apply text-[0.9rem];
+  }
+}
 
 @media (hover:hover) {
   .innerLink:hover {
