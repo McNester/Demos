@@ -204,12 +204,16 @@ li {
 }
 
 #moreBtn {
-  @apply font-bold scale-150 ml-10 mt-10;
+  @apply scale-150 font-bold mb-[2rem] mt-[4rem];
 }
 
 /*800px*/
 
 @media (min-width: 800px) {
+  #moreBtn {
+    @apply scale-[250%] mb-[5.5rem] mt-[5.5rem];
+  }
+
   #title {
     @apply text-[7rem];
   }
@@ -229,6 +233,10 @@ li {
 
 /*1200px*/
 @media (min-width: 1200px) {
+  #moreBtn {
+    @apply scale-150 ml-10 mt-10;
+  }
+
   #closeBtn {
     right: calc(100% - 92%) !important;
   }

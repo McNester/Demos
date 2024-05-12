@@ -18,10 +18,55 @@ export default {
   data() {
     return {
       isVisible: false,
-      info: this.$store.getters['docs/getInfoForCurrentPart']
+      info: this.$store.getters['docs/getInfoForCurrentPart'],
+      hooks: [],
+      currentHookIndex: 0,
     }
   },
   methods: {
+    createObserver() {
+      this.$nextTick(() => {
+        const options = {
+          root: null,
+          rootMargin: '-10% 0px -50% 0px',
+          threshold: 0.95
+        }
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+
+            let current = null
+
+            for (let i = 0; i < this.hooks.length; i++) {
+              console.log('HEASIN: ' + JSON.stringify(this.hooks))
+              console.log('ENTRY: ' + entry)
+              if (this.hooks[i].heading === entry) {
+                console.log('Equeaul')
+                current = this.hooks[i].hook
+              }
+            }
+
+            if (entry.isIntersecting) {
+              current.classList.add('highlighted')
+            } else {
+              current.classList.remove('highlighted')
+            }
+          })
+        }, options)
+
+
+
+        // Observing the root element of each Vue component instance
+        let h2Elements = document.querySelectorAll('h2');
+        let headings = Array.from(h2Elements);
+
+        console.log('here is hooks object list:  ' + this.hooks)
+
+        for (let i = 0; i < headings.length; i++) {
+          observer.observe(headings[i])
+        }
+      });
+
+    },
     handleElementClick(index) {
       var navHooks = this.$store.getters['docs/getCurrentNavigationHook']
 
@@ -29,10 +74,6 @@ export default {
 
       this.$emit('scrolTo', textHook);
     },
-    scroll() {
-      alert('hEYYY')
-      this.$emit('scrolTo')
-    }
   },
   computed: {
     markdownToHtml() {
@@ -47,21 +88,32 @@ export default {
       if (container) {
         const ul = container.querySelector('ul');
         const liElements = ul.querySelectorAll('li');
+
+        // let hooks = Array.from(liElements)
+
+        let h2Elements = document.querySelectorAll('h2');
+        // let headings = Array.from(h2Elements);
+
+        // console.log('json hooks: ' + JSON.stringify(hooks))
+        // for (let i = 0; i < headings.length; i++) {
+        //   let h = hooks[i]
+        //   let hed = headings[i]
+        //   this.hooks.push({ 'hook': h, 'heading:': hed })
+        // }
+
         for (let i = 0; i < liElements.length; i++) {
           liElements[i].addEventListener('click', (event) => {
             this.handleElementClick(i);
           });
 
         }
-        // liElements.forEach(element => {
-        //   element.addEventListener('click', (event) => {
-        //     this.handleElementClick(event); // `this` refers to the Vue instance
-        //   });
-        // });
       } else {
         console.log('Element not found');
       }
+      // this.createObserver()
+
     });
+
   }
 }
 
@@ -90,6 +142,11 @@ export default {
 
 :deep(li:hover) {
   @apply font-medium !important;
+}
+
+:deep(.highlighted) {
+  @apply shadow-red-500 shadow-xl;
+
 }
 
 @keyframes goIn {
