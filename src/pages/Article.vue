@@ -5,7 +5,7 @@
       <article>
         <div v-html="markdownToHtml"></div>
       </article>
-      <left-sidebar @scrolTo="scrollToWord"></left-sidebar>
+      <left-sidebar @searchArticle="searchArticle" @scrolTo="scrollToWord"></left-sidebar>
     </div>
     <art-header></art-header>
   </div>
@@ -26,6 +26,12 @@ export default {
   methods: {
     rerender() {
       window.location.reload();
+    },
+    searchArticle(article) {
+      if (article === "empty") {
+        this.msg = this.$store.getters['docs/getCurrentArticle']
+      }
+      this.msg = article
     },
     scrollToWord(text) {
       console.log(text)

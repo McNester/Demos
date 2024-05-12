@@ -660,6 +660,9 @@ export const docsModule = {
     ]
   }),
   getters: {
+    getArticles(state) {
+      return state.articles
+    },
     getShares(state) {
       if (state.isAuth === false) {
         return "Please authorise to see"

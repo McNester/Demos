@@ -34,6 +34,8 @@ export default {
 
 .expanded {
   @apply text-white h-60 !important;
+  /* box-shadow: -13px 0px 20px -10px #373737; */
+
 }
 
 .expandTitle {

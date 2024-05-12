@@ -3,6 +3,12 @@
     <div v-if="isVisible" id="leftSidebarWrapper">
       <h3 id="leftHeading">On this page:</h3>
       <div ref="list" v-html="markdownToHtml"></div>
+      <form @submit.prevent">
+        <fieldset>
+          <input @input="searchArticle" v-model="searchQuery" type="text" id="name" required aria-required="true"
+            placeholder="Search in docs" />
+        </fieldset>
+      </form>
     </div>
   </transition>
 
@@ -19,11 +25,26 @@ export default {
     return {
       isVisible: false,
       info: this.$store.getters['docs/getInfoForCurrentPart'],
+      articles: this.$store.getters['docs/getArticles'],
       hooks: [],
       currentHookIndex: 0,
+      searchQuery: ''
     }
   },
   methods: {
+    sanitizeInput(input) {
+      // Trim spaces from start and end, and replace multiple spaces with a single space
+      return input.replace(/\s+/g, ' ').trim();
+    },
+    searchArticle() {
+      for (const article of this.articles) {
+        for (const part of article.parts) {
+          if (this.sanitizeInput(this.searchQuery) && part.msg.toLowerCase().includes(this.sanitizeInput(this.searchQuery).toLowerCase())) {
+            this.$emit('searchArticle', part.msg)
+          }
+        }
+      }
+    },
     createObserver() {
       this.$nextTick(() => {
         const options = {
@@ -78,7 +99,8 @@ export default {
   computed: {
     markdownToHtml() {
       return marked(this.info);
-    }
+    },
+
   },
   mounted() {
     this.isVisible = true;
@@ -129,6 +151,12 @@ export default {
   @apply font-black !important;
 }
 
+input {
+  @apply w-[80%] h-[2rem] rounded-full border border-white bg-transparent pl-5 !important;
+  outline: none;
+}
+
+
 :deep(ul) {
   @apply ml-0 !important;
   list-style: none !important;
@@ -149,6 +177,13 @@ export default {
 
 }
 
+@media(max-width: 800px) {
+  input {
+    @apply w-[103%] text-[0.8rem] pl-[1rem] !important;
+  }
+}
+
+
 @media(max-width: 500px) {
   #leftSidebarWrapper {
     @apply top-0 w-[27%];
@@ -162,7 +197,18 @@ export default {
     @apply text-sm !important;
   }
 
+  input {
+    @apply w-[121%] pl-[0.8rem] -ml-[0.5rem] !important;
+  }
+
 }
+
+@media(max-width: 425px) {
+  input {
+    @apply -ml-[0.9rem] w-[147%] text-[0.65rem] !important;
+  }
+}
+
 
 @keyframes goIn {
   0% {
