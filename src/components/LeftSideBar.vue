@@ -40,6 +40,14 @@ export default {
       for (const article of this.articles) {
         for (const part of article.parts) {
           if (this.sanitizeInput(this.searchQuery) && part.msg.toLowerCase().includes(this.sanitizeInput(this.searchQuery).toLowerCase())) {
+            this.$store.commit('docs/setCurrentSectionId', article.id)
+            // console.log(this.$store.getters['docs/getCurrentSectionId'])
+            this.$store.commit('docs/setCurrentPartId', part.id)
+            // console.log('part id: ' + this.$store.getters['docs/getCurrentPartId'])
+            this.$store.commit('docs/setCurrentArticle')
+            this.$store.commit('docs/setCurrentPageInfo')
+            this.$store.commit('docs/setCurrentNavigationHooks')
+
             this.$emit('searchArticle', part.msg)
           }
         }
