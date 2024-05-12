@@ -107,7 +107,7 @@ export default {
   }
 
   #expandBtn {
-    @apply bg-black rounded-r-md w-10 h-10 pr-2 flex justify-end items-start absolute top-[1%] right-[-16%] !important;
+    @apply bg-black rounded-r-md w-10 h-10 pr-2 flex justify-end items-center absolute top-[1%] right-[-16%] !important;
     transition: all 0.5s ease;
   }
 }
