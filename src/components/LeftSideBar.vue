@@ -27,11 +27,21 @@ export default {
       info: this.$store.getters['docs/getInfoForCurrentPart'],
       articles: this.$store.getters['docs/getArticles'],
       hooks: [],
+      headings: [],
+      prevHook: null,
       currentHookIndex: 0,
       searchQuery: ''
     }
   },
   methods: {
+    getIndexByVal(arr, val) {
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i].textContent === val) {
+          console.log(i)
+          return i;
+        }
+      }
+    },
     sanitizeInput(input) {
       // Trim spaces from start and end, and replace multiple spaces with a single space
       return input.replace(/\s+/g, ' ').trim();
@@ -53,49 +63,6 @@ export default {
         }
       }
     },
-    createObserver() {
-      this.$nextTick(() => {
-        const options = {
-          root: null,
-          rootMargin: '-10% 0px -50% 0px',
-          threshold: 0.95
-        }
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-
-            let current = null
-
-            for (let i = 0; i < this.hooks.length; i++) {
-              console.log('HEASIN: ' + JSON.stringify(this.hooks))
-              console.log('ENTRY: ' + entry)
-              if (this.hooks[i].heading === entry) {
-                console.log('Equeaul')
-                current = this.hooks[i].hook
-              }
-            }
-
-            if (entry.isIntersecting) {
-              current.classList.add('highlighted')
-            } else {
-              current.classList.remove('highlighted')
-            }
-          })
-        }, options)
-
-
-
-        // Observing the root element of each Vue component instance
-        let h2Elements = document.querySelectorAll('h2');
-        let headings = Array.from(h2Elements);
-
-        console.log('here is hooks object list:  ' + this.hooks)
-
-        for (let i = 0; i < headings.length; i++) {
-          observer.observe(headings[i])
-        }
-      });
-
-    },
     handleElementClick(index) {
       var navHooks = this.$store.getters['docs/getCurrentNavigationHook']
 
@@ -103,6 +70,61 @@ export default {
 
       this.$emit('scrolTo', textHook);
     },
+    observeHeaders() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && entry.intersectionRatio >= 1) {
+            // console.log(entry.target.textContent + ' is fully visible at the top');
+            // Call any function you want to execute when the header is at the top
+            this.headerIntersected(entry.target);
+          }
+        });
+      }, {
+        root: null,
+        rootMargin: '0px 0px -70% 0px',
+        threshold: 0.95
+      });
+      // let head = document.querySelectorAll('h1')
+
+      // observer.observe(head[1])
+      const headings = document.querySelectorAll('h2')
+
+      this.headings = headings
+
+      headings.forEach(h2 => {
+        observer.observe(h2);
+      });
+      // console.log(head[1].innerHTML)
+
+    },
+    headerIntersected(target) {
+      // this.$nextTick(() => {
+      let hookIndex = this.getIndexByVal(this.headings, target.textContent)
+
+      let hookElem = this.hooks[hookIndex]
+
+      let sizeInFocus = document.getElementsByClassName('highlighted').length
+
+      console.log('length: ' + sizeInFocus)
+
+      if (sizeInFocus == 0) {
+        hookElem.classList.add('highlighted')
+        this.prevHook = hookElem
+      }
+      if (sizeInFocus >= 1) {
+        this.prevHook.classList.remove('highlighted')
+        hookElem.classList.add('highlighted')
+        this.prevHook = hookElem
+      }
+
+      hookElem.classList.add('highlighted');
+
+      // console.log('hiiii ' + this.hooks[hookIndex].textContent)
+      console.log(`Header at the top: ${target.textContent}`);
+      // });
+
+
+    }
   },
   computed: {
     markdownToHtml() {
@@ -114,22 +136,21 @@ export default {
     this.isVisible = true;
     // First, get the container div using ref
     this.$nextTick(() => {
+      const hooks = document.querySelectorAll('#leftSidebarWrapper li');
+      this.hooks = hooks
+      this.hooks.forEach(el => console.log('from the hook:   ' + el.textContent))
+
+
       const container = document.getElementById('leftSidebarWrapper');
       if (container) {
         const ul = container.querySelector('ul');
         const liElements = ul.querySelectorAll('li');
 
-        // let hooks = Array.from(liElements)
 
-        let h2Elements = document.querySelectorAll('h2');
-        // let headings = Array.from(h2Elements);
+        // const h2Elements = document.querySelectorAll('h2');
+        // console.log(h2Elements); // This will log NodeList of h2 elements
+        // h2Elements.forEach(h2 => console.log(h2.textContent));
 
-        // console.log('json hooks: ' + JSON.stringify(hooks))
-        // for (let i = 0; i < headings.length; i++) {
-        //   let h = hooks[i]
-        //   let hed = headings[i]
-        //   this.hooks.push({ 'hook': h, 'heading:': hed })
-        // }
 
         for (let i = 0; i < liElements.length; i++) {
           liElements[i].addEventListener('click', (event) => {
@@ -140,8 +161,7 @@ export default {
       } else {
         console.log('Element not found');
       }
-      // this.createObserver()
-
+      this.observeHeaders();
     });
 
   }
@@ -181,8 +201,7 @@ input {
 }
 
 :deep(.highlighted) {
-  @apply shadow-red-500 shadow-xl;
-
+  @apply font-medium !important
 }
 
 @media(max-width: 800px) {
