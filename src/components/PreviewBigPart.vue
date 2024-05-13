@@ -33,7 +33,8 @@ export default {
 }
 
 .prevTeaser {
-  @apply text-xl text-[#9A9A9A];
+  /* @apply text-xl text-[#9A9A9A]; */
+  @apply text-xl text-[#373737];
   transition: all 0.3s ease;
 }
 

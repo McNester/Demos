@@ -137,7 +137,7 @@ export default {
 }
 
 #serviceInfoWrapper {
-  @apply flex flex-col justify-start items-start w-[90vw] h-[80vh] bg-[#191919] rounded-2xl overflow-scroll pb-16;
+  @apply text-white flex flex-col justify-start items-start w-[90vw] h-[80vh] bg-black rounded-2xl overflow-scroll pb-16;
 }
 
 #infoWrapper {

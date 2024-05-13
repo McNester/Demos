@@ -157,7 +157,7 @@ a {
   }
 
   .linkWrapper {
-    @apply px-[0.5rem];
+    @apply px-[0.5rem] text-white;
     transition: all 0.5s ease;
   }
 

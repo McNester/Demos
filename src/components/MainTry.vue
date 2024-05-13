@@ -173,12 +173,12 @@ export default {
 
       this.$nextTick(() => {
         let partId = this.getPartIdByTitle(this.currentService)
-        console.log('part: ' + partId)
+        // console.log('part: ' + partId)
 
         this.$store.commit('docs/setCurrentSectionId', 1)
-        console.log(this.$store.getters['docs/getCurrentSectionId'])
+        // console.log(this.$store.getters['docs/getCurrentSectionId'])
         this.$store.commit('docs/setCurrentPartId', partId)
-        console.log('part id: ' + this.$store.getters['docs/getCurrentPartId'])
+        // console.log('part id: ' + this.$store.getters['docs/getCurrentPartId'])
         this.$store.commit('docs/setCurrentArticle')
         this.$store.commit('docs/setCurrentPageInfo')
         this.$store.commit('docs/setCurrentNavigationHooks')
@@ -432,7 +432,7 @@ section {
 }
 
 #casesTitle {
-  @apply text-[4rem] self-center text-white text-center mt-[15rem];
+  @apply text-[4rem] self-center text-black text-center mt-[15rem];
   font-weight: 600;
 }
 

@@ -53,7 +53,7 @@ export default {
 
 html,
 body {
-  @apply bg-black text-white;
+  @apply bg-white text-black;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
