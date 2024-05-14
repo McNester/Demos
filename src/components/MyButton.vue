@@ -22,7 +22,7 @@ export default {
 
 <style scoped>
 button {
-  @apply text-white w-[10rem] h-9 rounded-3xl;
+  @apply w-[10rem] h-9 rounded-3xl;
   background: -webkit-linear-gradient(225deg, rgb(251, 175, 21), rgb(251, 21, 242), rgb(21, 198, 251)) 0% 0% / 300% 300%;
   background-size: 200% auto;
   -webkit-animation: gradient_move 3s ease infinite;
