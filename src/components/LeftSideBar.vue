@@ -172,11 +172,11 @@ export default {
 
 <style scoped>
 #leftSidebarWrapper {
-  @apply border-l-2 border-l-[#373737] border-opacity-20 fixed top-[1%] p-5 right-0 w-[20%] h-[100vh];
+  @apply border-l-2 border-l-[#373737] border-opacity-20 fixed top-0 p-5 right-0 w-[20%] h-[100vh];
 }
 
 #leftHeading {
-  @apply font-black !important;
+  @apply mt-[15%] font-black !important;
 }
 
 input {
@@ -191,9 +191,43 @@ input {
 }
 
 :deep(ul > li) {
-  @apply font-light mb-5 !important;
+  position: relative;
+  @apply h-[1.8rem] font-light mb-10 !important;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease !important;
+
+}
+
+
+:deep(ul > li::before) {
+  @apply w-2 h-2;
+  content: "";
+  position: absolute;
+  left: 3%;
+  top: -0.8rem;
+  background-color: #373737;
+  opacity: 0.4;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+:deep(ul > li::after) {
+  @apply border-[#373737] border-l-2 border-opacity-40;
+  content: "";
+  position: absolute;
+  left: 3%;
+  top: 100%;
+  height: 80%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+}
+
+:deep(ul > li:first-child::before) {
+  display: none;
+}
+
+:deep(ul > li:last-child::after) {
+  display: none;
 }
 
 :deep(li:hover) {
@@ -201,12 +235,21 @@ input {
 }
 
 :deep(.highlighted) {
-  @apply font-medium !important
+  @apply h-[1rem] font-medium !important;
+  transition: all 0.3s ease !important;
 }
 
 @media(max-width: 800px) {
   input {
-    @apply w-[103%] text-[0.8rem] pl-[1rem] !important;
+    @apply mt-[5rem] w-[103%] text-[0.8rem] pl-[1rem] !important;
+  }
+
+  :deep(ul > li) {
+    @apply mb-12 !important;
+  }
+
+  :deep(ul > li:last-child) {
+    @apply mt-[4rem];
   }
 }
 
@@ -217,12 +260,30 @@ input {
   }
 
   #leftHeading {
-    @apply text-[0.9rem] font-black !important;
+    @apply text-[0.9rem] w-fit -ml-[0.9rem] font-black !important;
   }
 
-  :deep(li) {
-    @apply text-sm !important;
+  :deep(ul > li) {
+    @apply -ml-[0.9rem] mb-5 h-fit w-fit text-sm !important;
   }
+
+  :deep(ul > li::before) {
+    display: none;
+  }
+
+  :deep(ul > li::after) {
+    display: none;
+  }
+
+  :deep(ul > li:last-child) {
+    @apply mt-0;
+  }
+
+
+  :deep(.highlighted) {
+    @apply h-fit !important;
+  }
+
 
   input {
     @apply w-[121%] pl-[0.8rem] -ml-[0.5rem] !important;
