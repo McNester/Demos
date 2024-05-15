@@ -520,6 +520,7 @@ section {
 @media (max-width: 499px) {
   #hireSmall {
     @apply block fixed w-[30%] h-9 top-5 right-[20%];
+    z-index: 1000;
   }
 
 }
