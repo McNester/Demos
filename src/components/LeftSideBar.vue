@@ -3,7 +3,7 @@
     <div v-if="isVisible" id="leftSidebarWrapper">
       <h3 id="leftHeading">On this page:</h3>
       <div ref="list" v-html="markdownToHtml"></div>
-      <form @submit.prevent">
+      <form id="docsSearch" @submit.prevent">
         <fieldset>
           <input @input="searchArticle" v-model="searchQuery" type="text" id="name" required aria-required="true"
             placeholder="Search in docs" />
@@ -176,11 +176,11 @@ export default {
 }
 
 #leftHeading {
-  @apply mt-[15%] font-black !important;
+  @apply mt-[40%] font-black !important;
 }
 
 input {
-  @apply w-[80%] h-[2rem] rounded-full border border-white bg-transparent pl-5 !important;
+  @apply w-[100%] h-[2rem] rounded-full border border-white bg-transparent pl-5 !important;
   outline: none;
 }
 
@@ -237,6 +237,20 @@ input {
 :deep(.highlighted) {
   @apply h-[1rem] font-medium !important;
   transition: all 0.3s ease !important;
+}
+
+/* TODO: optimize the look of search on smaller screens
+    adjuts the look of text inside,the width
+*/
+#docsSearch {
+  @apply mr-[2%] h-fit;
+}
+
+@media(min-width: 900px) {
+  #docsSearch {
+    @apply w-[95%] absolute top-[3%] right-0;
+  }
+
 }
 
 @media(max-width: 800px) {
