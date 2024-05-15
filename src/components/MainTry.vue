@@ -524,6 +524,20 @@ section {
 
 }
 
+
+
+@media(max-width: 1000px) {
+  #services {
+    @apply pb-[6rem] !important;
+  }
+}
+
+@media (max-width: 500px) {
+  #services {
+    @apply pb-[3rem] !important;
+  }
+}
+
 @media(max-width: 360px) {
   #hireSmall {
     @apply w-[28%] right-[25%];

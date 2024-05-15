@@ -1,15 +1,12 @@
 <template>
   <div class="marquee-container headingFont">
-    <div
-      class="marquee"
-      :class="{
-        toLeft: getDirection['toLeft'],
-        toRight: getDirection['toRight'],
-        big: getSize['big'],
-        small: getSize['small'],
-        medium: getSize['medium']
-      }"
-    >
+    <div class="marquee" :class="{
+      toLeft: getDirection['toLeft'],
+      toRight: getDirection['toRight'],
+      big: getSize['big'],
+      small: getSize['small'],
+      medium: getSize['medium']
+    }">
       <span v-for="i in [1, 2, 3]" class="justify-self-center self-center">
         | Web3 | Web2 | Telegram | Softs
       </span>
@@ -73,16 +70,16 @@ export default {
   @apply text-2xl;
   @apply flex h-fit py-2 -mb-[7rem] mt-[6rem] font-bold lg:text-8xl;
 }
+
 .big {
-  @apply text-2xl !important;
   @apply lg:text-8xl !important;
 }
+
 .medium {
-  @apply text-xl !important;
   @apply lg:text-7xl !important;
 }
+
 .small {
-  @apply text-lg !important;
   @apply lg:text-6xl !important;
 }
 
@@ -91,20 +88,44 @@ export default {
   white-space: nowrap;
   padding: 2rem 0;
 }
+
 .toLeft {
   animation: toLeft 30s linear infinite;
 }
+
 .toRight {
   animation: toRight 30s linear infinite;
 }
+
 .marquee:after {
   content: ' | Web3 | Web2 | Telegram | Softs |';
+}
+
+
+@media (max-width:1000px) {
+  .marquee-container {
+    @apply -mb-[5rem] mt-[1rem];
+  }
+
+  .big {
+    @apply text-6xl;
+  }
+
+  .medium {
+    @apply text-5xl;
+  }
+
+  .small {
+    @apply text-4xl;
+  }
+
 }
 
 @keyframes toRight {
   from {
     transform: translateX(-50.999%);
   }
+
   to {
     transform: translateX(0%);
   }
@@ -114,6 +135,7 @@ export default {
   from {
     transform: translateX(0%);
   }
+
   to {
     transform: translateX(-50.999%);
   }
