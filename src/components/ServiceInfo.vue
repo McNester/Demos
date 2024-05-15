@@ -212,6 +212,14 @@ li {
   @apply scale-150 font-bold mb-[2rem] mt-[4rem];
 }
 
+
+@media(max-width: 1199px) {
+  #correspCases {
+    @apply flex justify-between h-[159%];
+  }
+
+}
+
 /*800px*/
 
 @media (min-width: 800px) {

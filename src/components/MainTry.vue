@@ -524,7 +524,11 @@ section {
 
 }
 
-
+@media (max-width: 721px) {
+  #cases {
+    @apply -mb-[18rem] !important;
+  }
+}
 
 @media(max-width: 1000px) {
   #services {
