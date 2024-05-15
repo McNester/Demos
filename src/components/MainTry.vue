@@ -526,7 +526,11 @@ section {
 
 @media (max-width: 721px) {
   #cases {
-    @apply -mb-[18rem] !important;
+    @apply -mb-[77%] -mt-[13rem] !important;
+  }
+
+  #casesWrapper {
+    @apply gap-[1.5rem] mt-[2rem];
   }
 }
 
