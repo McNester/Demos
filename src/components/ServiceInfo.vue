@@ -116,9 +116,14 @@ export default {
       const container = document.querySelector('#correspCases') // The scrollable container
       const cards = container.querySelectorAll('.case') // Elements that will fade
 
-      cards.forEach((card) => {
+
+      let val = 0;
+      cards.forEach((card, index) => {
+        if (window.innerWidth < 1200) {
+          val = index * -60;
+        }
         card.style.transition = 'transform 1.5s ease, opacity 1s ease'
-        card.style.transform = 'translateY(0%)'
+        card.style.transform = 'translateY(' + val + '%)'
       })
     }
   },
