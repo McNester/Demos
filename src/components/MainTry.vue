@@ -1,9 +1,12 @@
 <template>
   <header>
     <img id="logoImg" alt="Demos logo" loading="lazy" src="@/assets/icons/logo.png" />
-    <button id="menuBtn" aria-label="Menu button" @click="toggleMenu">
-      <img id="menuImg" :src="menuBtn" alt="Menu button" />
+    <my-button @click="scrollTo('contact')" id="hireSmall">Hire us</my-button>
+
+    <button id="menuBtn" aria-label="Menu button">
+      <img id="menuImg" :src="menuBtn" alt="Menu button" @click="toggleMenu" />
     </button>
+
     <my-nav @openPreview="openPreview" :isMenu="isMenu" @closeSideBar="toggleMenu"></my-nav>
   </header>
   <nav-preview @mouseleave="toggleNavHower" :isVisible="isNavHowered"></nav-preview>
@@ -133,6 +136,16 @@ export default {
     }
   },
   methods: {
+    scrollTo(sectionId) {
+      this.$emit('closeSideBar')
+      const element = document.getElementById(sectionId)
+      if (element) {
+        const yOffset = -140
+        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset
+
+        window.scrollTo({ top: y, behavior: 'smooth' })
+      }
+    },
     handleScrollBar() {
       clearTimeout(this.scrollTimeout);
 
@@ -385,6 +398,11 @@ header {
   z-index: 10000;
 }
 
+#hireSmall {
+  @apply hidden;
+}
+
+
 #logoImg {
   @apply absolute left-0 top-0 mt-[1.5rem] ml-[1rem] h-[35%] w-auto;
   aspect-ratio: 7/1.5;
@@ -491,6 +509,25 @@ section {
 
 #contactTitle {
   @apply text-center w-[80%] text-3xl;
+}
+
+
+/* max-width */
+/* 499px */
+
+
+
+@media (max-width: 499px) {
+  #hireSmall {
+    @apply block fixed w-[30%] h-9 top-5 right-[20%];
+  }
+
+}
+
+@media(max-width: 360px) {
+  #hireSmall {
+    @apply w-[28%] right-[25%];
+  }
 }
 
 /*min-width*/
