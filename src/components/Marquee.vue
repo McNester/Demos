@@ -104,7 +104,7 @@ export default {
 
 @media (max-width:1000px) {
   .marquee-container {
-    @apply -mb-[5rem] mt-[1rem];
+    @apply -mb-[13rem] mt-[9rem];
   }
 
   .big {

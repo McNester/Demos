@@ -36,7 +36,12 @@
         url="https://prod.spline.design/9yoCKQd-0-E6Tx1j/scene.splinecode"></spline-viewer>
     </section>
 
+    <marquee v-once size="big" direction="toLeft"></marquee>
+    <marquee v-once size="medium" direction="toRight"></marquee>
+    <marquee v-once size="small" direction="toLeft"></marquee>
+
     <section ref="cases" id="cases">
+
       <div ref="casesTitle" id="casesTitleWrapper">
         <h3 class="casesSlogan fira">Honored projects</h3>
         <h2 id="casesTitle" class="headingFont">CASES</h2>
@@ -60,9 +65,6 @@
           :title="service.title" :description="service.desc" :price="service.price" :current="currentService"
           :isService="isService" @infoOpen="currentService = service.title"></service-card>
       </div>
-      <marquee v-once size="big" direction="toLeft"></marquee>
-      <marquee v-once size="medium" direction="toRight"></marquee>
-      <marquee v-once size="small" direction="toLeft"></marquee>
     </section>
     <section id="about">
       <bento></bento>
@@ -427,7 +429,7 @@ section {
 }
 
 #main {
-  @apply relative;
+  @apply -mb-[9rem] relative;
 }
 
 #logoWrapper {
@@ -536,7 +538,7 @@ section {
 
 @media (max-width: 721px) {
   #cases {
-    @apply -mb-[77%] -mt-[13rem] !important;
+    @apply -mb-[77%] -mt-[5rem] !important;
   }
 
   #casesWrapper {
