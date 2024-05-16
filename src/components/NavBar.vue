@@ -61,8 +61,16 @@ export default {
       this.$emit('closeSideBar')
       const element = document.getElementById(sectionId)
       if (element) {
-        const yOffset = -140
+        let yOffset = -60
+
+        if (window.innerWidth <= 500 && sectionId == this.options[0].name) {
+          yOffset = 100
+
+        }
+
         const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset
+
+        console.log("OFFSET: " + yOffset)
 
         window.scrollTo({ top: y, behavior: 'smooth' })
       }
