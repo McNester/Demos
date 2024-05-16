@@ -36,6 +36,7 @@ export default {
 #nav-icon4 {
   @apply mt-[5.5%] w-20 h-20;
   scale: 59%;
+  left: 15vw;
   position: relative;
   /* margin: 1rem auto; */
   -webkit-transform: rotate(0deg);
@@ -56,7 +57,6 @@ export default {
   width: 100%;
   background: white;
   opacity: 1;
-  left: 25vw;
   -webkit-transform: rotate(0deg);
   -moz-transform: rotate(0deg);
   -o-transform: rotate(0deg);
@@ -103,7 +103,7 @@ export default {
   -o-transform: rotate(45deg);
   transform: rotate(45deg);
   top: -1rem;
-  left: 32vw;
+  left: 2vw;
 }
 
 #nav-icon4.open span:nth-child(2) {
@@ -117,7 +117,7 @@ export default {
   -o-transform: rotate(-45deg);
   transform: rotate(-45deg);
   top: 2.5rem;
-  left: 32vw;
+  left: 2vw;
 }
 
 /**/
