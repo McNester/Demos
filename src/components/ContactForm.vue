@@ -21,7 +21,7 @@ export default {
   data() {
     return {
       // chatId: 7017192108,
-      chatId: 832149954,
+      chatId: 7017192108,
       token: '7122264496:AAFqPNZz-S_5MxMFUVgljVpr1yzZvvfTeZ4',
       name: '',
       social: '',
