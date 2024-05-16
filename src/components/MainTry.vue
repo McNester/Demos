@@ -474,6 +474,13 @@ section {
 
 #main {
   @apply -mb-[9rem] relative;
+
+  background-image: url('@/assets/icons/sun.svg');
+  background-repeat: no-repeat;
+  background-size: 150%;
+  background-position: top right;
+  background-position-x: -50%;
+  background-position-y: 70%;
 }
 
 #logoWrapper {
