@@ -18,9 +18,11 @@ import PreviewSmallPart from '@/components/PreviewSmallPart.vue'
 import BottomCover from '@/components/BottomCover.vue'
 import LeftSideBar from '@/components/LeftSideBar.vue'
 import ArticleHeader from '@/components/ArticleHeader.vue'
+import BurgerButton from '@/components/BurgerButton.vue'
 
 
 export default [
+  BurgerButton,
   ArticleHeader,
   LeftSideBar,
   BottomCover,

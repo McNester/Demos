@@ -1,11 +1,18 @@
 <template>
   <header>
     <img id="logoImg" alt="Demos logo" loading="lazy" src="@/assets/icons/logo.png" />
-    <my-button @click="scrollTo('contact')" id="hireSmall">Hire us</my-button>
 
-    <button id="menuBtn" aria-label="Menu button">
-      <img id="menuImg" :src="menuBtn" alt="Menu button" @click="toggleMenu" />
-    </button>
+    <div class="flex flex-row w-[50%] h-fit justify-center items-center">
+      <my-button @click="scrollTo('contact')" id="hireSmall">Hire us</my-button>
+
+      <!-- <button id="menuBtn" aria-label="Menu button"> -->
+      <!-- <img id="menuImg" :src="menuBtn" alt="Menu button" @click="toggleMenu" /> -->
+      <!-- </button> -->
+      <burger-btn :isMenu="isMenu" @toggleMenu="toggleMenu"></burger-btn>
+
+
+    </div>
+
 
     <my-nav @openPreview="openPreview" :isMenu="isMenu" @closeSideBar="toggleMenu"></my-nav>
   </header>
@@ -23,6 +30,7 @@
           sodales est. Class aptent taciti
         </h2>
       </div>
+
 
       <spline-viewer id="host" v-once
         url="https://prod.spline.design/9yoCKQd-0-E6Tx1j/scene.splinecode"></spline-viewer>
@@ -71,9 +79,9 @@
 </template>
 
 <script setup>
-import menuBtn from '@/assets/icons/menuBtn.svg'
+// import menuBtn from '@/assets/icons/menuBtn.svg'
 
-import closeBtn from '@/assets/icons/closeBtn.svg'
+// import closeBtn from '@/assets/icons/closeBtn.svg'
 
 import { gsap } from 'gsap'
 
@@ -93,6 +101,7 @@ export default {
       animationPlayState: 'running',
       isService: false,
       isMenu: true,
+      isBurger: false,
       isMobile: false,
       tl: null,
       phrases: [
@@ -201,14 +210,14 @@ export default {
     toggleMenu() {
       if (window.innerWidth < 500) {
         this.isMenu = !this.isMenu
-        this.toggleMenuIcon()
+        // this.toggleMenuIcon()
       }
     },
     toggleMenuIcon() {
       if (this.isMenu) {
-        document.getElementById('menuImg').src = closeBtn
+        this.isBurger = true;
       } else {
-        document.getElementById('menuImg').src = menuBtn
+        this.isBurger = false
       }
     },
     handleResize() {
@@ -409,7 +418,7 @@ header {
 }
 
 #menuBtn {
-  @apply scale-[200%] p-8;
+  /* @apply scale-[200%] p-8; */
   z-index: 999;
 }
 
