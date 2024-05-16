@@ -270,7 +270,7 @@ input {
 
 @media(max-width: 500px) {
   #leftSidebarWrapper {
-    @apply top-0 w-[27%];
+    @apply top-0 w-[25%];
   }
 
   #leftHeading {
@@ -300,17 +300,18 @@ input {
 
 
   input {
-    @apply w-[121%] pl-[0.8rem] -ml-[0.5rem] !important;
+    @apply w-[121%] text-start pl-[0.5rem] -ml-[0.5rem] !important;
   }
 
 }
 
-@media(max-width: 425px) {
+
+
+@media(max-width: 450px) {
   input {
-    @apply -ml-[0.9rem] w-[147%] text-[0.65rem] !important;
+    @apply -ml-[0.9rem] w-[147%] text-[0.6rem] !important;
   }
 }
-
 
 @keyframes goIn {
   0% {
