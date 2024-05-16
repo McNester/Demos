@@ -63,6 +63,10 @@ export default {
       if (element) {
         let yOffset = -60
 
+        if (window.innerWidth <= 500 && sectionId == this.options[1].name) {
+          yOffset = -90;
+        }
+
         if (window.innerWidth <= 500 && sectionId == this.options[0].name) {
           yOffset = 100
 
