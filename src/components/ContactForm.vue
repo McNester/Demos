@@ -93,6 +93,7 @@ export default {
           }
         )
       }
+
     },
     clearInputs() {
       this.name = ''

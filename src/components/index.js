@@ -19,9 +19,11 @@ import BottomCover from '@/components/BottomCover.vue'
 import LeftSideBar from '@/components/LeftSideBar.vue'
 import ArticleHeader from '@/components/ArticleHeader.vue'
 import BurgerButton from '@/components/BurgerButton.vue'
+import ContactPopup from '@/components/ContactPopup.vue'
 
 
 export default [
+  ContactPopup,
   BurgerButton,
   ArticleHeader,
   LeftSideBar,

@@ -70,10 +70,11 @@
       <bento></bento>
     </section>
     <section id="contact">
+      <contact-message ref="contactMessage"></contact-message>
       <legend class="headingFont" id="contactTitle">
         Our Team Is Ready To Help! Get started now!
       </legend>
-      <contact-form></contact-form>
+      <contact-form @send="showSuccessMessage"></contact-form>
     </section>
 
     <my-footer></my-footer>
@@ -149,47 +150,9 @@ export default {
     }
   },
   methods: {
-    check() {
-      if (this.name.trim().length > 1) {
-        this.isNameReady = true
-        document.getElementById('nameInput').classList.remove('red')
-      } else {
-        this.isNameReady = false
-        document.getElementById('nameInput').classList.add('red')
-      }
+    showSuccessMessage() {
+      this.$refs.contactMessage.showPopup();
 
-      if (this.phone.trim().length == 11) {
-        this.isPhoneReady = true
-        document.getElementById('phoneInput').classList.remove('red')
-      } else {
-        this.isPhoneReady = false
-        document.getElementById('phoneInput').classList.add('red')
-      }
-
-      if (this.message.trim().length > 1) {
-        this.isMessageReady = true
-        document.getElementById('messageInput').classList.remove('red')
-      } else {
-        this.isMessageReady = false
-        document.getElementById('messageInput').classList.add('red')
-      }
-    },
-    submitForm() {
-      this.check()
-      if (this.isNameReady && this.isPhoneReady && this.isMessageReady) {
-        const messageToBot = `${this.name}, сообщает:%0A${this.message}%0A %0AКонтактные данные: ${this.phone}`
-        const url = `https://api.telegram.org/bot${this.token}/sendMessage?chat_id=${this.chatId}&text=${messageToBot}`
-        this.$http.post(url).then(
-          (response) => {
-            console.log('Success!')
-            this.clear()
-            this.$emit('send')
-          },
-          (error) => {
-            console.log('Error: ' + error)
-          }
-        )
-      }
     },
     scrollTo(sectionId) {
       this.$emit('closeSideBar')
