@@ -1,7 +1,7 @@
 <template>
   <div class="socialHeader">
-    <a target="_blank" class="social" href="https://discord.com/">
-      <img id="telegram" src="../assets/icons/discord.png" alt="telegram icon" loading="lazy" />
+    <a target="_blank" class="social" href="https://web.telegram.org/a/">
+      <img id="telegram" src="../assets/icons/telegram.png" alt="telegram icon" loading="lazy" />
     </a>
     <a class="social" href="https://twitter.com/" target="_blank">
       <img id="instagram" src="../assets/icons/twitter.png" alt="instagram icon" loading="lazy" />

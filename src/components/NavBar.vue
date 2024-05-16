@@ -26,8 +26,8 @@
         <a target="_blank" class="social" href="https://web.telegram.org/a/">
           <img id="telegram" src="../assets/icons/telegram.png" alt="telegram icon" loading="lazy" />
         </a>
-        <a target="_blank" class="social" href="https://www.instagram.com/">
-          <img id="instagram" src="../assets/icons/inst.png" alt="instagram icon" loading="lazy" />
+        <a target="_blank" class="social" href="https://www.twitter.com/">
+          <img id="twitter" src="../assets/icons/twitter.png" alt="twitter icon" loading="lazy" />
         </a>
       </ul>
       <my-button @click="scrollTo(options[3].name)" id="hire">Hire us</my-button>
