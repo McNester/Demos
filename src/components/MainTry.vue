@@ -98,6 +98,8 @@ export default {
   name: 'my-main',
   data() {
     return {
+      chatId: 7017192108,
+      token: '7122264496:AAFqPNZz-S_5MxMFUVgljVpr1yzZvvfTeZ4',
       scrollTimeout: null,
       isNavHowered: false,
       animationPlayState: 'running',
@@ -147,6 +149,48 @@ export default {
     }
   },
   methods: {
+    check() {
+      if (this.name.trim().length > 1) {
+        this.isNameReady = true
+        document.getElementById('nameInput').classList.remove('red')
+      } else {
+        this.isNameReady = false
+        document.getElementById('nameInput').classList.add('red')
+      }
+
+      if (this.phone.trim().length == 11) {
+        this.isPhoneReady = true
+        document.getElementById('phoneInput').classList.remove('red')
+      } else {
+        this.isPhoneReady = false
+        document.getElementById('phoneInput').classList.add('red')
+      }
+
+      if (this.message.trim().length > 1) {
+        this.isMessageReady = true
+        document.getElementById('messageInput').classList.remove('red')
+      } else {
+        this.isMessageReady = false
+        document.getElementById('messageInput').classList.add('red')
+      }
+    },
+    submitForm() {
+      this.check()
+      if (this.isNameReady && this.isPhoneReady && this.isMessageReady) {
+        const messageToBot = `${this.name}, сообщает:%0A${this.message}%0A %0AКонтактные данные: ${this.phone}`
+        const url = `https://api.telegram.org/bot${this.token}/sendMessage?chat_id=${this.chatId}&text=${messageToBot}`
+        this.$http.post(url).then(
+          (response) => {
+            console.log('Success!')
+            this.clear()
+            this.$emit('send')
+          },
+          (error) => {
+            console.log('Error: ' + error)
+          }
+        )
+      }
+    },
     scrollTo(sectionId) {
       this.$emit('closeSideBar')
       const element = document.getElementById(sectionId)
